@@ -1,0 +1,33 @@
+# OS
+.DS_Store
+._*
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Node
+node_modules/
+dist/
+build/
+*.tgz
+.npm
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Claude Code
+.claude/
