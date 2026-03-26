@@ -689,29 +689,3 @@ The tools don't replace the agent's core capabilities — reasoning, retrieval, 
 - **Execution:** Agents that write code, send emails, manage workflows — those actions happen AFTER the divergent thinking pipeline produces the strategy. The tools produce the WHAT. The agent executes the HOW.
 
 The tools are not a replacement for agents. They are the layer that prevents agents from being 10,000 copies of the same brain.
-
----
-
-### The Paralogy Product Opportunity
-
-**For agent framework developers** (LangChain, CrewAI, AutoGen, LangGraph):
-- The tools become a plugin/integration that adds diversity guarantees to any multi-agent system
-- The Quality Gate (AHC + BSS) becomes a standard evaluation step, like unit tests for idea diversity
-- The Persona Divergence Engine becomes the standard way to configure multi-agent panels
-
-**For enterprise AI teams:**
-- The Objective Validator prevents the most expensive mistake in agentic AI: brilliantly solving the wrong problem at scale
-- The Quality Gate catches the hidden failure mode: multi-agent convergence disguised as diversity
-- The Gap-Fill Controller ensures completeness without manual review
-
-**For AI research tools** (Elicit, Consensus, Semantic Scholar agents):
-- The tools ensure that automated literature review and hypothesis generation explore the full problem space, not just the most-cited corner of it
-- The WPD catches when the research question itself is wrong — the most valuable intervention in science
-
-**Pricing model:**
-- Per-pipeline-run (each pass through the 5 layers is a billable event)
-- Per-agent-configuration (each Persona Divergence Engine persona is a configuration event)
-- Per-quality-gate-audit (each AHC/BSS evaluation is billable)
-- Enterprise: flat monthly for unlimited pipeline runs
-
-The tools become metered infrastructure — like compute or API calls — not a subscription to a platform. The value is measurable: quality gate grades, cluster counts, gap-fill effectiveness, and convergence reduction metrics are all quantifiable.

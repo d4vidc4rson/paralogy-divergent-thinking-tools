@@ -616,7 +616,7 @@ No new hires. Existing people, reallocated to the new strategy.
 | 3 | Strip Down | **A** | "Find someone — anyone" was the desire that unlocked everything |
 | 4 | Blind Spot Scan (pre) | **A** | 5 dimensions, WHO buyer was the key dimension |
 | 5 | Guilford Engine | **A** | 8 ideas, **clean 3-line format confirmed**, 4 feasibility tiers, strong default named |
-| 6 | Persona Divergence Engine | **A** | Colonel Henderson (DPA Title III) and Elena (FEMA grantees) produced the most immediately actionable ideas across all 7 tests — real money, real budgets, real buyers nobody called |
+| 6 | Persona Divergence Engine | **A** | Colonel Henderson (DPA Title III) and Elena (FEMA grantees) produced the most immediately actionable ideas across all 8 tests — real money, real budgets, real buyers nobody called |
 | 7 | Short Think | **A** | 24 ideas, good spread across customer segments |
 | 8 | Bad on Purpose | **A** | Storage-as-a-service and co-selling with Form Energy mined from terrible ideas |
 | 9 | Think Wrong | **A** | "Sell the absence of batteries" — strong reframing of value proposition |
@@ -630,7 +630,7 @@ No new hires. Existing people, reallocated to the new strategy.
 
 ### Overall Pipeline Grade: **A**
 
-### All Seven Tests — Final Summary
+### All Eight Tests — Final Summary
 
 | Test | Domain | Special Condition | Grade |
 |------|--------|-------------------|-------|
@@ -641,11 +641,12 @@ No new hires. Existing people, reallocated to the new strategy.
 | 5 | Transit + schools | Multi-problem (obvious) | A |
 | 6 | Downtown + loneliness | Multi-problem (ambiguous) | A |
 | 7 | Climate tech startup | **Verification of all updates** | A |
+| 8 | Premium product launch (marketing) | Full pipeline | A |
 
 **Both updates verified working:**
 - The Guilford 3-line format produces cleaner, more scannable output
 - The Gap-Fill Loop continues to work across domains
 - The Router handles single-problem and multi-problem scenarios without friction
-- The full pipeline (Explore → Pre-gen → Generate → Audit → Gap-fill → Re-audit → Polish) is validated across 7 domains
+- The full pipeline (Explore → Pre-gen → Generate → Audit → Gap-fill → Re-audit → Polish) is validated across 8 domains
 
 **No outstanding structural issues identified.** The toolkit is stable.

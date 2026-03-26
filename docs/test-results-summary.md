@@ -1,6 +1,6 @@
 # Test Results Summary
 
-## Seven pipeline tests across seven domains
+## Eight pipeline tests across eight domains
 
 Every test deployed all 15 tools in a full pipeline. Human decisions were simulated at interaction points by making choices a domain expert would plausibly make.
 
@@ -13,6 +13,7 @@ Every test deployed all 15 tools in a full pipeline. Human decisions were simula
 | 5 | Transit + teacher shortage | Multi-problem (obvious connection) | 14 | A | 0 | **A** |
 | 6 | Downtown vacancy + loneliness | Multi-problem (ambiguous connection) | 13 | A | 0 | **A** |
 | 7 | Climate tech go-to-market | All updates verified | 9 | A | 0 | **A** |
+| 8 | Premium product launch (marketing) | Full pipeline | 12 | A | 0 | **A** |
 
 ## What each test proved
 
@@ -29,6 +30,8 @@ Every test deployed all 15 tools in a full pipeline. Human decisions were simula
 **Test 6 (Downtown + Loneliness):** The pipeline handles ambiguous multi-problem connections. Downtown vacancy and adult loneliness FEEL related but have partially independent causes. The triage correctly identified a partial shared root (loss of gathering infrastructure) and merged with domain tracks. Also exposed the need for a third triage option beyond merge/split.
 
 **Test 7 (Climate Tech):** All updates verified. The Guilford Engine's 3-line format produced cleaner, more scannable output. The gap-fill loop worked. The router handled a single problem without friction.
+
+**Test 8 (Premium Product Launch):** Full pipeline in a marketing domain. A DTC sparkling water brand launching into a saturated category at a 7x price premium. The pipeline produced 12 distinct clusters spanning placement, product, content, pricing, scarcity, subscription, community, press, gifting, and category creation. The Wrong Problem Detector reframed from "marketing strategy" to "category creation." Random Injection (mushroom) produced directly actionable ideas. Grade: A.
 
 ## Control comparison (vanilla Claude vs. pipeline)
 
@@ -56,4 +59,4 @@ Full comparison: [test-7-control-vanilla-vs-tools.md](../tests/test-7-control-va
 4. **Multi-problem triage needs three options** (full merge, merge with domain tracks, split) — not two
 5. **Random Injection consistently produced the most "from outside the frame" ideas** — coral reef, mycelium, sourdough, campfire, dandelion, composting, tide pool all generated actionable transfers
 6. **The Persona Divergence Engine produced the most specific, immediately actionable ideas** — Colonel Henderson (DOD budget), Elena Vasquez (FEMA grants), Priya Sundaram (8-hour interconnection), because constructed personas with real-world constraints produce real-world leads
-7. **Every skill justified its existence** — no skill was unnecessary across 7 tests
+7. **Every skill justified its existence** — no skill was unnecessary across 8 tests
