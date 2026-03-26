@@ -128,7 +128,7 @@ See [docs/for-agents.md](docs/for-agents.md) for the full agentic architecture, 
 - Tested across 8 domains (public policy, education, climate tech, marketing, etc.) — all scored A or A-. Not yet tested on hard-constraint engineering problems (physics, code architecture, systems design).
 - The tools grade their own output. AHC diversity scores are self-assessed, not externally validated.
 - All tests ran on Claude. Other models may handle the complex multi-step instructions differently.
-- The full pipeline uses significant context window space. The Router alone is ~700 lines. Loading all 18 skills requires ~8,600 lines of system prompt.
+- The full pipeline uses significant context window space. All 18 skills total ~58,000 tokens of system prompt. The minimum viable set (Router + Wrong Problem Detector + Strip Down + Guilford Engine + Anti-Homogeneity Check) is ~18,000 tokens — fits comfortably in Claude's 200K context with plenty of room for conversation. See [for-humans.md](docs/for-humans.md) for the recommended starting configuration.
 
 ---
 
