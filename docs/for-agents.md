@@ -415,11 +415,13 @@ User/System → OBJECTIVE
 
 ---
 
-### Implementation Approaches
+### Future Implementation Paths
+
+> **Note:** The approaches below are planned, not yet shipped. The pseudocode and schemas are illustrative — they show what integration would look like, not working APIs you can call today. Today, the tools exist as SKILL.md files you can use directly with Claude or any LLM that supports custom instructions. See [for-humans.md](for-humans.md) for current usage.
 
 **Approach 1: SDK / Library**
 
-The tools become functions in a Python/TypeScript library that agent frameworks call:
+The tools would become functions in a Python/TypeScript library that agent frameworks call:
 
 ```python
 from paralogy import (
@@ -477,7 +479,7 @@ if audit.grade < "B" or gaps.critical:
 
 **Approach 2: MCP Server**
 
-The tools run as an MCP (Model Context Protocol) server that any agent framework can connect to. Each tool is an MCP tool:
+The tools would run as an MCP (Model Context Protocol) server that any agent framework can connect to. Each tool would be an MCP tool:
 
 ```json
 {
@@ -520,11 +522,11 @@ The tools run as an MCP (Model Context Protocol) server that any agent framework
 }
 ```
 
-This approach lets any framework (CrewAI, LangGraph, AutoGPT, custom) call the tools without embedding them. The MCP server handles the LLM calls internally. The agent framework handles orchestration.
+This approach would let any framework (CrewAI, LangGraph, AutoGPT, custom) call the tools without embedding them. The MCP server would handle the LLM calls internally. The agent framework would handle orchestration.
 
 **Approach 3: Orchestrator Agent**
 
-The Router itself becomes an orchestrator agent. Instead of a human invoking skills, an orchestrator agent reads the Router's instructions and makes routing decisions:
+The Router itself could become an orchestrator agent. Instead of a human invoking skills, an orchestrator agent would read the Router's instructions and make routing decisions:
 
 - Receives the objective
 - Runs the Multi-Problem Triage (merge/split/track)
@@ -537,7 +539,7 @@ The Router itself becomes an orchestrator agent. Instead of a human invoking ski
 - Triggers Gap-Fill if needed
 - Formats and delivers
 
-The Router SKILL.md becomes the orchestrator's system prompt. The other skills become the sub-agents' system prompts. The pipeline runs autonomously.
+In this model, the Router SKILL.md becomes the orchestrator's system prompt. The other skills become the sub-agents' system prompts. The pipeline runs autonomously.
 
 ---
 
