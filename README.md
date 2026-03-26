@@ -125,4 +125,4 @@ See [docs/for-agents.md](docs/for-agents.md) for the full agentic architecture, 
 
 ## About
 
-Built by [David Carson](https://www.linkedin.com/in/davidcarson/) at [Paralogy](https://paralogy.ai). Part of the [Dumbify](https://dumbify.io) universe of counterintuitive thinking.
+Built by [David Carson](https://www.linkedin.com/in/davidcarson/) at [Paralogy](https://paralogy.ai).
