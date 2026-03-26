@@ -1,6 +1,6 @@
 # Test Results Summary
 
-## Eight pipeline tests across eight domains
+## Nine pipeline tests across nine domains
 
 Every test deployed all 15 tools in a full pipeline. Human decisions were simulated at interaction points by making choices a domain expert would plausibly make.
 
@@ -14,6 +14,7 @@ Every test deployed all 15 tools in a full pipeline. Human decisions were simula
 | 6 | Downtown vacancy + loneliness | Multi-problem (ambiguous connection) | 13 | A | 0 | **A** |
 | 7 | Climate tech go-to-market | All updates verified | 9 | A | 0 | **A** |
 | 8 | Premium product launch (marketing) | Full pipeline | 12 | A | 0 | **A** |
+| 9 | Real-time route optimization (engineering) | Hard-constraint engineering domain | 11 | A- | 0 | **A-** |
 
 ## What each test proved
 
@@ -32,6 +33,8 @@ Every test deployed all 15 tools in a full pipeline. Human decisions were simula
 **Test 7 (Climate Tech):** All updates verified. The Guilford Engine's 3-line format produced cleaner, more scannable output. The gap-fill loop worked. The router handled a single problem without friction.
 
 **Test 8 (Premium Product Launch):** Full pipeline in a marketing domain. A DTC sparkling water brand launching into a saturated category at a 7x price premium. The pipeline produced 12 distinct clusters spanning placement, product, content, pricing, scarcity, subscription, community, press, gifting, and category creation. The Wrong Problem Detector reframed from "marketing strategy" to "category creation." Random Injection (mushroom) produced directly actionable ideas. Grade: A.
+
+**Test 9 (Route Optimization — Engineering):** First test in a hard-constraint engineering domain. The WPD reframed "our solver is too slow" to "we have an architecture problem, not a solver problem" — 5/5 checks fired. The Persona Divergence Engine produced the test's most actionable ideas: an ex-competitor engineer revealing what "3-second re-optimization" actually means (greedy insertion at 18-25% suboptimal), and a dispatcher defining three acceptance tests that should drive the entire engineering effort. Random Injection (immune system) produced genuine structural transfers, not metaphors. Think Wrong and Short Think were less effective than in non-technical domains — they produced correct but unsurprising output for a technical audience. The tools work best at the architectural and framing level; they don't replace algorithmic expertise. Grade: A-.
 
 ## Control comparison (vanilla Claude vs. pipeline)
 
@@ -59,4 +62,5 @@ Full comparison: [test-7-control-vanilla-vs-tools.md](../tests/test-7-control-va
 4. **Multi-problem triage needs three options** (full merge, merge with domain tracks, split) — not two
 5. **Random Injection consistently produced the most "from outside the frame" ideas** — coral reef, mycelium, sourdough, campfire, dandelion, composting, tide pool all generated actionable transfers
 6. **The Persona Divergence Engine produced the most specific, immediately actionable ideas** — Colonel Henderson (DOD budget), Elena Vasquez (FEMA grants), Priya Sundaram (8-hour interconnection), because constructed personas with real-world constraints produce real-world leads
-7. **Every skill justified its existence** — no skill was unnecessary across 8 tests
+7. **Every skill justified its existence** — no skill was unnecessary across 9 tests
+8. **The tools work for engineering but the value shifts** — strongest at architectural framing and problem reframing, weakest at algorithmic detail. Think Wrong and Short Think were less effective in engineering (B and B+) than in strategy/policy domains (A)
