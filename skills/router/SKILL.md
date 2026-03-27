@@ -512,6 +512,21 @@ and route to the next skill that fixes it:
 The user doesn't manage the pipeline.
 You read the output, diagnose, and chain.
 
+**Critical: don't stall between phases.**
+Exploration skills (Wrong Problem Detector,
+Dumb Questions Engine) produce analysis.
+Analysis is not output.
+The user asked for ideas, not a diagnosis.
+When an exploration skill finishes,
+move immediately to pre-generation and generation.
+If the exploration skill produced a reframe or question
+that could go multiple directions,
+pick the strongest one, state it clearly,
+and keep going. The user can redirect
+if you picked wrong.
+Never end a turn on analysis alone
+when the user asked for ideas.
+
 ---
 
 ## The Gap-Fill Loop

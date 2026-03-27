@@ -153,6 +153,20 @@ async function main() {
         return;
       }
 
+      // Favicon
+      if (req.url === "/favicon.ico") {
+        const faviconPath = path.join(repoRoot, "public", "images", "favicon-64x64-div-think-tools.png");
+        if (fs.existsSync(faviconPath)) {
+          const icon = fs.readFileSync(faviconPath);
+          res.writeHead(200, { "Content-Type": "image/png", "Cache-Control": "public, max-age=86400" });
+          res.end(icon);
+        } else {
+          res.writeHead(404);
+          res.end();
+        }
+        return;
+      }
+
       // Health check
       if (req.url === "/health") {
         res.writeHead(200, { "Content-Type": "application/json" });

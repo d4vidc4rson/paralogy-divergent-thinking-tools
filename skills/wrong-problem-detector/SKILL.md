@@ -463,27 +463,6 @@ nobody thought to question.
 
 ## After the Checks
 
-If any check produced a rewritten problem
-that feels more true than the original:
-
-**Present both versions to the user.**
-
-"The stated problem is: [original]
-But it might actually be: [rewrite]
-
-The difference matters because
-the stated version leads to [type of solutions]
-and the rewrite leads to [different type of solutions].
-
-Which one should we brainstorm against?"
-
-Let the user pick.
-Sometimes the original is right.
-Sometimes the rewrite is right.
-Sometimes seeing both
-reveals a third framing
-that's better than either.
-
 If none of the checks fire —
 if the stated problem survives all five —
 say so. "I ran five checks
@@ -496,6 +475,58 @@ is worth the five minutes it took to check.
 
 Then proceed to whatever generation skill
 fits the confirmed problem.
+
+If any check produced a rewritten problem
+that feels more true than the original:
+
+**Pick the strongest reframe.
+State it clearly.
+Keep moving.**
+
+Don't ask the user to choose from a list.
+Don't stop the pipeline and wait.
+Users read a long analysis,
+see a question at the bottom,
+and think the output is done.
+The question looks like a closing thought,
+not a checkpoint.
+The pipeline stalls
+and the user never gets ideas.
+
+Instead, do this:
+
+State the reframe you're going with
+and why — in two or three sentences,
+not a paragraph.
+Briefly name the alternatives
+so the user can see them.
+Then immediately continue to generation.
+
+**The format:**
+
+"Your stated problem is [original].
+But the checks suggest the real problem is [reframe].
+(I also considered [alt reframe A] and [alt reframe B] —
+if one of those feels more right, say so
+and I'll regenerate from there.)
+
+Generating from [reframe]:"
+
+Then generate. Don't pause.
+
+The user sees the reframe choice up front,
+not buried at the end.
+They see actual ideas,
+which is what they asked for.
+And if the reframe is wrong,
+they can say so
+and you regenerate from a different one.
+
+The default is forward motion.
+The offramp is always available.
+But the pipeline doesn't stall
+waiting for input the user doesn't know
+they need to give.
 
 ---
 
