@@ -95,6 +95,8 @@ function createDivergentThinkingServer(skillsDir: string): McpServer {
         context: z.string().optional().describe("Additional context, constraints, or background information"),
       },
       async ({ objective, context }) => {
+        console.error(`[${new Date().toISOString()}] tool_call: ${skill.name}`);
+
         const userInput = context
           ? `\n\n---\n\n**Objective:** ${objective}\n\n**Context:** ${context}`
           : `\n\n---\n\n**Objective:** ${objective}`;
@@ -211,14 +213,14 @@ async function main() {
             sessionIdGenerator: () => randomUUID(),
             onsessioninitialized: (id: string) => {
               sessions[id] = { transport, server };
-              console.error(`Session created: ${id}`);
+              console.error(`[${new Date().toISOString()}] session_start: ${id}`);
             },
           });
 
           transport.onclose = () => {
             if (transport.sessionId) {
               delete sessions[transport.sessionId];
-              console.error(`Session closed: ${transport.sessionId}`);
+              console.error(`[${new Date().toISOString()}] session_end: ${transport.sessionId}`);
             }
           };
 
