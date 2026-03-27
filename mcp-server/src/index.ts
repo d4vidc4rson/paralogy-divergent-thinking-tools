@@ -185,6 +185,7 @@ async function main() {
       const sessionId = req.headers["mcp-session-id"] as string | undefined;
 
       if (req.method === "GET") {
+        console.error(`[${new Date().toISOString()}] GET /mcp sessionId=${sessionId || 'none'} sessionExists=${!!(sessionId && sessions[sessionId])} activeSessions=${Object.keys(sessions).length}`);
         // SSE stream for existing session
         if (sessionId && sessions[sessionId]) {
           await sessions[sessionId].transport.handleRequest(req, res);
@@ -213,7 +214,17 @@ async function main() {
         for await (const chunk of req) {
           chunks.push(chunk as Buffer);
         }
-        const body = JSON.parse(Buffer.concat(chunks).toString());
+        let body: any;
+        try {
+          body = JSON.parse(Buffer.concat(chunks).toString());
+        } catch (e) {
+          console.error(`[${new Date().toISOString()}] JSON parse error:`, e);
+          res.writeHead(400, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Invalid JSON" }));
+          return;
+        }
+
+        console.error(`[${new Date().toISOString()}] POST /mcp sessionId=${sessionId || 'none'} method=${body?.method} isInit=${!sessionId && isInitializeRequest(body)} activeSessions=${Object.keys(sessions).length}`);
 
         // Existing session
         if (sessionId && sessions[sessionId]) {
