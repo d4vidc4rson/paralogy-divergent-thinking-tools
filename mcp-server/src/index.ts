@@ -171,8 +171,7 @@ async function main() {
       if (req.url === "/health") {
         res.writeHead(200, { "Content-Type": "application/json" });
         const skillCount = loadSkills(skillsDir).length;
-        const faviconExists = fs.existsSync(path.join(repoRoot, "public", "images", "favicon-64x64-div-think-tools.png"));
-        res.end(JSON.stringify({ status: "ok", tools: skillCount, repoRoot, faviconExists }));
+        res.end(JSON.stringify({ status: "ok", tools: skillCount }));
         return;
       }
 

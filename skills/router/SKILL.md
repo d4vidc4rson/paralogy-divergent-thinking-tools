@@ -512,20 +512,35 @@ and route to the next skill that fixes it:
 The user doesn't manage the pipeline.
 You read the output, diagnose, and chain.
 
-**Critical: don't stall between phases.**
-Exploration skills (Wrong Problem Detector,
-Dumb Questions Engine) produce analysis.
-Analysis is not output.
-The user asked for ideas, not a diagnosis.
-When an exploration skill finishes,
-move immediately to pre-generation and generation.
-If the exploration skill produced a reframe or question
-that could go multiple directions,
-pick the strongest one, state it clearly,
-and keep going. The user can redirect
-if you picked wrong.
-Never end a turn on analysis alone
-when the user asked for ideas.
+**Exploration skills have natural checkpoints.**
+Wrong Problem Detector and Dumb Questions Engine
+produce reframes or questions
+that change everything downstream.
+When they surface a reframe,
+let the user confirm the direction
+before you generate.
+But make the checkpoint visually clear —
+a heading, a direct question,
+not a buried line at the bottom.
+The user must know it's their turn.
+
+**Minimum pipeline depth.**
+When the user asks for divergent thinking,
+they expect the full toolkit —
+not a two-tool shortcut.
+A proper pipeline touches at least 5-6 skills:
+exploration → pre-generation → generation →
+quality check → gap fill.
+For example:
+Router → WPD → Strip Down → Guilford Engine →
+Anti-Homogeneity Check → Blind Spot Scanner.
+Or: Router → Dumb Questions → Think Wrong →
+Persona Divergence → Anti-Homogeneity Check.
+Don't stop after generation.
+Always run at least one quality/gap skill
+after generating ideas.
+The user can stop early if they want,
+but the default is a full run.
 
 ---
 

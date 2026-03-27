@@ -479,54 +479,56 @@ fits the confirmed problem.
 If any check produced a rewritten problem
 that feels more true than the original:
 
-**Pick the strongest reframe.
-State it clearly.
-Keep moving.**
+**Present the reframe as a clear checkpoint.**
 
-Don't ask the user to choose from a list.
-Don't stop the pipeline and wait.
+This is a moment where the user's input matters.
+If the reframe is wrong,
+everything downstream is wasted.
+So pause and ask — but ask well.
+
+The problem with a buried question:
 Users read a long analysis,
 see a question at the bottom,
 and think the output is done.
 The question looks like a closing thought,
 not a checkpoint.
-The pipeline stalls
-and the user never gets ideas.
 
-Instead, do this:
+So make the checkpoint impossible to miss.
 
-State the reframe you're going with
-and why — in two or three sentences,
-not a paragraph.
-Briefly name the alternatives
-so the user can see them.
-Then immediately continue to generation.
+**The format — lead with the reframe, not the analysis:**
 
-**The format:**
+---
 
-"Your stated problem is [original].
-But the checks suggest the real problem is [reframe].
-(I also considered [alt reframe A] and [alt reframe B] —
-if one of those feels more right, say so
-and I'll regenerate from there.)
+## ⚡ Reframe Checkpoint
 
-Generating from [reframe]:"
+The checks suggest you might be solving the wrong problem.
 
-Then generate. Don't pause.
+**Stated problem:** [original]
 
-The user sees the reframe choice up front,
-not buried at the end.
-They see actual ideas,
-which is what they asked for.
-And if the reframe is wrong,
-they can say so
-and you regenerate from a different one.
+**Reframed:** [strongest reframe — 1-2 sentences max]
 
-The default is forward motion.
-The offramp is always available.
-But the pipeline doesn't stall
-waiting for input the user doesn't know
-they need to give.
+I also found these angles:
+- **[Alt reframe A name]:** [one sentence]
+- **[Alt reframe B name]:** [one sentence]
+
+**Which reframe should I generate ideas from?**
+Or if the original problem is actually right, say so
+and I'll generate from that instead.
+
+---
+
+The checkpoint goes at the TOP of the response
+after the analysis, visually separated,
+with a clear heading the user can't miss.
+
+This is not a rhetorical question.
+This is not a closing flourish.
+This is a genuine fork in the road
+and the user needs to choose the path
+before generation begins.
+
+Wait for their response.
+Then generate from whatever they chose.
 
 ---
 
