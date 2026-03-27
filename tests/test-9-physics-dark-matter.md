@@ -1,9 +1,9 @@
-# Divergent Thinking Tools: Pipeline Test #10
+# Divergent Thinking Tools: Pipeline Test #9
 ## Physics Domain — Hard Constraints, Honest Limitations
 
 ## Test Design
 
-**Purpose:** Test the tools against a real physics problem with non-negotiable physical laws, mathematical constraints, and a community that's deeply hostile to hand-waving. The engineering test (Test #9) found the tools work for architectural framing but weaken at algorithmic detail. Physics is harder — the "architecture" IS the math. Can the tools add value when the constraints are laws of nature?
+**Purpose:** Test the tools against a real physics problem with non-negotiable physical laws, mathematical constraints, and a community that's deeply hostile to hand-waving. The engineering test (Test #8) found the tools work for architectural framing but weaken at algorithmic detail. Physics is harder — the "architecture" IS the math. Can the tools add value when the constraints are laws of nature?
 
 **What "working" looks like:** The tools surface genuinely different experimental approaches, identify assumptions the field is making that could be questioned, and reframe what's being measured in ways that lead to new predictions. The ideas must be physically consistent.
 
@@ -15,7 +15,7 @@
 
 ## The Test Brief
 
-**Scenario:** You are advising Dr. Elena Vasquez (not the FEMA Elena from Test #7 — different person), a mid-career experimental physicist at a national laboratory. She leads a dark matter direct detection experiment. She says:
+**Scenario:** You are advising Dr. Elena Vasquez (not the FEMA Elena from Test #6 — different person), a mid-career experimental physicist at a national laboratory. She leads a dark matter direct detection experiment. She says:
 
 > "I've spent 12 years looking for dark matter and we've found nothing.
 >
@@ -659,7 +659,7 @@ Let me be precise about what "worked" means here:
 
 2. **They can't generate new physics.** The tools can recombine existing ideas, surface approaches from adjacent fields, and identify strategic opportunities — but they can't derive a new interaction mechanism, predict a new particle, or solve an equation. The physics comes from physicists. The tools help physicists decide WHERE to point their expertise.
 
-3. **They add less novelty in deep domains.** In marketing (Test #8), the tools produced ideas most marketers wouldn't have considered. In physics, most of the ideas are things that SOMEONE in the community has already proposed. The novelty is in the combination, prioritization, and framing — not in the individual ideas. The portfolio approach is novel as a strategy. The individual experiments in the portfolio are mostly known.
+3. **They add less novelty in deep domains.** In marketing (Test #7), the tools produced ideas most marketers wouldn't have considered. In physics, most of the ideas are things that SOMEONE in the community has already proposed. The novelty is in the combination, prioritization, and framing — not in the individual ideas. The portfolio approach is novel as a strategy. The individual experiments in the portfolio are mostly known.
 
 4. **The Expert Threat Test is less useful in physics.** In marketing, "experts feel defensive" means you've found something interesting. In physics, "experts feel defensive" might mean you've proposed something that violates conservation of energy. Expert defensiveness in physics is often correct, not a signal of value. The tools need a different quality metric for hard-science domains — not "does this make experts uncomfortable?" but "does this open a physically consistent region of parameter space that nobody is currently exploring?"
 

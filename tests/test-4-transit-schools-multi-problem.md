@@ -1,4 +1,4 @@
-# Divergent Thinking Tools: Pipeline Test #5
+# Divergent Thinking Tools: Pipeline Test #4
 ## Multi-Problem Scenario — Two Unrelated Challenges Simultaneously
 
 ## Test Design
@@ -781,7 +781,6 @@ Slightly. The transit ideas (especially route redesign and microtransit) are mor
 | 1 | Hospital ED | Baseline (no gap-fill) | A- |
 | 2 | Recidivism | + Gap-Fill Loop | A |
 | 3 | College enrollment | WPD rejected | A |
-| 4 | Natural history museum | Poetry variants (-p) | A |
-| 5 | Transit + schools | Multi-problem | A |
+| 4 | Transit + schools | Multi-problem | A |
 
-**Pipeline validated across 5 domains, 4 special conditions, and every skill deployed at least 5 times.** The Gap-Fill Loop (added after Test 1) was the biggest single improvement. The WPD rejection (Test 3) proved resilience. The poetry variants (Test 4) proved equivalence with one formatting improvement to backport. The multi-problem scenario (Test 5) proved the pipeline handles complexity without collapsing — and identified the one remaining Router gap to fix.
+**Pipeline validated across 4 domains, 3 special conditions, and every skill deployed at least 4 times.** The Gap-Fill Loop (added after Test 1) was the biggest single improvement. The WPD rejection (Test 3) proved resilience. The multi-problem scenario (Test 4) proved the pipeline handles complexity without collapsing — and identified the one remaining Router gap to fix.

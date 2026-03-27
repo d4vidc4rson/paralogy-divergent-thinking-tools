@@ -1,4 +1,4 @@
-# Divergent Thinking Tools: Pipeline Test #8
+# Divergent Thinking Tools: Pipeline Test #7
 ## Marketing Domain — Product Launch in a Saturated Category
 
 ## Test Design

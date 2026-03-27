@@ -1,4 +1,4 @@
-# Divergent Thinking Tools: Pipeline Test #7
+# Divergent Thinking Tools: Pipeline Test #6
 ## Verification Test — Updated Router + Guilford Formatting
 
 ## Test Design
@@ -226,7 +226,7 @@ What creates this problem? The assumption that SolaVault must sell the PRODUCT (
 
 **Final Output:**
 
-*[NOTE: Testing the 3-line formatting backport from -P. Each idea should appear as three distinct bolded lines with a blank line separator.]*
+*[NOTE: Testing the 3-line formatting. Each idea should appear as three distinct bolded lines with a blank line separator.]*
 
 **The problem:** Utility procurement takes 18-36 months but SolaVault has 8 months.
 **The idea:** Bypass utilities entirely for the first sale — target renewable energy developers building solar + storage projects who need long-duration storage to win grid interconnection bids and can sign purchase agreements in 8-12 weeks.
@@ -637,11 +637,10 @@ No new hires. Existing people, reallocated to the new strategy.
 | 1 | Hospital ED | Baseline (no gap-fill) | A- |
 | 2 | Recidivism | + Gap-Fill Loop | A |
 | 3 | College enrollment | WPD rejected | A |
-| 4 | Natural history museum | Poetry variants (-p) | A |
-| 5 | Transit + schools | Multi-problem (obvious) | A |
-| 6 | Downtown + loneliness | Multi-problem (ambiguous) | A |
-| 7 | Climate tech startup | **Verification of all updates** | A |
-| 8 | Premium product launch (marketing) | Full pipeline | A |
+| 4 | Transit + schools | Multi-problem (obvious) | A |
+| 5 | Downtown + loneliness | Multi-problem (ambiguous) | A |
+| 6 | Climate tech startup | **Verification of all updates** | A |
+| 7 | Premium product launch (marketing) | Full pipeline | A |
 
 **Both updates verified working:**
 - The Guilford 3-line format produces cleaner, more scannable output

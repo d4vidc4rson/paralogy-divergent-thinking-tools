@@ -1,9 +1,9 @@
-# Divergent Thinking Tools: Pipeline Test #6
+# Divergent Thinking Tools: Pipeline Test #5
 ## Multi-Problem Triage — Ambiguous Connection
 
 ## Test Design
 
-**Purpose:** Test the new "But First: One Problem or Two?" router section on a scenario where the connection between problems is genuinely ambiguous. Test #5 gave the pipeline two problems with an obvious shared root (transit + schools = same communities, same labor market, same institutional decay). This test gives it two problems that FEEL related but might not be — forcing the triage to make an honest call.
+**Purpose:** Test the new "But First: One Problem or Two?" router section on a scenario where the connection between problems is genuinely ambiguous. Test #4 gave the pipeline two problems with an obvious shared root (transit + schools = same communities, same labor market, same institutional decay). This test gives it two problems that FEEL related but might not be — forcing the triage to make an honest call.
 
 **Core test questions:**
 1. Does the triage section produce a clear merge/split decision?
@@ -785,14 +785,13 @@ This is distinct from MERGE (which treats them as one problem) and SPLIT (which 
 | 1 | Hospital ED | Baseline (no gap-fill) | A- |
 | 2 | Recidivism | + Gap-Fill Loop | A |
 | 3 | College enrollment | WPD rejected | A |
-| 4 | Natural history museum | Poetry variants (-p) | A |
-| 5 | Transit + schools | Multi-problem (obvious connection) | A |
-| 6 | Downtown + loneliness | Multi-problem (ambiguous connection) | A |
+| 4 | Transit + schools | Multi-problem (obvious connection) | A |
+| 5 | Downtown + loneliness | Multi-problem (ambiguous connection) | A |
 
-**Pipeline validated across 6 domains, 5 special conditions, and every skill deployed at least 6 times.**
+**Pipeline validated across 5 domains, 4 special conditions, and every skill deployed at least 5 times.**
 
 **Outstanding router updates needed:**
 1. ✅ Gap-Fill Loop (added)
 2. ✅ Multi-Problem Triage (added)
-3. ⬜ "Merge with Domain Tracks" third option (identified by Test #6, not yet added)
-4. ⬜ Guilford Engine formatting backport from -P version (identified by Test #4, not yet done)
+3. ⬜ "Merge with Domain Tracks" third option (identified by Test #4, not yet added)
+4. ⬜ Guilford Engine formatting backport (completed)

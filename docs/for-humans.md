@@ -81,12 +81,6 @@ Some tools ask for your input:
 - **Wrong Problem Detector** presents both the original and rewritten problem and asks you to choose. You can reject the reframing — the pipeline is resilient to that (we tested it).
 - **Dumb Questions Engine** produces starred questions and the Router may ask which ones to carry forward.
 
-### The poetry variants
-
-Three tools have poetry variants (Strip Down-P, Guilford Engine-P, Think Wrong-P). Same instructions, same output quality, slightly different register. The -P versions have more lyrical/rhythmic instructions. Use whichever you prefer — the output is comparable.
-
-The one concrete difference: Guilford Engine-P has slightly cleaner output formatting (the 3-line format was backported to the prose version based on testing, so they're now equivalent).
-
 ---
 
 ## Tips

@@ -903,5 +903,4 @@ The gap-fill loop worked. The three critical blind spots from the first audit ar
 
 **Remaining improvement opportunities:**
 1. **The simulated human could push back harder.** Both tests show the human agreeing with the Wrong Problem Detector's reframing. A real human might reject it. The pipeline should be robust to a human saying "no, the original problem is right" — and it probably is, since the generation skills would just generate against the original problem instead. But it hasn't been tested.
-2. **Poetry variants (-p skills) weren't tested.** Guilford Engine-P, Strip Down-P, and Think Wrong-P exist but weren't deployed. A third test could compare output quality between prose and poetry versions of the same skills.
-3. **Multiple domains in one pipeline weren't tested against each other.** Both tests used a single complex problem. What happens when someone brings two unrelated problems and asks the tools to work across both simultaneously? The router may need guidance for multi-problem scenarios.
+2. **Multiple domains in one pipeline weren't tested against each other.** Both tests used a single complex problem. What happens when someone brings two unrelated problems and asks the tools to work across both simultaneously? The router may need guidance for multi-problem scenarios.

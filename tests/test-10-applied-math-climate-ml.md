@@ -1,9 +1,9 @@
-# Divergent Thinking Tools: Pipeline Test #11
+# Divergent Thinking Tools: Pipeline Test #10
 ## Applied Mathematics — Where the Math IS the Problem
 
 ## Test Design
 
-**Purpose:** Test whether the tools add value when the problem is fundamentally mathematical — not "what strategy should we pursue" but "this math doesn't work and we need different math." The physics test (Test #10) was strategic. The engineering test (Test #9) was architectural. This test is computational: the bottleneck is an equation, an algorithm, or a numerical method, and the constraints are mathematical correctness and computational complexity.
+**Purpose:** Test whether the tools add value when the problem is fundamentally mathematical — not "what strategy should we pursue" but "this math doesn't work and we need different math." The physics test (Test #9) was strategic. The engineering test (Test #8) was architectural. This test is computational: the bottleneck is an equation, an algorithm, or a numerical method, and the constraints are mathematical correctness and computational complexity.
 
 **What "working" looks like:** The tools surface genuinely different mathematical formulations, identify assumptions in the math that could be relaxed, or point toward mathematical techniques from other fields that the team hasn't considered. The ideas must be mathematically coherent (not just "try a different approach").
 
@@ -642,7 +642,7 @@ Let me be precise:
 
 ### Comparison to Previous Technical Tests
 
-| Dimension | Engineering (Test 9) | Physics (Test 10) | Applied Math (Test 11) |
+| Dimension | Engineering (Test 8) | Physics (Test 9) | Applied Math (Test 10) |
 |-----------|---------------------|-------------------|----------------------|
 | Did WPD reframe productively? | Yes — solver → architecture | Yes — detector → resource allocation | Yes — loss function → architecture |
 | Did Personas contribute domain knowledge? | Yes — ex-competitor engineer | Yes — condensed matter physicist | **Yes, strongly** — POD expert, physics-informed ML researcher, structure-preserving mathematician |
@@ -683,10 +683,10 @@ The tools work differently in technical vs. non-technical domains, but the degre
 
 **Strategy / policy / marketing / institutional design:** Full strength. The tools produce IDEAS. Grade: A.
 
-**Engineering architecture (Test 9):** Strong at the architectural level, weaker at the algorithmic level. Grade: A-.
+**Engineering architecture (Test 8):** Strong at the architectural level, weaker at the algorithmic level. Grade: A-.
 
-**Physics research strategy (Test 10):** Strong at the resource allocation level, weaker at the experimental physics level. Grade: A-.
+**Physics research strategy (Test 9):** Strong at the resource allocation level, weaker at the experimental physics level. Grade: A-.
 
-**Applied math / ML architecture (Test 11):** Strong — because the problem's answer IS structural. The tools produce specific mathematical modifications, not just framings. Grade: A- (borderline A).
+**Applied math / ML architecture (Test 10):** Strong — because the problem's answer IS structural. The tools produce specific mathematical modifications, not just framings. Grade: A- (borderline A).
 
 **The pattern:** The tools are strongest when the answer is a STRUCTURAL or ARCHITECTURAL change — moving something from one place to another, reframing what the system is doing, identifying that the tool or method is wrong. They're weakest when the answer is a DERIVATION — proving a theorem, computing a bound, writing an equation. They generate mathematical candidates but can't verify them. A mathematician must still evaluate, formalize, and prove.

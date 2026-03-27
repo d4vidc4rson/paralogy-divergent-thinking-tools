@@ -41,23 +41,22 @@ The Router orchestrates the pipeline. You don't manage tool selection — the Ro
 
 ## Does it work?
 
-We ran 11 full pipeline tests across 11 domains, plus a control test (same problem, vanilla Claude, no tools):
+We ran 10 full pipeline tests across 10 domains, plus a control test (same problem, vanilla Claude, no tools):
 
 | Test | Domain | Special condition | Grade |
 |------|--------|-------------------|-------|
 | [1](tests/test-1-hospital-ed.md) | Hospital ED overcrowding | Baseline | A- |
 | [2](tests/test-2-recidivism.md) | Recidivism reduction | + Gap-fill loop | A |
 | [3](tests/test-3-enrollment-wpd-rejected.md) | College enrollment crisis | Human rejected the reframing | A |
-| [4](tests/test-4-museum-poetry-variants.md) | Museum attendance collapse | Poetry variants tested | A |
-| [5](tests/test-5-transit-schools-multi-problem.md) | Transit + teacher shortage | Multi-problem merge | A |
-| [6](tests/test-6-downtown-loneliness-ambiguous.md) | Downtown vacancy + loneliness | Ambiguous multi-problem | A |
-| [7](tests/test-7-climate-tech-verification.md) | Climate tech go-to-market | All updates verified | A |
-| [8](tests/test-8-marketing-premium-launch.md) | Premium product launch in saturated category | Marketing domain | A |
-| [9](tests/test-9-engineering-route-optimization.md) | Real-time route optimization (engineering) | Hard-constraint engineering domain | A- |
-| [10](tests/test-10-physics-dark-matter.md) | Dark matter detection strategy (physics) | Resource allocation under physical constraints | A- |
-| [11](tests/test-11-applied-math-climate-ml.md) | Neural network climate surrogate (applied math) | Mathematical architecture problem | A- |
+| [4](tests/test-4-transit-schools-multi-problem.md) | Transit + teacher shortage | Multi-problem merge | A |
+| [5](tests/test-5-downtown-loneliness-ambiguous.md) | Downtown vacancy + loneliness | Ambiguous multi-problem | A |
+| [6](tests/test-6-climate-tech-verification.md) | Climate tech go-to-market | All updates verified | A |
+| [7](tests/test-7-marketing-premium-launch.md) | Premium product launch in saturated category | Marketing domain | A |
+| [8](tests/test-8-engineering-route-optimization.md) | Real-time route optimization (engineering) | Hard-constraint engineering domain | A- |
+| [9](tests/test-9-physics-dark-matter.md) | Dark matter detection strategy (physics) | Resource allocation under physical constraints | A- |
+| [10](tests/test-10-applied-math-climate-ml.md) | Neural network climate surrogate (applied math) | Mathematical architecture problem | A- |
 
-**The control comparison:** We ran the same climate tech problem through vanilla Claude (no tools). The pipeline produced 65+ ideas including 15 that vanilla Claude didn't touch — FEMA grantees with approved funding and no vendor, DOD procurement programs nobody at the startup knew existed, and a complete reframing from "we can't sell to utilities" to "we're selling to the wrong buyer." Full comparison: [test-7-control-vanilla-vs-tools.md](tests/test-7-control-vanilla-vs-tools.md).
+**The control comparison:** We ran the same climate tech problem through vanilla Claude (no tools). The pipeline produced 65+ ideas including 15 that vanilla Claude didn't touch — FEMA grantees with approved funding and no vendor, DOD procurement programs nobody at the startup knew existed, and a complete reframing from "we can't sell to utilities" to "we're selling to the wrong buyer." Full comparison: [test-6-control-vanilla-vs-tools.md](tests/test-6-control-vanilla-vs-tools.md).
 
 ---
 
@@ -112,9 +111,6 @@ See [docs/for-agents.md](docs/for-agents.md) for the full agentic architecture, 
 **Polish:**
 - **De-Slop** — transforms AI-polished text into authentic human voice
 
-**Poetry variants** (same instructions, different register):
-- **Strip Down-P**, **Guilford Engine-P**, **Think Wrong-P**
-
 ---
 
 ## The research
@@ -128,10 +124,10 @@ See [docs/for-agents.md](docs/for-agents.md) for the full agentic architecture, 
 
 ## Limitations
 
-- Tested across 11 domains including 3 technical (engineering, physics, applied math) — all scored A or A-. In technical domains, the tools are strongest when the answer is a structural or architectural change and weakest when the answer is a derivation or proof. Notably, the applied math test (Test 11) performed better than expected because the problem's solution WAS structural — the tools produced specific, implementable mathematical modifications (constraint-by-construction output layers, correction algorithms with O(N) complexity), not hand-waving. The tools don't replace domain expertise, but they help experts decide where to point it.
+- Tested across 10 domains including 3 technical (engineering, physics, applied math) — all scored A or A-. In technical domains, the tools are strongest when the answer is a structural or architectural change and weakest when the answer is a derivation or proof. Notably, the applied math test (Test 10) performed better than expected because the problem's solution WAS structural — the tools produced specific, implementable mathematical modifications (constraint-by-construction output layers, correction algorithms with O(N) complexity), not hand-waving. The tools don't replace domain expertise, but they help experts decide where to point it.
 - The tools grade their own output. AHC diversity scores are self-assessed, not externally validated.
 - All tests ran on Claude. Other models may handle the complex multi-step instructions differently.
-- The full pipeline uses significant context window space. All 18 skills total ~58,000 tokens of system prompt. The minimum viable set (Router + Wrong Problem Detector + Strip Down + Guilford Engine + Anti-Homogeneity Check) is ~18,000 tokens — fits comfortably in Claude's 200K context with plenty of room for conversation. See [for-humans.md](docs/for-humans.md) for the recommended starting configuration.
+- The full pipeline uses significant context window space. All 15 skills total ~49,000 tokens of system prompt. The minimum viable set (Router + Wrong Problem Detector + Strip Down + Guilford Engine + Anti-Homogeneity Check) is ~18,000 tokens — fits comfortably in Claude's 200K context with plenty of room for conversation. See [for-humans.md](docs/for-humans.md) for the recommended starting configuration.
 
 **The bottom line for technical users:** If your technical problem has a structural answer — you're using the wrong architecture, the wrong mathematical framework, or pointing your resources at the wrong target — the tools will find that. They won't derive your equations or write your code, but they'll make sure you're solving the right problem before you start.
 

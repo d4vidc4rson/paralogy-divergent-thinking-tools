@@ -1,6 +1,6 @@
 # Control Test: SolaVault Brief — Vanilla Claude (No Divergent Thinking Tools)
 
-## The Brief (Identical to Test #7)
+## The Brief (Identical to Test #6)
 
 Dr. Amara Okafor, CEO of SolaVault, a Series A climate tech startup with iron-air batteries (100+ hour storage, 1/5 cost of lithium-ion), says:
 
@@ -89,7 +89,7 @@ The key insight is that you don't necessarily need a signed utility contract to 
 
 ---
 
-## Side-by-Side Comparison: Vanilla Claude vs. Pipeline (Test #7)
+## Side-by-Side Comparison: Vanilla Claude vs. Pipeline (Test #6)
 
 ### What Vanilla Claude Produced
 
@@ -121,7 +121,7 @@ The key insight is that you don't necessarily need a signed utility contract to 
 21. Present diversified pipeline to board
 22. Highlight Form Energy as market validation
 
-### What the Pipeline Produced (Test #7)
+### What the Pipeline Produced (Test #6)
 
 **Format:** Multiple skill outputs. Guilford in 3-line scannable format. Think Wrong as a single continuous argument. Personas as distinct voices. Short Think as raw volume. All audited and gap-filled.
 
@@ -157,11 +157,11 @@ The key insight is that you don't necessarily need a signed utility contract to 
 
 14. ★ **Pilot monetization as first revenue** — renegotiating Arizona from free to paid THIS MONTH, creating the first revenue line item before any new sale closes. Vanilla Claude mentioned "paid pilot extension" as a future possibility; the pipeline said "do it this month."
 
-15. ★ **The fundamental reframing: "You don't have a sales problem. You have a customer-segment problem."** The entire Test #7 pipeline pivoted on the Wrong Problem Detector's finding that SolaVault is selling to the wrong buyer. Vanilla Claude accepted the problem as stated and tried to solve "how to sell to utilities faster."
+15. ★ **The fundamental reframing: "You don't have a sales problem. You have a customer-segment problem."** The entire Test #6 pipeline pivoted on the Wrong Problem Detector's finding that SolaVault is selling to the wrong buyer. Vanilla Claude accepted the problem as stated and tried to solve "how to sell to utilities faster."
 
 ### Scoring Comparison
 
-| Dimension | Vanilla Claude | Pipeline (Test #7) |
+| Dimension | Vanilla Claude | Pipeline (Test #6) |
 |-----------|---------------|-------------------|
 | **Number of distinct ideas** | ~22 | ~65+ |
 | **Ideas that are immediately actionable THIS WEEK** | 3-4 (LOIs, bridge note, case studies) | 8-10 (LOI sprint, DOE call, FEMA search, pilot renegotiation, engineer redeployment, spec sheet, dispersal blast, bridge request) |
