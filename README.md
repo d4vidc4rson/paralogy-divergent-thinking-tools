@@ -178,4 +178,4 @@ See [docs/for-agents.md](docs/for-agents.md) for the full agentic architecture, 
 
 ## About
 
-Built by David Carson at [Paralogy](https://paralogy.ai).
+Built by [David Carson](https://github.com/d4vidc4rson) at [Paralogy](https://paralogy.ai).
