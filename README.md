@@ -1,5 +1,5 @@
 # Divergent Thinking Systems for Convergent Machines
-### Unintelligent Tools for AI
+### An Orchestration Layer for AI to Ideate and Solve Problems
 #### A [Paralogy](https://paralogy.ai) Product
 
 AI models are pattern-completion machines. They're trained on the sum of human thought, so they're also trained on the sum of human conventional thought. Left to their own logic, they converge. They average. They produce what's most probable, not what's most interesting.
