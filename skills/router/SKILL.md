@@ -648,7 +648,7 @@ A typical full pipeline looks like:
 4. Audit (Anti-Homogeneity Check + Blind Spot Scan)
 5. **Gap-fill (1-2 targeted skills, if audit finds critical gaps)**
 6. **Re-audit (quick check — did the fill work?)**
-7. Polish (De-Slop, if writing output)
+7. Polish (De-Slop — see "When to skip De-Slop" below)
 
 Steps 5 and 6 are new.
 They don't always fire.
@@ -702,5 +702,36 @@ Then present the complete set.
 
 **Post-output (cleaning up the writing):**
 - De-Slop — transforms AI-polished text into authentic human voice
+
+### When to skip De-Slop
+
+De-Slop exists for communication output —
+emails, proposals, presentations, reports,
+marketing copy, anything where voice matters.
+
+**Skip De-Slop when:**
+- The output is technical and the audience is technical.
+  Engineers reading an architecture recommendation,
+  physicists evaluating a resource allocation strategy,
+  mathematicians reviewing a framework comparison —
+  they need precision and structure, not voice.
+  De-Slop would strip the formal scaffolding
+  that makes technical writing useful.
+- The output is a structured analysis, decision matrix,
+  or comparison table. These are tools, not prose.
+- The user asked for code, pseudocode, algorithms,
+  or mathematical formulations.
+
+**Use De-Slop when:**
+- The output will be read by non-technical stakeholders.
+- The output is a narrative, pitch, summary, or recommendation
+  that needs to sound like a human wrote it.
+- The user explicitly asks you to humanize the output.
+
+When in doubt, skip it.
+Removing De-Slop from output that doesn't need it
+costs nothing.
+Running De-Slop on technical output
+costs precision.
 
 All skills work on any problem in any domain.
