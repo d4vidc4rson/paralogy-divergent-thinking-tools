@@ -6,7 +6,20 @@ The server distributes the tool prompts. All LLM calls happen on your side, usin
 
 ## Quick start (hosted — no install required)
 
-The fastest way to use the tools. Connect to the hosted server — no cloning, no terminal, no npm:
+The fastest way to use the tools. No cloning, no terminal, no npm.
+
+#### Claude.ai (easiest)
+
+1. Go to [claude.ai/customize/connectors](https://claude.ai/customize/connectors)
+2. Click the **+** button
+3. Name: `Divergent Thinking Tools`
+4. URL: `https://mcp.paralogy.ai/mcp`
+5. Click **Add**
+6. Start a new chat and describe your problem. The Router handles the rest.
+
+#### Claude Desktop / Claude Code / Cursor
+
+Add to your MCP client config:
 
 ```json
 {
@@ -18,7 +31,7 @@ The fastest way to use the tools. Connect to the hosted server — no cloning, n
 }
 ```
 
-Add the config above to your MCP client:
+Config file locations:
 - **Claude Desktop:** `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Claude Code:** Project or global MCP settings
 - **Cursor:** `.cursor/mcp.json` in your project

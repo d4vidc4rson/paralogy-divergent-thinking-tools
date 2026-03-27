@@ -70,11 +70,15 @@ We ran 10 full pipeline tests across 10 domains, plus a control test (same probl
 
 See [docs/for-humans.md](docs/for-humans.md) for details.
 
-### Via MCP server (easiest for Claude Desktop, Cursor, agent frameworks)
+### Via MCP server (easiest — no install required)
 
-**Hosted (no install required):**
+**Claude.ai:**
 
-Connect directly to the hosted server — no cloning, no terminal, no npm:
+1. Go to [claude.ai/customize/connectors](https://claude.ai/customize/connectors)
+2. Click **+** → Name: `Divergent Thinking Tools` → URL: `https://mcp.paralogy.ai/mcp`
+3. Start a new chat and describe your problem. The Router handles the rest.
+
+**Claude Desktop / Claude Code / Cursor:**
 
 ```json
 {
@@ -86,10 +90,7 @@ Connect directly to the hosted server — no cloning, no terminal, no npm:
 }
 ```
 
-Add this to your MCP client config:
-- **Claude Desktop:** `~/Library/Application Support/Claude/claude_desktop_config.json`
-- **Claude Code:** Project or global MCP settings
-- **Cursor:** `.cursor/mcp.json` in your project
+Add to your config: Claude Desktop (`~/Library/Application Support/Claude/claude_desktop_config.json`), Claude Code (project or global MCP settings), or Cursor (`.cursor/mcp.json`).
 
 **Local (if you prefer to self-host):**
 
