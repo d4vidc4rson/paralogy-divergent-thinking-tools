@@ -20,7 +20,7 @@ The result is output you can't get by "prompting harder." Ideas that make expert
 
 ## What this is
 
-A system of structured thinking tools that force AI to produce genuinely different output — not ten variations on one thought, but ideas from territory the default reasoning actively avoids.
+An orchestration layer for divergent thinking — a pipeline of structured skills that force AI to produce genuinely different output, not ten variations on one thought, but ideas from territory the default reasoning actively avoids.
 
 The system works at two levels:
 
