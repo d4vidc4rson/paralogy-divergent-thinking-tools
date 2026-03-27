@@ -2,13 +2,19 @@
 ### Unintelligent Tools for AI
 #### A [Paralogy](https://paralogy.ai) Product
 
-AI gives everyone the same ideas.
+AI models are pattern-completion machines. They're trained on the sum of human thought, so they're also trained on the sum of human conventional thought. Left to their own logic, they converge. They average. They produce what's most probable, not what's most interesting.
 
-Doshi & Hauser proved it in *Science Advances* (2024): AI-assisted creative output is rated more creative individually but is significantly more similar collectively. Wenger & Kenett (2025) confirmed that LLMs produce ideas with 0.92 cosine similarity — even across different model families. Ten ideas from an AI brainstorm are usually three ideas wearing costumes.
+There's now substantial evidence for this. Researchers at [CHI 2025](https://dl.acm.org/doi/10.1145/3706598.3713778) found that AI-assisted workflows are subject to what they call "mechanised convergence," where users with access to GenAI tools produce a less diverse set of outcomes for the same task compared to those working without it. In interviews, knowledge workers described AI output as "too cookie cutter, full of cliche," something that requires heavy editing before it's usable. A separate study from the [Royal Society](https://doi.org/10.1098/rsos.241776) confirmed a persistent generalization bias in LLMs — a tendency to extrapolate toward broad, unqualified conclusions even when the source material doesn't warrant them.
 
-These tools fix that.
+The default mode of AI is the middle of the road.
 
-**15 tools. A router. Quality gates. Gap-fill loops. Multi-problem triage. Built for any problem in any domain.**
+This toolkit is built for when that happens. It's a set of thinking skills, each one designed to interrupt a specific failure mode in AI reasoning, that push the model away from probability (what's most likely to be right) and toward possibility (what hasn't been considered yet). They're packaged with a router that knows which skill to deploy and when. [Research on LLM creativity](https://bioengineer.org/assessing-llms-creative-science-idea-generation-skills/) confirms there's a "sweet spot" where carefully calibrated prompts unlock richer associative thinking — these tools are built to find it.
+
+The result is output you can't get by "prompting harder." Ideas that make experts uncomfortable. Thinking that sounds wrong before it sounds right.
+
+*For when your AI hits a wall. Or worse, doesn't realize it already has.*
+
+**15 tools. A router. Quality gates. Gap-fill loops. Multi-problem triage. For humans. For agents. Built for any problem in any domain.**
 
 ---
 
