@@ -190,6 +190,8 @@ async function main() {
         if (sessionId && sessions[sessionId]) {
           await sessions[sessionId].transport.handleRequest(req, res);
         } else {
+          // Stale or missing session — return 400 but log it
+          // (GET can't auto-recover like POST can since there's no body to inspect)
           res.writeHead(400);
           res.end("Invalid session");
         }
@@ -229,6 +231,19 @@ async function main() {
         // Existing session
         if (sessionId && sessions[sessionId]) {
           await sessions[sessionId].transport.handleRequest(req, res, body);
+          return;
+        }
+
+        // Stale session — session ID provided but not found in memory
+        // This happens after deploys. Tell client to re-initialize.
+        if (sessionId && !sessions[sessionId]) {
+          console.error(`[${new Date().toISOString()}] stale_session: ${sessionId} — requesting re-initialize`);
+          res.writeHead(404, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({
+            jsonrpc: "2.0",
+            error: { code: -32001, message: "Session expired. Please reconnect." },
+            id: body?.id || null,
+          }));
           return;
         }
 
