@@ -4,7 +4,32 @@ An MCP (Model Context Protocol) server that makes all 15 Divergent Thinking Tool
 
 The server distributes the tool prompts. All LLM calls happen on your side, using your own API key or subscription. The server itself makes zero API calls.
 
-## Setup
+## Quick start (hosted — no install required)
+
+The fastest way to use the tools. Connect to the hosted server — no cloning, no terminal, no npm:
+
+```json
+{
+  "mcpServers": {
+    "divergent-thinking-tools": {
+      "url": "https://mcp.paralogy.ai/mcp"
+    }
+  }
+}
+```
+
+Add the config above to your MCP client:
+- **Claude Desktop:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Claude Code:** Project or global MCP settings
+- **Cursor:** `.cursor/mcp.json` in your project
+
+That's it. All 15 tools are immediately available.
+
+---
+
+## Self-hosted setup (optional)
+
+If you prefer to run the server locally:
 
 ### 1. Clone and build
 
@@ -98,33 +123,17 @@ Each tool accepts two parameters:
 
 When you call a tool, the server returns the full skill instructions along with your input. Your LLM reads those instructions and executes the skill. No API calls are made by the server — everything runs in your client's context.
 
-## Remote hosting (for Claude.ai and web clients)
+## Remote hosting
 
-The server also supports HTTP transport for remote deployment. This lets users connect from Claude.ai or any web-based MCP client without installing anything locally.
+The hosted server is live at **`https://mcp.paralogy.ai/mcp`** — this is what the quick start config above connects to. Health check: `https://mcp.paralogy.ai/health`.
 
-### Deploy
-
-Set the `TRANSPORT` environment variable to `http`:
+If you want to deploy your own instance, the server supports HTTP transport:
 
 ```bash
 TRANSPORT=http PORT=3000 node dist/index.js
 ```
 
-The server will listen on `http://0.0.0.0:3000/mcp`. A health check is available at `/health`.
-
-### Deploy to Railway, Render, or Fly.io
-
-Use the start command:
-
-```bash
-TRANSPORT=http node mcp-server/dist/index.js
-```
-
-The hosting platform provides the `PORT` environment variable automatically.
-
-### Connect from Claude.ai
-
-Once hosted, users add the remote server URL in Claude.ai's MCP integrations settings. No cloning, no terminal, no npm.
+The server will listen on `http://0.0.0.0:3000/mcp`. Deploy to Railway, Render, or Fly.io — the hosting platform provides the `PORT` environment variable automatically.
 
 ## Two transport modes
 

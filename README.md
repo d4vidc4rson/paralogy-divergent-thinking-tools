@@ -70,13 +70,34 @@ We ran 10 full pipeline tests across 10 domains, plus a control test (same probl
 
 See [docs/for-humans.md](docs/for-humans.md) for details.
 
-### Via MCP server (for Claude Desktop, Cursor, agent frameworks)
+### Via MCP server (easiest for Claude Desktop, Cursor, agent frameworks)
 
-```bash
-cd mcp-server && npm install && npm run build
+**Hosted (no install required):**
+
+Connect directly to the hosted server — no cloning, no terminal, no npm:
+
+```json
+{
+  "mcpServers": {
+    "divergent-thinking-tools": {
+      "url": "https://mcp.paralogy.ai/mcp"
+    }
+  }
+}
 ```
 
-Then add to your MCP client config:
+Add this to your MCP client config:
+- **Claude Desktop:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Claude Code:** Project or global MCP settings
+- **Cursor:** `.cursor/mcp.json` in your project
+
+**Local (if you prefer to self-host):**
+
+```bash
+git clone https://github.com/d4vidc4rson/paralogy-divergent-thinking-tools.git
+cd paralogy-divergent-thinking-tools/mcp-server
+npm install && npm run build
+```
 
 ```json
 {
