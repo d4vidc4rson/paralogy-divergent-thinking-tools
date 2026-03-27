@@ -133,6 +133,8 @@ See [docs/for-agents.md](docs/for-agents.md) for the full agentic architecture, 
 - All tests ran on Claude. Other models may handle the complex multi-step instructions differently.
 - The full pipeline uses significant context window space. All 18 skills total ~58,000 tokens of system prompt. The minimum viable set (Router + Wrong Problem Detector + Strip Down + Guilford Engine + Anti-Homogeneity Check) is ~18,000 tokens — fits comfortably in Claude's 200K context with plenty of room for conversation. See [for-humans.md](docs/for-humans.md) for the recommended starting configuration.
 
+**The bottom line for technical users:** If your technical problem has a structural answer — you're using the wrong architecture, the wrong mathematical framework, or pointing your resources at the wrong target — the tools will find that. They won't derive your equations or write your code, but they'll make sure you're solving the right problem before you start.
+
 ---
 
 ## About
