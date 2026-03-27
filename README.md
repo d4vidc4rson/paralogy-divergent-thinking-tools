@@ -41,7 +41,7 @@ The Router orchestrates the pipeline. You don't manage tool selection — the Ro
 
 ## Does it work?
 
-We ran 9 full pipeline tests across 9 domains, plus a control test (same problem, vanilla Claude, no tools):
+We ran 11 full pipeline tests across 11 domains, plus a control test (same problem, vanilla Claude, no tools):
 
 | Test | Domain | Special condition | Grade |
 |------|--------|-------------------|-------|
@@ -54,6 +54,8 @@ We ran 9 full pipeline tests across 9 domains, plus a control test (same problem
 | [7](tests/test-7-climate-tech-verification.md) | Climate tech go-to-market | All updates verified | A |
 | [8](tests/test-8-marketing-premium-launch.md) | Premium product launch in saturated category | Marketing domain | A |
 | [9](tests/test-9-engineering-route-optimization.md) | Real-time route optimization (engineering) | Hard-constraint engineering domain | A- |
+| [10](tests/test-10-physics-dark-matter.md) | Dark matter detection strategy (physics) | Resource allocation under physical constraints | A- |
+| [11](tests/test-11-applied-math-climate-ml.md) | Neural network climate surrogate (applied math) | Mathematical architecture problem | A- |
 
 **The control comparison:** We ran the same climate tech problem through vanilla Claude (no tools). The pipeline produced 65+ ideas including 15 that vanilla Claude didn't touch — FEMA grantees with approved funding and no vendor, DOD procurement programs nobody at the startup knew existed, and a complete reframing from "we can't sell to utilities" to "we're selling to the wrong buyer." Full comparison: [test-7-control-vanilla-vs-tools.md](tests/test-7-control-vanilla-vs-tools.md).
 
@@ -126,7 +128,7 @@ See [docs/for-agents.md](docs/for-agents.md) for the full agentic architecture, 
 
 ## Limitations
 
-- Tested across 9 domains (public policy, education, climate tech, marketing, engineering) — all scored A or A-. The engineering test (Test 9) confirmed the tools work best at the architectural and framing level; they don't replace domain expertise at the algorithmic level.
+- Tested across 11 domains including 3 technical (engineering, physics, applied math) — all scored A or A-. In technical domains, the tools are strongest when the answer is a structural or architectural change and weakest when the answer is a derivation or proof. Notably, the applied math test (Test 11) performed better than expected because the problem's solution WAS structural — the tools produced specific, implementable mathematical modifications (constraint-by-construction output layers, correction algorithms with O(N) complexity), not hand-waving. The tools don't replace domain expertise, but they help experts decide where to point it.
 - The tools grade their own output. AHC diversity scores are self-assessed, not externally validated.
 - All tests ran on Claude. Other models may handle the complex multi-step instructions differently.
 - The full pipeline uses significant context window space. All 18 skills total ~58,000 tokens of system prompt. The minimum viable set (Router + Wrong Problem Detector + Strip Down + Guilford Engine + Anti-Homogeneity Check) is ~18,000 tokens — fits comfortably in Claude's 200K context with plenty of room for conversation. See [for-humans.md](docs/for-humans.md) for the recommended starting configuration.

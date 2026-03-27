@@ -1,6 +1,6 @@
 # Test Results Summary
 
-## Nine pipeline tests across nine domains
+## Eleven pipeline tests across eleven domains
 
 Every test deployed all 15 tools in a full pipeline. Human decisions were simulated at interaction points by making choices a domain expert would plausibly make.
 
@@ -15,6 +15,8 @@ Every test deployed all 15 tools in a full pipeline. Human decisions were simula
 | 7 | Climate tech go-to-market | All updates verified | 9 | A | 0 | **A** |
 | 8 | Premium product launch (marketing) | Full pipeline | 12 | A | 0 | **A** |
 | 9 | Real-time route optimization (engineering) | Hard-constraint engineering domain | 11 | A- | 0 | **A-** |
+| 10 | Dark matter detection strategy (physics) | Resource allocation under physical constraints | 10 | A- | 0 | **A-** |
+| 11 | Neural network climate surrogate (applied math) | Mathematical architecture problem | 8 | A- | 0 | **A-** |
 
 ## What each test proved
 
@@ -35,6 +37,10 @@ Every test deployed all 15 tools in a full pipeline. Human decisions were simula
 **Test 8 (Premium Product Launch):** Full pipeline in a marketing domain. A DTC sparkling water brand launching into a saturated category at a 7x price premium. The pipeline produced 12 distinct clusters spanning placement, product, content, pricing, scarcity, subscription, community, press, gifting, and category creation. The Wrong Problem Detector reframed from "marketing strategy" to "category creation." Random Injection (mushroom) produced directly actionable ideas. Grade: A.
 
 **Test 9 (Route Optimization — Engineering):** First test in a hard-constraint engineering domain. The WPD reframed "our solver is too slow" to "we have an architecture problem, not a solver problem" — 5/5 checks fired. The Persona Divergence Engine produced the test's most actionable ideas: an ex-competitor engineer revealing what "3-second re-optimization" actually means (greedy insertion at 18-25% suboptimal), and a dispatcher defining three acceptance tests that should drive the entire engineering effort. Random Injection (immune system) produced genuine structural transfers, not metaphors. Think Wrong and Short Think were less effective than in non-technical domains — they produced correct but unsurprising output for a technical audience. The tools work best at the architectural and framing level; they don't replace algorithmic expertise. Grade: A-.
+
+**Test 10 (Dark Matter Detection — Physics):** The WPD reframed "we can't find WIMPs" to "you have a resource allocation problem, not a detector sensitivity problem." The Guilford Engine's portfolio idea — 5 small experiments covering 5 candidates for the cost of one €500M detector — is a genuinely fundable strategy. MacGyver Mode identified three near-zero-cost ideas (reanalyze existing data for non-WIMP signals, Gaia dark matter halo analysis, quantum sensor audit) that are the test's highest-ROI output. Think Wrong and Short Think showed the same pattern as engineering: correct but not novel to the field. The tools help physicists decide WHERE to point their expertise; the physics itself still requires physicists. Grade: A-.
+
+**Test 11 (Neural Network Climate Surrogate — Applied Math):** The strongest technical test. The WPD reframed "the neural network violates constraints" to "the constraints aren't built into the architecture" — and Check 5 produced the residual learning idea, a real mathematical contribution. The Dumb Questions Engine produced the three specific architectural constraints that constitute the actual solution: conservation-by-residual (predict N-1 values, compute Nth as exact residual), monotonicity-by-cumulative-parameterization (softplus increments), and spectral-by-summation. The Persona Engine produced the most mathematically substantive contributions of any test — a POD/reduced basis expert, a physics-informed ML researcher naming specific literature, and a structure-preserving mathematician introducing port-Hamiltonian neural networks. Random Injection (thermostat) produced a specific O(N) correction algorithm, not a metaphor. Think Wrong argued "ML might be the wrong tool entirely — reduced basis methods solve this with guarantees NNs can't provide." The tools performed better here than on the engineering or physics tests because the problem's solution IS structural — moving constraints from the loss function to the network architecture is exactly the kind of reframing these tools do best. Grade: A- (borderline A).
 
 ## Control comparison (vanilla Claude vs. pipeline)
 
@@ -62,5 +68,6 @@ Full comparison: [test-7-control-vanilla-vs-tools.md](../tests/test-7-control-va
 4. **Multi-problem triage needs three options** (full merge, merge with domain tracks, split) — not two
 5. **Random Injection consistently produced the most "from outside the frame" ideas** — coral reef, mycelium, sourdough, campfire, dandelion, composting, tide pool all generated actionable transfers
 6. **The Persona Divergence Engine produced the most specific, immediately actionable ideas** — Colonel Henderson (DOD budget), Elena Vasquez (FEMA grants), Priya Sundaram (8-hour interconnection), because constructed personas with real-world constraints produce real-world leads
-7. **Every skill justified its existence** — no skill was unnecessary across 9 tests
-8. **The tools work for engineering but the value shifts** — strongest at architectural framing and problem reframing, weakest at algorithmic detail. Think Wrong and Short Think were less effective in engineering (B and B+) than in strategy/policy domains (A)
+7. **Every skill justified its existence** — no skill was unnecessary across 11 tests
+8. **The tools work across technical domains but the value shifts** — strongest at structural/architectural reframing, weakest at derivation and proof. Three technical tests (engineering, physics, applied math) all scored A-. Think Wrong and Short Think were less effective in engineering and physics, but Think Wrong recovered in the math test where it argued "ML might be the wrong tool entirely"
+9. **The tools perform best on technical problems whose answer is structural** — Test 11 (applied math) outperformed Tests 9 and 10 because the solution was an architectural change (move constraints from loss function to network structure), which is exactly the kind of reframing these tools do. When a technical problem has a structural answer, the tools find it
