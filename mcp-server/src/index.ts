@@ -154,7 +154,8 @@ async function main() {
       // Health check
       if (req.url === "/health") {
         res.writeHead(200, { "Content-Type": "application/json" });
-        res.end(JSON.stringify({ status: "ok", tools: 15 }));
+        const skillCount = loadSkills(skillsDir).length;
+        res.end(JSON.stringify({ status: "ok", tools: skillCount }));
         return;
       }
 
