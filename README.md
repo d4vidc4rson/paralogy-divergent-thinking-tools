@@ -70,6 +70,27 @@ We ran 10 full pipeline tests across 10 domains, plus a control test (same probl
 
 See [docs/for-humans.md](docs/for-humans.md) for details.
 
+### Via MCP server (for Claude Desktop, Cursor, agent frameworks)
+
+```bash
+cd mcp-server && npm install && npm run build
+```
+
+Then add to your MCP client config:
+
+```json
+{
+  "mcpServers": {
+    "divergent-thinking-tools": {
+      "command": "node",
+      "args": ["/path/to/paralogy-divergent-thinking-tools/mcp-server/dist/index.js"]
+    }
+  }
+}
+```
+
+All 15 tools become available as MCP tools. No API key needed — the server distributes the skill prompts and your client's LLM executes them. See [mcp-server/README.md](mcp-server/README.md) for full setup.
+
 ### For agent developers
 
 The tools map to five infrastructure layers:

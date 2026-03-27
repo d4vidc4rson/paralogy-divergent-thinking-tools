@@ -1,0 +1,25 @@
+{
+  "name": "divergent-thinking-tools-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for the Divergent Thinking Tools — serves 15 structured creativity skills to any MCP-compatible client.",
+  "main": "dist/index.js",
+  "bin": {
+    "divergent-thinking-tools-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.0",
+    "@types/node": "^22.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT"
+}
