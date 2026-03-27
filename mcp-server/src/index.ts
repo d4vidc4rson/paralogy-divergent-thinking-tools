@@ -5,6 +5,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 import * as fs from "fs";
 import * as path from "path";
+import { fileURLToPath } from "url";
 
 // ---------------------------------------------------------------------------
 // Skill loader — reads skills/*/SKILL.md from the repo root
@@ -23,7 +24,6 @@ function parseFrontmatter(content: string): { name: string; description: string;
   }
 
   const frontmatter = match[1];
-  const body = match[2];
 
   const nameMatch = frontmatter.match(/^name:\s*(.+)$/m);
   const descMatch = frontmatter.match(/^description:\s*(.+)$/m);
@@ -67,15 +67,10 @@ function loadSkills(skillsDir: string): Skill[] {
 }
 
 // ---------------------------------------------------------------------------
-// MCP Server
+// Create and configure the MCP server with all skills
 // ---------------------------------------------------------------------------
 
-async function main() {
-  // Resolve the skills directory relative to the repo root
-  // The server lives in mcp-server/dist/index.js, skills are at repo-root/skills/
-  const repoRoot = path.resolve(__dirname, "..", "..");
-  const skillsDir = path.join(repoRoot, "skills");
-
+function createDivergentThinkingServer(skillsDir: string): McpServer {
   const skills = loadSkills(skillsDir);
 
   if (skills.length === 0) {
@@ -100,7 +95,6 @@ async function main() {
         context: z.string().optional().describe("Additional context, constraints, or background information"),
       },
       async ({ objective, context }) => {
-        // Compose the full prompt: skill instructions + user's input
         const userInput = context
           ? `\n\n---\n\n**Objective:** ${objective}\n\n**Context:** ${context}`
           : `\n\n---\n\n**Objective:** ${objective}`;
@@ -117,12 +111,145 @@ async function main() {
     );
   }
 
-  // Connect via stdio transport
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-
-  console.error("Divergent Thinking Tools MCP server running on stdio");
   console.error(`Available tools: ${skills.map((s) => s.name).join(", ")}`);
+  return server;
+}
+
+// ---------------------------------------------------------------------------
+// Transport: stdio (local) or HTTP (remote)
+// ---------------------------------------------------------------------------
+
+async function main() {
+  const repoRoot = path.resolve(__dirname, "..", "..");
+  const skillsDir = path.join(repoRoot, "skills");
+  const mode = process.env.TRANSPORT || "stdio";
+  const port = parseInt(process.env.PORT || "3000", 10);
+
+  if (mode === "http") {
+    // Remote mode: HTTP transport for hosted deployment
+    const { createServer } = await import("node:http");
+    const { StreamableHTTPServerTransport } = await import(
+      "@modelcontextprotocol/sdk/server/streamableHttp.js"
+    );
+    const { isInitializeRequest } = await import(
+      "@modelcontextprotocol/sdk/types.js"
+    );
+    const { randomUUID } = await import("node:crypto");
+
+    const sessions: Record<string, { transport: InstanceType<typeof StreamableHTTPServerTransport>; server: McpServer }> = {};
+
+    const httpServer = createServer(async (req, res) => {
+      // CORS headers for remote access
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS");
+      res.setHeader("Access-Control-Allow-Headers", "Content-Type, mcp-session-id");
+      res.setHeader("Access-Control-Expose-Headers", "mcp-session-id");
+
+      if (req.method === "OPTIONS") {
+        res.writeHead(204);
+        res.end();
+        return;
+      }
+
+      // Health check
+      if (req.url === "/health") {
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ status: "ok", tools: 15 }));
+        return;
+      }
+
+      // Only handle /mcp endpoint
+      if (req.url !== "/mcp") {
+        res.writeHead(404);
+        res.end("Not found");
+        return;
+      }
+
+      const sessionId = req.headers["mcp-session-id"] as string | undefined;
+
+      if (req.method === "GET") {
+        // SSE stream for existing session
+        if (sessionId && sessions[sessionId]) {
+          await sessions[sessionId].transport.handleRequest(req, res);
+        } else {
+          res.writeHead(400);
+          res.end("Invalid session");
+        }
+        return;
+      }
+
+      if (req.method === "DELETE") {
+        // Session cleanup
+        if (sessionId && sessions[sessionId]) {
+          await sessions[sessionId].transport.handleRequest(req, res);
+          delete sessions[sessionId];
+        } else {
+          res.writeHead(400);
+          res.end("Invalid session");
+        }
+        return;
+      }
+
+      if (req.method === "POST") {
+        // Parse body
+        const chunks: Buffer[] = [];
+        for await (const chunk of req) {
+          chunks.push(chunk as Buffer);
+        }
+        const body = JSON.parse(Buffer.concat(chunks).toString());
+
+        // Existing session
+        if (sessionId && sessions[sessionId]) {
+          await sessions[sessionId].transport.handleRequest(req, res, body);
+          return;
+        }
+
+        // New session
+        if (!sessionId && isInitializeRequest(body)) {
+          const transport = new StreamableHTTPServerTransport({
+            sessionIdGenerator: () => randomUUID(),
+            onsessioninitialized: (id: string) => {
+              sessions[id] = { transport, server };
+              console.error(`Session created: ${id}`);
+            },
+          });
+
+          transport.onclose = () => {
+            if (transport.sessionId) {
+              delete sessions[transport.sessionId];
+              console.error(`Session closed: ${transport.sessionId}`);
+            }
+          };
+
+          const server = createDivergentThinkingServer(skillsDir);
+          await server.connect(transport);
+          await transport.handleRequest(req, res, body);
+          return;
+        }
+
+        res.writeHead(400, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({
+          jsonrpc: "2.0",
+          error: { code: -32000, message: "Invalid request — send an initialize request without a session ID to start" },
+          id: null,
+        }));
+        return;
+      }
+
+      res.writeHead(405);
+      res.end("Method not allowed");
+    });
+
+    httpServer.listen(port, () => {
+      console.error(`Divergent Thinking Tools MCP server running on http://0.0.0.0:${port}/mcp`);
+    });
+  } else {
+    // Local mode: stdio transport
+    const server = createDivergentThinkingServer(skillsDir);
+    const transport = new StdioServerTransport();
+    await server.connect(transport);
+    console.error("Divergent Thinking Tools MCP server running on stdio");
+  }
 }
 
 main().catch((error) => {

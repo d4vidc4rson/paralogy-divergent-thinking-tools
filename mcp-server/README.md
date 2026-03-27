@@ -98,6 +98,41 @@ Each tool accepts two parameters:
 
 When you call a tool, the server returns the full skill instructions along with your input. Your LLM reads those instructions and executes the skill. No API calls are made by the server — everything runs in your client's context.
 
+## Remote hosting (for Claude.ai and web clients)
+
+The server also supports HTTP transport for remote deployment. This lets users connect from Claude.ai or any web-based MCP client without installing anything locally.
+
+### Deploy
+
+Set the `TRANSPORT` environment variable to `http`:
+
+```bash
+TRANSPORT=http PORT=3000 node dist/index.js
+```
+
+The server will listen on `http://0.0.0.0:3000/mcp`. A health check is available at `/health`.
+
+### Deploy to Railway, Render, or Fly.io
+
+Use the start command:
+
+```bash
+TRANSPORT=http node mcp-server/dist/index.js
+```
+
+The hosting platform provides the `PORT` environment variable automatically.
+
+### Connect from Claude.ai
+
+Once hosted, users add the remote server URL in Claude.ai's MCP integrations settings. No cloning, no terminal, no npm.
+
+## Two transport modes
+
+| Mode | When to use | How to run |
+|------|-------------|------------|
+| **stdio** (default) | Local use with Claude Desktop, Claude Code, Cursor | `node dist/index.js` |
+| **http** | Remote hosting for Claude.ai, web clients, shared teams | `TRANSPORT=http node dist/index.js` |
+
 ## Requirements
 
 - Node.js 18+
