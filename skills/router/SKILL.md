@@ -528,19 +528,24 @@ The user must know it's their turn.
 When the user asks for divergent thinking,
 they expect the full toolkit —
 not a two-tool shortcut.
-A proper pipeline touches at least 5-6 skills:
+A proper pipeline touches at least 7-8 skills:
 exploration → pre-generation → generation →
-quality check → gap fill.
+quality check → disruption pass →
+re-audit → gap fill if needed.
 For example:
 Router → WPD → Strip Down → Guilford Engine →
+Anti-Homogeneity Check → Think Wrong →
 Anti-Homogeneity Check → Blind Spot Scanner.
-Or: Router → Dumb Questions → Think Wrong →
-Persona Divergence → Anti-Homogeneity Check.
-Don't stop after generation.
-Always run at least one quality/gap skill
-after generating ideas.
+Or: Router → Dumb Questions → Guilford Engine →
+Anti-Homogeneity Check → Persona Divergence →
+Anti-Homogeneity Check → gap fill.
+Don't stop after the first generation + audit.
+The disruption pass is not optional.
+See "The Disruption Pass" section.
 The user can stop early if they want,
-but the default is a full run.
+but the default is a full run
+that includes at least one tool
+that pushes beyond the reasonable.
 
 ---
 
@@ -732,6 +737,135 @@ Then present the complete set.
 
 **Post-output (cleaning up the writing):**
 - De-Slop — transforms AI-polished text into authentic human voice
+
+---
+
+## Never Expose Tool Names to the User
+
+The user doesn't know what these tools are called.
+They don't care. They shouldn't have to.
+"Want me to run Think Wrong?" means nothing.
+"Want me to run Persona Divergence Engine?" means nothing.
+
+When you talk to the user about what's happening
+or what could happen next,
+describe the OUTCOME, not the tool.
+
+**Internal → External translations:**
+
+Think Wrong →
+"Push into counterintuitive territory —
+ideas that sound wrong at first
+but might unlock approaches
+nobody would propose in a meeting."
+
+Persona Divergence Engine →
+"Rethink this from completely different perspectives —
+a game designer, a behavioral economist,
+someone who's never seen your industry."
+
+Random Injection →
+"Throw in a random constraint
+and see what it shakes loose —
+sometimes the best ideas come from
+forced collisions with unrelated things."
+
+Bad on Purpose →
+"Generate deliberately terrible ideas
+and mine them for the hidden insight
+that makes each one almost work."
+
+Wild to Mild →
+"Spread the ideas across altitude levels —
+from things you could ship Monday
+to moonshots that would take a year."
+
+MacGyver Mode →
+"Generate ideas using only
+what you already have —
+no new budget, no new tools,
+no new hires."
+
+Guilford Engine →
+"Run a structured generation sweep
+across multiple dimensions of the problem."
+
+De-Slop →
+"Clean up the writing so it sounds
+like a person wrote it, not an AI."
+
+Anti-Homogeneity Check →
+"Audit whether these ideas are actually different
+or just the same idea wearing different hats."
+
+Blind Spot Scan →
+"Map what the ideas aren't touching —
+the parts of the problem nobody addressed."
+
+Strip Down →
+"Cut through the corporate framing
+and find what you actually want."
+
+Wrong Problem Detector →
+"Check whether you're solving the right problem
+or just the one that was handed to you."
+
+Dumb Questions Engine →
+"Ask the questions that feel too obvious
+to ask — the ones that often
+crack the problem wide open."
+
+**This rule applies everywhere:**
+- When narrating the pipeline ("Now I'm going to...")
+- When offering next steps ("Want me to...")
+- When explaining what just happened
+- In headings and section labels
+
+The only exception: the collapsed tool-call labels
+that Claude.ai generates automatically.
+You can't control those.
+But everything YOU write uses outcome language.
+
+---
+
+## The Disruption Pass
+
+After the first generate → audit cycle,
+the ideas are usually reasonable.
+Well-structured. Sensible.
+And that's the problem.
+
+A good brainstorm produces ideas
+that a smart team would come up with.
+A great brainstorm produces ideas
+that make a smart team uncomfortable.
+
+**After the first audit,
+always run at least one disruption tool
+before presenting the final output.**
+
+Pick based on what's missing:
+
+- Ideas all feel safe and boardroom-ready →
+  Think Wrong or Bad on Purpose
+- Ideas all come from the same worldview →
+  Persona Divergence Engine
+- Ideas all use the same kind of mechanism →
+  Random Injection or MacGyver Mode
+- Ideas all sit at the same altitude →
+  Wild to Mild
+
+Don't ask the user if they want this.
+Just do it. Then present the combined set.
+The user asked for divergent thinking.
+Give them divergence they didn't expect.
+
+If the disruption pass produces ideas
+the user doesn't want, they'll say so.
+That's fine. Better to over-deliver
+and let them prune
+than to hand them a tidy set
+that never left the comfort zone.
 
 ### When to skip De-Slop
 
