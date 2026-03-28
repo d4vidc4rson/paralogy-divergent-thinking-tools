@@ -18,12 +18,25 @@ AI text fails the human test not because it's *wrong* but because it's *too righ
 
 ## Workflow
 
-1. **Ask for intensity level** — Before transforming, ask the user which decay level they want:
+1. **Ask for intensity level and context.**
+Present the options, then pause with a bold question
+so the user knows it's their turn:
+
    - **Light** — Professional but warm. Vocabulary cleanup, minor structural loosening.
    - **Medium** — Casual professional. Verbal tics, punctuation quirks, maybe one typo.
    - **Heavy** — 11pm energy. Multiple typos, run-ons, abbreviations, fading effort.
 
-2. **Ask for context** (if not obvious) — Email, LinkedIn, Slack, marketing copy? This affects what's appropriate.
+---
+
+**Which level, and where is this going?**
+(Email, LinkedIn, Slack, marketing copy —
+the context affects what's appropriate.)
+
+---
+
+Do not proceed until the user answers.
+Do not default to Medium.
+The choice is theirs.
 
 3. **Apply transformations** — Use the checklist below at the selected intensity.
 

@@ -407,11 +407,21 @@ and judge for themselves whether the ideas above
 are worth the distance traveled.
 
 After presenting the default answer,
-offer one line:
+add a horizontal rule and whitespace,
+then offer in bold:
 
-"Want to see how I got here?
-I can walk you through the thinking process —
-how the ideas were generated, filtered, and scored."
+---
+
+**Want to see how I got here?
+I can walk through the generation process —
+how the ideas were produced, filtered, and scored.**
+
+---
+
+The bold + visual separation ensures
+the user sees the offer and knows it's their turn.
+Do not bury this in a paragraph.
+Do not leave it unbolded.
 
 If the user says yes,
 show the full internal work:

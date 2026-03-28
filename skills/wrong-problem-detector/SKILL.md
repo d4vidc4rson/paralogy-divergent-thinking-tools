@@ -511,9 +511,46 @@ I also found these angles:
 - **[Alt reframe A name]:** [one sentence]
 - **[Alt reframe B name]:** [one sentence]
 
-**Which reframe should I generate ideas from?**
-Or if the original problem is actually right, say so
-and I'll generate from that instead.
+> **Which reframe should I generate ideas from?
+> Or if the original problem is actually right,
+> say so and I'll generate from that instead.**
+
+---
+
+**Critical: reframes are problems, not ideas.**
+
+Every item in the checkpoint —
+the main reframe and the alternatives —
+must be a PROBLEM RESTATEMENT,
+not a solution direction.
+
+A reframe changes what you're solving.
+An idea is something you'd do about it.
+If the user could respond with
+"yes, let's do that" — it's an idea.
+If the user responds with
+"yes, that's the real question" — it's a reframe.
+
+**This is an idea disguised as a reframe:**
+"Empty storefronts are the most available
+real estate in the city —
+who needs space but can't normally afford
+a street-level location?"
+(The user would say "let's do that."
+It's a solution direction, not a problem.)
+
+**This is an actual reframe:**
+"Downtown doesn't have a traffic problem —
+it has an identity problem.
+It was never designed to be anything specific,
+just a default location for commerce."
+(The user would say "yes, that's the real issue."
+It changes what you're solving for.)
+
+The test: does this reframe
+lead to MANY DIFFERENT possible solutions?
+Or does it point toward ONE specific solution?
+If one — it's an idea. Rewrite it.
 
 ---
 

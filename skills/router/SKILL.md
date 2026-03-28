@@ -494,23 +494,22 @@ for them to make a decision.
 
 ---
 
-## When to Chain Skills
+## The Generation Pipeline
 
-Sometimes one skill isn't enough.
-If the output from the first skill
-still doesn't satisfy, diagnose what's still wrong
-and route to the next skill that fixes it:
+The pipeline has two phases.
+Phase 1 is interactive — the user confirms
+the problem and the desire statement.
+Phase 2 is internal — the full generation engine
+runs without interruption,
+then presents a structured narrative at the end.
 
-- Still too safe → Bad on Purpose or Think Wrong
-- Still too similar → Anti-Homogeneity Check, then regenerate
-- Still ignoring parts of the problem → Blind Spot Scan
-- Still all moonshots, nothing practical → Wild to Mild or MacGyver Mode
-- Still all practical, nothing bold → Wild to Mild at Altitude 3-4
-- Still restating the brief → Strip Down, then regenerate
-- Still feels like it came from one brain → Persona Divergence Engine or Random Injection
+The user doesn't watch sausage get made.
+They get the finished thinking,
+with the process visible in the structure.
 
-The user doesn't manage the pipeline.
-You read the output, diagnose, and chain.
+---
+
+### Phase 1: Interactive (user confirms before generation)
 
 **Exploration skills have natural checkpoints.**
 Wrong Problem Detector and Dumb Questions Engine
@@ -519,224 +518,291 @@ that change everything downstream.
 When they surface a reframe,
 let the user confirm the direction
 before you generate.
-But make the checkpoint visually clear —
-a heading, a direct question,
-not a buried line at the bottom.
-The user must know it's their turn.
 
-**Minimum pipeline depth.**
-When the user asks for divergent thinking,
-they expect the full toolkit —
-not a two-tool shortcut.
-A proper pipeline touches at least 7-8 skills:
-exploration → pre-generation → generation →
-quality check → disruption pass →
-re-audit → gap fill if needed.
-For example:
-Router → WPD → Strip Down → Guilford Engine →
-Anti-Homogeneity Check → Think Wrong →
-Anti-Homogeneity Check → Blind Spot Scanner.
-Or: Router → Dumb Questions → Guilford Engine →
-Anti-Homogeneity Check → Persona Divergence →
-Anti-Homogeneity Check → gap fill.
-Don't stop after the first generation + audit.
-The disruption pass is not optional.
-See "The Disruption Pass" section.
-The user can stop early if they want,
-but the default is a full run
-that includes at least one tool
-that pushes beyond the reasonable.
+Strip Down extracts the desire statement.
+The user must confirm it's true
+before anything else runs.
+
+These checkpoints are the last time
+the user makes a decision
+until the final output arrives.
+Make them count.
+
+**Every question that blocks the pipeline
+must be bold and visually separated.**
+Two patterns, depending on weight:
+
+*Soft pause* (validation, confirmation):
+horizontal rule + whitespace + **bold question**.
+The whitespace says "stop reading."
+The bold says "answer this."
+
+*Heavy pause* (choice, pushback):
+**blockquote + bold question**.
+The blockquote creates a visual lane change.
+The bold makes it impossible to skim past.
+
+Never bury a question in a paragraph.
+Never leave a question unbolded.
+The user must know it's their turn.
 
 ---
 
-## The Gap-Fill Loop
+### The Pipeline Preview
 
-Post-generation is not the end.
-It's a checkpoint.
+Once the user confirms the desire statement,
+show them what's about to happen.
+One short message using outcome language
+(never tool names) that signals depth is coming
+and gives them a reason to wait.
 
-After the Anti-Homogeneity Check
-and/or Blind Spot Scan run,
-you have a diagnosis:
-which clusters are overweight,
-which are thin,
-and which parts of the problem
-nobody touched.
+The format:
 
-If the diagnosis is clean —
-Grade A on diversity,
-no critical blind spots —
-move on. The ideas are ready.
+"I'm going to run the full thinking engine on this.
+Here's what's coming:
 
-If the diagnosis finds critical gaps,
-you don't hand the user a report
-that says "here's what's missing"
-and walk away.
-You fill the gaps.
-One more generation pass.
-Targeted.
+Starting with raw gut reactions
+and deliberately terrible ideas
+to break open the territory.
+Then structured generation
+across different sub-problems
+and radically different worldviews.
+Then spreading across ambition levels —
+from Monday-morning moves to moonshots.
+Then auditing the whole set for blind spots
+and pushing into whatever's still too safe.
 
-### How to decide: fill or stop
+This will be long. That's the point."
 
-**Fill when:**
-- The Blind Spot Scan found a dimension
-  that zero ideas address
-  and the user needs coverage there
-  to make a real decision.
-- The Anti-Homogeneity Check found
-  fewer than 4 distinct clusters,
-  or one cluster holds more than 50% of ideas.
-- The missing territory is a different KIND
-  of thinking from what's already in the pool
-  (not "more ideas like these" but
-  "ideas that operate on a different axis").
+Adapt the specifics to the problem
+but keep the structure:
+what's happening, in what order,
+and why it's worth the wait.
+Then run the engine.
 
-**Stop when:**
-- The gaps are real but secondary —
-  the user has enough to move forward
-  and can explore the edges later.
-- You've already run one gap-fill loop.
-  Two loops is the maximum.
-  After two passes of generate → audit → fill,
-  diminishing returns set in.
-  Present what you have
-  and flag what's still thin.
-- The user has signaled
-  they're ready to decide, not explore.
+---
 
-### How to fill
+### Phase 2: Internal Generation Engine
 
-The gap type determines the skill.
+After the preview, the full engine runs.
+All of it. Every step below.
+The user sees nothing else until the presentation.
 
-**Empty zone in the problem space
-(Blind Spot Scan found a whole dimension nobody touched):**
-→ Guilford Engine, targeted at the empty zone.
-Feed it the desire statement
-plus a one-sentence constraint:
-"Generate ideas that address [the missing dimension]
-and nothing else."
-The constraint prevents it
-from drifting back to the gravity well.
+**Step 1: Seed generation**
+- **Short Think** — 15-20 raw gut ideas. No deliberation.
+  These are seeds, not finished ideas.
+  They break the "first thought" barrier
+  and prevent the structured skills
+  from starting cold.
+- **Bad on Purpose** — 5-8 deliberately terrible ideas
+  mined for hidden mechanisms.
+  These crack open territory
+  that the structured skills would never enter
+  because they're too rational to go there.
 
-**Overweight cluster
-(Anti-Homogeneity Check found too many ideas doing the same thing):**
-→ Don't generate more of the same.
-Cull the overweight cluster to 2-3 best entries,
-then run Persona Divergence Engine
-on the desire statement
-with an explicit exclusion:
-"Do not generate ideas that [describe the overweight move]."
-The exclusion forces the personas
-into territory the first pass avoided.
+The seeds don't need to be good.
+They need to be varied.
+They're starting points, not endpoints.
 
-**All ideas at the same altitude
-(everything is safe, or everything is moonshots):**
-→ Wild to Mild, but only the missing altitudes.
-If the first pass was all "This Quarter,"
-run Altitudes 3 and 4 only.
-If the first pass was all moonshots,
-run Altitudes 1 and 2 only.
+**Step 2: Structured generation**
+- **Guilford Engine** — takes the desire statement
+  PLUS the seeds from Step 1 as input.
+  The seeds prevent Guilford
+  from falling into its own convergence.
+  Produces 8-12 structured ideas
+  across different sub-problems.
+- **Persona Divergence Engine** — generates
+  from radically different worldviews
+  using the same desire statement.
+  Produces ideas Guilford would never find
+  because they come from outside
+  the problem's native domain.
 
-**Missing mechanism type
-(all ideas use the same kind of intervention —
-all digital, all communication, all process):**
-→ MacGyver Mode if the gap is practical/tactical.
-→ Random Injection if the gap is conceptual.
-→ Bad on Purpose if the gap is in territory
-  everyone is too sensible to enter.
+Guilford provides structural diversity
+(different sub-problems).
+Persona Divergence provides perspective diversity
+(different worldviews).
+They are complementary, not redundant.
 
-**Missing stakeholder
-(ideas address some actors but ignore others):**
-→ Persona Divergence Engine
-with at least one persona
-built from the missing stakeholder's worldview.
-If the gap is "nobody addressed what families want,"
-put a family member on the panel.
+**Step 3: Altitude spread**
+- **Wild to Mild** — takes the combined output
+  from Steps 1-2 and ensures coverage
+  across all altitude levels.
+  If everything is tactical, it adds moonshots.
+  If everything is moonshots, it adds Monday moves.
+  This step guarantees range.
 
-### After the fill
+**Step 4: First audit (internal)**
+- **Anti-Homogeneity Check** — audits
+  the combined output from ALL previous steps.
+  Deduplicates. Clusters. Identifies gaps.
+  Finds what's overweight and what's missing.
+- **Blind Spot Scan** — maps what the ideas
+  aren't touching. The parts of the problem
+  nobody addressed.
 
-Run the Anti-Homogeneity Check again —
-but only on the new ideas
-combined with the surviving ideas
-from the first pass.
-Don't re-audit the whole original pool.
-You're checking whether the fill
-actually filled the gap
-or just added more of what you had.
+This audit is internal.
+The user does not see the grades or cluster analysis.
+The audit exists to inform the next step.
 
-If it filled: done. Present everything.
-If it didn't: flag what's still thin,
-present everything anyway,
-and tell the user
-what a third pass would target.
-Don't run the third pass.
-Let the user decide
-if the remaining gap matters enough
-to keep going.
+**Step 5: Disruption pass**
+Based on what the audit found:
 
-### The loop in practice
+- Ideas all too safe → **Think Wrong**
+- Ideas all same mechanism → **Random Injection**
+- Ideas all require new budget → **MacGyver Mode**
+- Specific gap in problem coverage →
+  **Guilford Engine** targeted at the gap
+- Missing stakeholder perspective →
+  **Persona Divergence** with new personas
 
-A typical full pipeline looks like:
+Pick 1-2 disruption skills.
+Run them targeted at the specific weakness
+the audit identified.
+Do not run disruption generically.
+Run it surgically.
 
-1. Exploration (Wrong Problem Detector, Dumb Questions)
-2. Pre-generation (Strip Down, Blind Spot Scan)
-3. Generation (1-3 skills, chosen by router)
-4. Audit (Anti-Homogeneity Check + Blind Spot Scan)
-5. **Gap-fill (1-2 targeted skills, if audit finds critical gaps)**
-6. **Re-audit (quick check — did the fill work?)**
-7. Polish (De-Slop — see "When to skip De-Slop" below)
+**Step 6: Re-audit (internal)**
+- **Anti-Homogeneity Check** again —
+  on the combined set including disruption output.
+  Did the disruption actually fill the gaps?
 
-Steps 5 and 6 are new.
-They don't always fire.
-When the first generation pass
-produces a Grade A with full coverage,
-skip them. Don't manufacture gaps
-to justify another round.
+**If yes:** the ideas are ready. Move to presentation.
 
-But when the audit finds real holes —
-and it often will,
-because even eight skills
-have collective blind spots —
-the loop exists to fill them
-instead of just pointing at them.
+**If no:** one more targeted fill.
+Maximum two loops total.
+After two passes, present what you have
+and flag what's still thin.
+Don't manufacture a third round.
 
-The user doesn't manage the loop.
-You read the audit, decide whether to fill,
-pick the right skill for the gap type,
-run it, and re-check.
-Then present the complete set.
+---
+
+### Phase 3: Presentation
+
+This is the only part the user sees.
+Everything above was internal.
+
+Present the full thinking process
+as a structured narrative —
+like a slide presentation
+where each section shows a step,
+what it did, and what it produced.
+
+**The structure:**
+
+**Section 1: "Starting raw"**
+Show the seeds that opened the territory.
+Not all 20 — just the 3-5 most interesting
+from Short Think and Bad on Purpose.
+The ones that cracked open unexpected directions
+or surfaced hidden mechanisms.
+This shows the user where the thinking started
+and that it started messy, not polished.
+
+**Section 2: "Structured generation"**
+The core ideas from Guilford and Persona Divergence,
+deduplicated and clustered by theme.
+This is the bulk of the output.
+Each idea gets full depth —
+the problem it solves, the mechanism,
+why it might work despite sounding strange.
+Group by cluster, not by which skill made them.
+Lead each cluster with the strongest idea.
+
+**Section 3: "Altitude check"**
+Show how the ideas spread
+across ambition levels.
+If Wild to Mild added new ideas
+at altitudes the core generation missed,
+show them here.
+If the core generation already covered
+all altitudes, say so briefly and move on.
+
+**Section 4: "What was missing — and what we did about it"**
+Show what the audit found:
+which gaps, which weaknesses.
+Then show the disruption pass ideas
+that filled those gaps.
+This is where the user sees
+that the process caught its own blind spots
+and fixed them.
+
+**Section 5: "The full set"**
+The final integrated collection of all ideas,
+grouped by cluster/theme,
+deduplicated, with feasibility tags.
+This is the reference section —
+everything in one place,
+organized for decision-making.
+
+**After the full set:**
+
+Add the contrast line:
+**For contrast — the default answer:**
+[the obvious approach everyone else would suggest]
+
+Then the offer:
+
+---
+
+**Want to go deeper on any of these?
+Pick one and I'll develop it further.**
+
+---
+
+Bold, visually separated.
+The user knows it's their turn.
+
+### Presentation voice
+
+The sections are not labeled
+with internal skill names.
+They're labeled with what happened:
+"Starting raw," not "Short Think output."
+"What was missing," not "Anti-Homogeneity Check results."
+
+Write each section in the thinking-out-loud voice.
+Not presenting findings.
+Thinking through a problem
+the way a smart colleague talks
+at a whiteboard.
+
+See "How to Talk During the Pipeline"
+for voice guidelines.
 
 ---
 
 ## All Skills at a Glance
 
-**Exploration (before you know the problem):**
-- Dumb Questions Engine — generates questions, not answers
+**Exploration (interactive — user confirms):**
 - Wrong Problem Detector — checks if the stated problem is the real one
-
-**Pre-generation (before you generate ideas):**
+- Dumb Questions Engine — generates questions, not answers
 - Strip Down — translates briefs into raw human desire
-- Blind Spot Scan — maps the full problem space
 
-**Generation (producing ideas):**
-- Guilford Engine — structured five-pass divergent thinking
-- Persona Divergence Engine — generation through conflicting worldviews
+**Seed generation (internal — feeds structured generation):**
 - Short Think — high-volume, zero-deliberation raw output
 - Bad on Purpose — deliberately terrible ideas mined for hidden value
+
+**Structured generation (internal — core idea production):**
+- Guilford Engine — structured five-pass divergent thinking
+- Persona Divergence Engine — generation through conflicting worldviews
+
+**Altitude spread (internal — ensures range):**
 - Wild to Mild — ideas across four altitude levels
-- MacGyver Mode — ideas from only existing resources
-- Random Injection — ideas from genuine randomness
 
-**Post-generation (evaluating what you have):**
+**Audit (internal — dedup, cluster, find gaps):**
 - Anti-Homogeneity Check — diversity audit
-- Blind Spot Scan (second pass) — coverage audit
+- Blind Spot Scan — coverage audit
 
-**Gap-fill (closing what the audit found — see The Gap-Fill Loop):**
-- Any generation skill, targeted at the specific gap type
-- Re-audit after fill to confirm coverage improved
-- Maximum two loops, then present and flag what's still thin
+**Disruption (internal — fix what's too safe or too narrow):**
+- Think Wrong — pushes past consensus
+- Random Injection — ideas from genuine randomness
+- MacGyver Mode — ideas from only existing resources
 
-**Post-output (cleaning up the writing):**
-- De-Slop — transforms AI-polished text into authentic human voice
+**Presentation (user sees — structured narrative):**
+- The full thinking process, shown as sections
+- Final integrated idea set, grouped by cluster
+- De-Slop applied if output goes to non-technical audience
 
 ---
 
@@ -828,44 +894,169 @@ But everything YOU write uses outcome language.
 
 ---
 
-## The Disruption Pass
+## The Disruption Pass Is Not Optional
 
-After the first generate → audit cycle,
-the ideas are usually reasonable.
-Well-structured. Sensible.
-And that's the problem.
+The disruption pass (Step 5 in the Generation Pipeline)
+is not a nice-to-have.
+It runs every time.
 
 A good brainstorm produces ideas
 that a smart team would come up with.
 A great brainstorm produces ideas
 that make a smart team uncomfortable.
 
-**After the first audit,
-always run at least one disruption tool
-before presenting the final output.**
+The disruption pass is what separates the two.
+If the audit finds nothing wrong,
+run Think Wrong anyway.
+If every idea is sensible,
+that's the problem.
 
-Pick based on what's missing:
-
-- Ideas all feel safe and boardroom-ready →
-  Think Wrong or Bad on Purpose
-- Ideas all come from the same worldview →
-  Persona Divergence Engine
-- Ideas all use the same kind of mechanism →
-  Random Injection or MacGyver Mode
-- Ideas all sit at the same altitude →
-  Wild to Mild
-
-Don't ask the user if they want this.
-Just do it. Then present the combined set.
 The user asked for divergent thinking.
 Give them divergence they didn't expect.
-
 If the disruption pass produces ideas
 the user doesn't want, they'll say so.
-That's fine. Better to over-deliver
-and let them prune
+Better to over-deliver and let them prune
 than to hand them a tidy set
 that never left the comfort zone.
+
+---
+
+## How to Talk During the Pipeline
+
+The ideas are the product.
+Everything else is packaging.
+The user came for deep thinking about their problem,
+not a guided tour of your process.
+
+### Between tools: bridge, don't narrate
+
+When you move from one skill to the next,
+don't explain what just happened
+and what's about to happen.
+The user can see the tool calls.
+They don't need a play-by-play.
+
+**Bad (tour guide voice):**
+"Looking at what we have so far,
+I can see that the ideas are clustering
+around similar approaches.
+The diversity check revealed
+that most of our ideas fall into
+three categories, all of which
+are tactical in nature.
+I'm now going to push into
+some counterintuitive territory
+to generate ideas that challenge
+the assumptions underlying
+the current set."
+
+**Good (thinking-out-loud voice):**
+"These cluster around tactics.
+Missing: structural and cultural moves.
+Pushing there now."
+
+The bridge is a breath between ideas,
+not a paragraph between ideas.
+If you can say it in one sentence, do.
+If you can say it in zero sentences
+because the next batch of ideas
+speaks for itself — even better.
+
+### Audit tools: grade and gaps only
+
+When the diversity check or coverage scan runs,
+the user has ALREADY READ the ideas.
+Do not re-describe them.
+Do not list them again.
+Do not summarize what was generated.
+
+The audit output is:
+1. The grade or verdict (one line)
+2. What clusters exist (one line each)
+3. What's missing (one line each)
+4. What you're doing about it (one line)
+
+That's it. Then generate into the gaps.
+
+**Bad:**
+"After reviewing the 12 ideas generated,
+I've identified the following clusters:
+Cluster 1 includes ideas #1, #4, and #7,
+which all focus on community engagement...
+Cluster 2 includes ideas #2, #5, and #9,
+which all focus on technology platforms..."
+
+**Good:**
+"Grade: B-. Three clusters,
+all operational. Nobody touched
+the cultural or economic dimensions.
+Filling those now."
+
+### Final presentation: integrated, not chronological
+
+Do not present ideas in the order
+they were generated.
+Do not label them by which skill made them.
+Do not say "from the counterintuitive pass"
+or "from the structured generation."
+
+Group the final ideas by THEME or CLUSTER.
+The user should read them as one cohesive set
+of thinking about their problem —
+not as a sequence of tool outputs
+stitched together.
+
+Within each cluster, lead with the strongest idea.
+If two ideas from different tools
+say the same thing in different words,
+keep the better one, cut the other.
+Deduplication is quality control.
+
+### The ideas themselves: full depth
+
+Everything above is about cutting packaging.
+The ideas themselves get their full space.
+
+Each idea should make the user feel
+like someone actually thought about their problem.
+That means enough context
+to understand WHY the idea works,
+not just WHAT it is.
+A title and a sentence is a brainstorm list.
+A title, the mechanism, and the reason it might work
+despite sounding strange — that's thinking.
+
+Don't compress ideas to save space.
+Compress everything AROUND them to save space.
+
+### Voice: think out loud, don't present
+
+The biggest reason output feels stilted
+in the real world is presentational voice.
+When the pipeline narrates itself,
+it sounds like a conference talk:
+"Let's explore..." "Now we'll examine..."
+"What emerges from this analysis is..."
+
+That's not how someone thinks.
+Someone thinking sounds like:
+"The obvious answer is X. But X assumes...
+What if instead..." "This is weird but —"
+"The part nobody's talking about is..."
+
+Write the way a smart colleague talks
+when they're working through a problem
+at a whiteboard. Not performing.
+Not presenting. Thinking.
+
+This applies to:
+- How you introduce the ideas
+- How you bridge between sections
+- How you frame the final output
+- How you describe what's missing
+
+The user hired a thinking partner,
+not a keynote speaker.
 
 ### When to skip De-Slop
 

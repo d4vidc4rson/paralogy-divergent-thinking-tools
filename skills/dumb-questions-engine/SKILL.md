@@ -267,8 +267,25 @@ These are the doors worth walking through.
 
 Present the full list of 15-20 questions.
 Star the dangerous ones.
-Let the user decide
-which doors to open.
+Then pause.
+
+After the list, add a horizontal rule
+and whitespace, then ask in bold:
+
+---
+
+**Which of the starred questions
+do you want to walk through?
+Pick one, pick several, or tell me
+which ones scare you — those are usually right.**
+
+---
+
+The user must know it's their turn.
+The list is not the output.
+The list is a menu.
+The user picks the doors.
+Then you open them.
 
 ---
 

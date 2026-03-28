@@ -380,46 +380,59 @@ during generation.
  
 ## Confirm — This Is the Most Important Step
  
-Present the desire statement to the user.
-One shot. No preamble. Just the statement.
- 
-Then say something like:
- 
-"Before we go any further —
-this desire statement is the seed
-that everything else grows from.
-Every idea, every direction, every skill I run next
-will spring from this statement.
-If it's wrong, everything downstream is wrong.
-If it's even slightly off,
-everything downstream is slightly off.
- 
-So I need you to really sit with this
-for a second:
- 
-**[desire statement]**
- 
-Does this feel true to you —
-not just reasonable, but actually true?
-Is this what you'd say about this problem
-if you were explaining it to someone you trust
-over a drink? Or does something feel off,
-even if you can't articulate what?"
- 
+Present the desire statement to the user
+as a blockquote, then pause for confirmation.
+
+The confirmation has two visual layers
+designed so the user can't miss them.
+
+**Layer 1: the soft pause.**
+After the desire statement,
+add a horizontal rule and whitespace,
+then ask the confirmation question in bold.
+The whitespace says "stop reading."
+The bold says "answer this."
+
+**Layer 2: the pushback.**
+After flagging your concerns,
+put the second question in a blockquote AND bold.
+The blockquote creates a visual lane change.
+The bold makes the question impossible to skim past.
+
+**The format:**
+
+> [desire statement in blockquote]
+
+---
+
+**Does that feel true? Not just reasonable,
+but actually what this [problem domain] needs?**
+
+[1-2 specific concerns about the framing —
+things the document assumes that might be wrong,
+or angles the desire statement might be missing.]
+
+> **Does the desire statement hold,
+> or does one of those worries land?**
+
+---
+
+Both questions must be bold.
+The first uses whitespace isolation (divider above it).
+The second uses blockquote + bold.
+Two different weights for two different moments.
+The user cannot miss either one.
+
 **Do not accept a quick "yes" at face value.**
- 
+
 If the user says "yes" or "looks good"
 without engaging deeply,
-push once more:
- 
-"Okay — but let me flag
-what concerns me about this framing:
-[name 1-2 specific things the document assumes
-that might be wrong,
-or angles the desire statement might be missing].
-Do any of those resonate,
-or do you think the statement as written
-is the right seed to plant?"
+push once more with the concerns.
+Always have 1-2 concerns ready
+even if the desire statement feels solid —
+because surfacing doubt the user is holding
+but not voicing
+is more valuable than false confidence.
  
 The goal is not to second-guess the user.
 The goal is to surface doubt
