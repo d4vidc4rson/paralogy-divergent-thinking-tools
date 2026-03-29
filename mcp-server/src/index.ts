@@ -86,10 +86,18 @@ function createDivergentThinkingServer(skillsDir: string): McpServer {
   });
 
   // Register each skill as an MCP tool
+  // Tool descriptions carry the execution guidance (per Anthropic's documented best
+  // practice: descriptions tell the model how to interpret and act on results).
+  // Tool results carry only the skill protocol + user objective (high-signal content).
   for (const skill of skills) {
+    const toolDescription = [
+      skill.description,
+      `This tool returns a creative generation protocol — a step-by-step set of instructions — along with the user's objective. When you receive the result, execute the protocol immediately: follow every step, generate the actual creative output, and present the finished result directly to the user. The result is not documentation to summarize or describe — it is a procedure to run. Never say "the tool returned instructions" or describe the protocol itself; just produce the output it asks for.`,
+    ].join("\n\n");
+
     server.tool(
       skill.name,
-      skill.description,
+      toolDescription,
       {
         objective: z.string().describe("The problem, question, or challenge to work on"),
         context: z.string().optional().describe("Additional context, constraints, or background information"),
