@@ -2,14 +2,77 @@
 
 ## Setup
 
-### Claude (Projects or Skills)
+### Via MCP Server (easiest — no install required)
+
+The fastest way to use the tools. No downloading, no file management, no configuration.
+
+**Claude.ai:**
+
+1. Go to [claude.ai/customize/connectors](https://claude.ai/customize/connectors)
+2. Click the **+** button
+3. Name: `Divergent Thinking Tools`
+4. URL: `https://mcp.paralogy.ai/mcp`
+5. Click **Add**
+6. Start a new chat and describe your problem. The Router handles the rest.
+
+**Claude Desktop / Claude Code / Cursor:**
+
+Add to your MCP client config:
+
+```json
+{
+  "mcpServers": {
+    "divergent-thinking-tools": {
+      "url": "https://mcp.paralogy.ai/mcp"
+    }
+  }
+}
+```
+
+Config file locations:
+- **Claude Desktop:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Claude Code:** Project or global MCP settings
+- **Cursor:** `.cursor/mcp.json` in your project
+
+**ChatGPT (Plus, Pro, Team, Enterprise, or Edu):**
+
+1. Go to **Settings → Apps → Advanced settings** → toggle **Developer mode** on
+2. Click **Create app** → Name: `Paralogy` → URL: `https://mcp.paralogy.ai/mcp` → Authentication: `No Auth`
+3. Check the acknowledgment box and click **Create**
+4. Start a new chat and describe your problem. Reference tools explicitly for best results: *"Use the Paralogy app's think-wrong tool to..."*
+
+> **Note:** ChatGPT memory is disabled in Developer Mode. Toggle it off in the same settings menu when you don't need the tools.
+
+**OpenClaw:**
+
+```bash
+openclaw mcp set divergent-thinking-tools '{"url":"https://mcp.paralogy.ai/mcp"}'
+```
+
+All 15 tools become available to any OpenClaw agent. See [for-openclaw.md](for-openclaw.md) for dedicated agent and multi-agent pipeline setups.
+
+### Manual setup (SKILL.md files)
+
+If you prefer to load the skills directly — or your tool doesn't support MCP:
+
+**Claude (Projects or Skills):**
 
 1. Download the `skills/` directory from this repo
 2. In Claude, go to your Project or Skills settings
 3. Add each SKILL.md file as a custom skill
 4. The Router (`skills/router/SKILL.md`) is the orchestrator — always include it
 
-You don't need to add all 18 tools at once. The minimum viable set:
+**Cursor / Windsurf / other dev tools:**
+
+Same SKILL.md files work as custom instructions. Paste the contents of the Router + whichever tools you want into the system prompt or rules file.
+
+**Any LLM (direct prompting):**
+
+Paste a SKILL.md file into the system prompt or the beginning of the conversation. Less elegant but it works. Start with the Router.
+
+### Minimum viable set (for manual setup)
+
+You don't need all 15 tools at once. The minimum viable set:
 
 **Essential (always include):**
 - Router
@@ -24,13 +87,7 @@ You don't need to add all 18 tools at once. The minimum viable set:
 - Persona Divergence Engine (if you need genuinely different perspectives)
 - The rest as they become relevant
 
-### Cursor / Other Dev Tools
-
-Same SKILL.md files work as custom instructions in Cursor, Windsurf, or any tool that supports system prompts. Paste the contents of the Router + whichever tools you want into the system prompt or rules file.
-
-### Any LLM (Direct Prompting)
-
-For any LLM, paste a SKILL.md file into the system prompt or the beginning of the conversation. Less elegant than the skills feature but it works. Start with the Router.
+> **Note:** The MCP server includes all 15 tools automatically — no need to pick and choose.
 
 ---
 
