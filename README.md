@@ -97,6 +97,15 @@ See [docs/for-humans.md](docs/for-humans.md) for details.
 
 Add to your config: Claude Desktop (`~/Library/Application Support/Claude/claude_desktop_config.json`), Claude Code (project or global MCP settings), or Cursor (`.cursor/mcp.json`).
 
+**ChatGPT (Plus, Pro, Team, Enterprise, or Edu):**
+
+1. Go to **Settings → Apps → Advanced settings** → toggle **Developer mode** on
+2. Click **Create app** → Name: `Paralogy` → URL: `https://mcp.paralogy.ai/mcp` → Authentication: `No Auth`
+3. Check the acknowledgment box and click **Create**
+4. Start a new chat and describe your problem. Reference tools explicitly for best results: *"Use the Paralogy app's think-wrong tool to..."*
+
+See [mcp-server/README.md](mcp-server/README.md) for full ChatGPT setup details.
+
 **Local (if you prefer to self-host):**
 
 ```bash

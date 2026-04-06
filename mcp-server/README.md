@@ -1,6 +1,6 @@
 # Divergent Thinking Tools — MCP Server
 
-An MCP (Model Context Protocol) server that makes all 15 Divergent Thinking Tools available to any MCP-compatible client — Claude Desktop, Cursor, or any agent framework that supports MCP.
+An MCP (Model Context Protocol) server that makes all 15 Divergent Thinking Tools available to any MCP-compatible client — Claude, ChatGPT, Cursor, or any agent framework that supports MCP.
 
 The server distributes the tool prompts. All LLM calls happen on your side, using your own API key or subscription. The server itself makes zero API calls.
 
@@ -37,6 +37,31 @@ Config file locations:
 - **Cursor:** `.cursor/mcp.json` in your project
 
 That's it. All 15 tools are immediately available.
+
+#### ChatGPT (Plus, Pro, Team, Enterprise, or Edu)
+
+ChatGPT supports MCP servers through Developer Mode.
+
+1. Go to **Settings → Apps → Advanced settings**
+2. Toggle **Developer mode** on
+3. Click **Create app**
+4. Fill in:
+   - **Name:** `Paralogy`
+   - **Description:** `Divergent thinking and creative ideation tools`
+   - **MCP Server URL:** `https://mcp.paralogy.ai/mcp`
+   - **Authentication:** `No Auth`
+5. Check **"I understand and want to continue"**
+6. Click **Create**
+
+ChatGPT will connect and discover all 15 tools. To use them:
+
+1. Start a new chat — it will default to Developer Mode
+2. Describe your problem, or explicitly reference a tool:
+   ```
+   Use the Paralogy app's think-wrong tool to brainstorm unconventional approaches to [your problem]
+   ```
+
+> **Note:** ChatGPT memory is disabled in Developer Mode. Your tools will work, but ChatGPT won't remember previous conversations while this mode is active. You can toggle Developer Mode off in the same settings menu when you don't need the tools.
 
 ---
 
@@ -153,9 +178,9 @@ The server will listen on `http://0.0.0.0:3000/mcp`. Deploy to Railway, Render, 
 | Mode | When to use | How to run |
 |------|-------------|------------|
 | **stdio** (default) | Local use with Claude Desktop, Claude Code, Cursor | `node dist/index.js` |
-| **http** | Remote hosting for Claude.ai, web clients, shared teams | `TRANSPORT=http node dist/index.js` |
+| **http** | Remote hosting for Claude.ai, ChatGPT, web clients, shared teams | `TRANSPORT=http node dist/index.js` |
 
 ## Requirements
 
-- Node.js 18+
-- An MCP-compatible client
+- Node.js 18+ (for self-hosted only)
+- An MCP-compatible client (Claude Desktop, Claude Code, ChatGPT, Cursor, etc.)
