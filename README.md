@@ -106,6 +106,14 @@ Add to your config: Claude Desktop (`~/Library/Application Support/Claude/claude
 
 See [mcp-server/README.md](mcp-server/README.md) for full ChatGPT setup details.
 
+**OpenClaw:**
+
+```bash
+openclaw mcp set divergent-thinking-tools '{"url":"https://mcp.paralogy.ai/mcp"}'
+```
+
+All 15 tools become available to any OpenClaw agent. See [docs/for-openclaw.md](docs/for-openclaw.md) for dedicated agent and multi-agent pipeline setups.
+
 **Local (if you prefer to self-host):**
 
 ```bash

@@ -63,6 +63,18 @@ ChatGPT will connect and discover all 15 tools. To use them:
 
 > **Note:** ChatGPT memory is disabled in Developer Mode. Your tools will work, but ChatGPT won't remember previous conversations while this mode is active. You can toggle Developer Mode off in the same settings menu when you don't need the tools.
 
+#### OpenClaw
+
+OpenClaw has native MCP support. One command:
+
+```bash
+openclaw mcp set divergent-thinking-tools '{"url":"https://mcp.paralogy.ai/mcp"}'
+```
+
+Verify with `openclaw mcp list`. All 15 tools are immediately available to any agent in your gateway.
+
+For dedicated agent setups and full multi-agent pipelines, see [docs/for-openclaw.md](../docs/for-openclaw.md).
+
 ---
 
 ## Self-hosted setup (optional)
