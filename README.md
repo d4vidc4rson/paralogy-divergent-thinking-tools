@@ -22,7 +22,7 @@ Researchers at [CHI 2025](https://dl.acm.org/doi/10.1145/3706598.3713778) call i
 
 ---
 
-[Quick Start](#quick-start) · [The Pipeline](#the-pipeline) · [Before & After](#before--after) · [The Tools](#the-tools) · [For Agents](#for-agents) · [Test Results](#test-results) · [Research](#the-research) · [Limitations](#limitations)
+[Quick Start](#quick-start) · [The Tools](#the-tools) · [For Agents](#for-agents) · [The Pipeline](#the-pipeline) · [Test Results](#test-results) · [Before & After](#before--after) · [Research](#the-research) · [Limitations](#limitations)
 
 ---
 
@@ -129,64 +129,6 @@ See [docs/for-humans.md](docs/for-humans.md) for details.
 
 ---
 
-## The Pipeline
-
-```
-  Explore          Pre-generate        Generate           Audit            Gap-fill          Polish
-    │                   │                  │                 │                 │                │
-    ▼                   ▼                  ▼                 ▼                 ▼                ▼
-┌─────────┐     ┌─────────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐     ┌─────────┐
-│  Wrong   │     │  Strip Down │     │ Guilford │     │  Anti-   │     │  Router  │     │ De-Slop │
-│ Problem  │────▶│  + Blind   │────▶│ + Persona│────▶│Homogene- │────▶│ targeted │────▶│  human  │
-│ Detector │     │  Spot Scan │     │ + 6 more │     │ity Check │     │ regen    │     │  voice  │
-└─────────┘     └─────────────┘     └──────────┘     └──────────┘     └──────────┘     └─────────┘
- Check the       Extract raw         8 generators,    Diversity grade   Fill gaps,        Strip
- problem first   desire, map the     each producing   + coverage audit  don't just        the AI
-                 full space          structurally                       point at them      polish
-                                     different output
-```
-
-| Phase | Tools | What happens |
-|-------|-------|-------------|
-| **Explore** | Wrong Problem Detector, Dumb Questions Engine | Checks the problem before solving it |
-| **Pre-generate** | Strip Down, Blind Spot Scan | Extracts the raw desire, maps the full problem space |
-| **Generate** | Guilford Engine, Persona Divergence Engine, Think Wrong, Short Think, Bad on Purpose, Wild to Mild, MacGyver Mode, Random Injection | 8 generation tools, each producing structurally different output |
-| **Audit** | Anti-Homogeneity Check, Blind Spot Scan (post) | Diversity grade + coverage audit |
-| **Gap-fill** | Router-directed targeted generation | Fills gaps instead of just pointing at them |
-| **Polish** | De-Slop | Humanizes the output |
-
-The Router orchestrates the pipeline. You don't manage tool selection — the Router reads the situation and acts.
-
----
-
-## Before & After
-
-Same problem. Same model. Climate tech go-to-market strategy.
-
-**Vanilla Claude (no tools):**
-
-```
-22 ideas — conventional channels, obvious partnerships,
-standard go-to-market playbook. Solid but predictable.
-```
-
-**With the pipeline:**
-
-```
-65+ ideas — including 15 that vanilla Claude didn't touch:
-
-  • FEMA grantees with approved funding and no vendor
-  • DOD procurement programs nobody at the startup knew existed
-  • Complete reframing: "we can't sell to utilities" →
-    "we're selling to the wrong buyer"
-```
-
-Same model. Same problem. 3x the ideas. The difference is structural — the pipeline forces the model into territory its default reasoning actively avoids.
-
-Full comparison: [test-6-control-vanilla-vs-tools.md](tests/test-6-control-vanilla-vs-tools.md).
-
----
-
 ## The Tools
 
 **Exploration:**
@@ -232,6 +174,36 @@ See [docs/for-agents.md](docs/for-agents.md) for the full agentic architecture, 
 
 ---
 
+## The Pipeline
+
+```
+  Explore          Pre-generate        Generate           Audit            Gap-fill          Polish
+    │                   │                  │                 │                 │                │
+    ▼                   ▼                  ▼                 ▼                 ▼                ▼
+┌─────────┐     ┌─────────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐     ┌─────────┐
+│  Wrong   │     │  Strip Down │     │ Guilford │     │  Anti-   │     │  Router  │     │ De-Slop │
+│ Problem  │────▶│  + Blind   │────▶│ + Persona│────▶│Homogene- │────▶│ targeted │────▶│  human  │
+│ Detector │     │  Spot Scan │     │ + 6 more │     │ity Check │     │ regen    │     │  voice  │
+└─────────┘     └─────────────┘     └──────────┘     └──────────┘     └──────────┘     └─────────┘
+ Check the       Extract raw         8 generators,    Diversity grade   Fill gaps,        Strip
+ problem first   desire, map the     each producing   + coverage audit  don't just        the AI
+                 full space          structurally                       point at them      polish
+                                     different output
+```
+
+| Phase | Tools | What happens |
+|-------|-------|-------------|
+| **Explore** | Wrong Problem Detector, Dumb Questions Engine | Checks the problem before solving it |
+| **Pre-generate** | Strip Down, Blind Spot Scan | Extracts the raw desire, maps the full problem space |
+| **Generate** | Guilford Engine, Persona Divergence Engine, Think Wrong, Short Think, Bad on Purpose, Wild to Mild, MacGyver Mode, Random Injection | 8 generation tools, each producing structurally different output |
+| **Audit** | Anti-Homogeneity Check, Blind Spot Scan (post) | Diversity grade + coverage audit |
+| **Gap-fill** | Router-directed targeted generation | Fills gaps instead of just pointing at them |
+| **Polish** | De-Slop | Humanizes the output |
+
+The Router orchestrates the pipeline. You don't manage tool selection — the Router reads the situation and acts.
+
+---
+
 ## Test Results
 
 10 full pipeline tests across 10 domains:
@@ -248,6 +220,34 @@ See [docs/for-agents.md](docs/for-agents.md) for the full agentic architecture, 
 | [8](tests/test-8-engineering-route-optimization.md) | Real-time route optimization (engineering) | Hard-constraint engineering domain | A- |
 | [9](tests/test-9-physics-dark-matter.md) | Dark matter detection strategy (physics) | Resource allocation under physical constraints | A- |
 | [10](tests/test-10-applied-math-climate-ml.md) | Neural network climate surrogate (applied math) | Mathematical architecture problem | A- |
+
+---
+
+## Before & After
+
+Same problem. Same model. Climate tech go-to-market strategy.
+
+**Vanilla Claude (no tools):**
+
+```
+22 ideas — conventional channels, obvious partnerships,
+standard go-to-market playbook. Solid but predictable.
+```
+
+**With the pipeline:**
+
+```
+65+ ideas — including 15 that vanilla Claude didn't touch:
+
+  • FEMA grantees with approved funding and no vendor
+  • DOD procurement programs nobody at the startup knew existed
+  • Complete reframing: "we can't sell to utilities" →
+    "we're selling to the wrong buyer"
+```
+
+Same model. Same problem. 3x the ideas. The difference is structural — the pipeline forces the model into territory its default reasoning actively avoids.
+
+Full comparison: [test-6-control-vanilla-vs-tools.md](tests/test-6-control-vanilla-vs-tools.md).
 
 ---
 
