@@ -28,7 +28,40 @@ Researchers at [CHI 2025](https://dl.acm.org/doi/10.1145/3706598.3713778) call i
 
 ## Quick Start
 
-### MCP server (easiest — no install required)
+### Install via npx
+
+No clone, no build, no API key. The server distributes skill prompts — your client's LLM executes them.
+
+**Claude Code:**
+
+```bash
+claude mcp add divergent-thinking-tools -- npx -y divergent-thinking-tools-mcp
+```
+
+**Codex:**
+
+```bash
+codex mcp add divergent-thinking-tools -- npx -y divergent-thinking-tools-mcp
+```
+
+**Claude Desktop / Cursor:**
+
+Add to your config (`~/Library/Application Support/Claude/claude_desktop_config.json` or `.cursor/mcp.json`):
+
+```json
+{
+  "mcpServers": {
+    "divergent-thinking-tools": {
+      "command": "npx",
+      "args": ["-y", "divergent-thinking-tools-mcp"]
+    }
+  }
+}
+```
+
+### Hosted server (no install at all)
+
+If you'd rather not run anything locally, connect to the hosted server:
 
 **Claude.ai:**
 
@@ -36,7 +69,14 @@ Researchers at [CHI 2025](https://dl.acm.org/doi/10.1145/3706598.3713778) call i
 2. Click **+** → Name: `Divergent Thinking Tools` → URL: `https://mcp.paralogy.ai`
 3. Start a new chat and describe your problem. The Router handles the rest.
 
-**Claude Desktop / Cursor:**
+**Claude Code / Codex (terminal):**
+
+```bash
+claude mcp add divergent-thinking-tools --transport http https://mcp.paralogy.ai/mcp
+codex mcp add divergent-thinking-tools --transport http https://mcp.paralogy.ai/mcp
+```
+
+**Claude Desktop / Cursor (config file):**
 
 ```json
 {
@@ -46,20 +86,6 @@ Researchers at [CHI 2025](https://dl.acm.org/doi/10.1145/3706598.3713778) call i
     }
   }
 }
-```
-
-Add to your config: Claude Desktop (`~/Library/Application Support/Claude/claude_desktop_config.json`) or Cursor (`.cursor/mcp.json`).
-
-**Claude Code (terminal):**
-
-```bash
-claude mcp add divergent-thinking-tools --transport http https://mcp.paralogy.ai/mcp
-```
-
-**Codex (terminal):**
-
-```bash
-codex mcp add divergent-thinking-tools --transport http https://mcp.paralogy.ai/mcp
 ```
 
 **ChatGPT (Plus, Pro, Team, Enterprise, or Edu):**
@@ -86,38 +112,6 @@ All 15 tools become available to any OpenClaw agent. See [docs/for-openclaw.md](
 3. Describe your problem. The Router handles the rest.
 
 See [docs/for-humans.md](docs/for-humans.md) for details.
-
-### Run locally via npx
-
-```bash
-npx divergent-thinking-tools-mcp
-```
-
-No clone, no build. Works with any MCP client that supports stdio:
-
-**Claude Code:**
-```bash
-claude mcp add divergent-thinking-tools -- npx divergent-thinking-tools-mcp
-```
-
-**Codex:**
-```bash
-codex mcp add divergent-thinking-tools -- npx divergent-thinking-tools-mcp
-```
-
-**Claude Desktop / Cursor (config file):**
-```json
-{
-  "mcpServers": {
-    "divergent-thinking-tools": {
-      "command": "npx",
-      "args": ["divergent-thinking-tools-mcp"]
-    }
-  }
-}
-```
-
-No API key needed — the server distributes the skill prompts and your client's LLM executes them. See [mcp-server/README.md](mcp-server/README.md) for full setup.
 
 ---
 
