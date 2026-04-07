@@ -38,13 +38,16 @@ No clone, no build, no API key. The server distributes skill prompts — your cl
 claude mcp add divergent-thinking-tools -- npx -y divergent-thinking-tools-mcp
 ```
 
-**Codex:**
+<details>
+<summary><strong>Codex</strong></summary>
 
 ```bash
 codex mcp add divergent-thinking-tools -- npx -y divergent-thinking-tools-mcp
 ```
+</details>
 
-**Claude Desktop / Cursor:**
+<details>
+<summary><strong>Claude Desktop / Cursor</strong></summary>
 
 Add to your config (`~/Library/Application Support/Claude/claude_desktop_config.json` or `.cursor/mcp.json`):
 
@@ -58,10 +61,11 @@ Add to your config (`~/Library/Application Support/Claude/claude_desktop_config.
   }
 }
 ```
+</details>
 
 ### Hosted server (no install at all)
 
-If you'd rather not run anything locally, connect to the hosted server:
+If you'd rather not run anything locally, connect to the hosted server.
 
 **Claude.ai:**
 
@@ -69,14 +73,17 @@ If you'd rather not run anything locally, connect to the hosted server:
 2. Click **+** → Name: `Divergent Thinking Tools` → URL: `https://mcp.paralogy.ai`
 3. Start a new chat and describe your problem. The Router handles the rest.
 
-**Claude Code / Codex (terminal):**
+<details>
+<summary><strong>Claude Code / Codex (terminal)</strong></summary>
 
 ```bash
 claude mcp add divergent-thinking-tools --transport http https://mcp.paralogy.ai/mcp
 codex mcp add divergent-thinking-tools --transport http https://mcp.paralogy.ai/mcp
 ```
+</details>
 
-**Claude Desktop / Cursor (config file):**
+<details>
+<summary><strong>Claude Desktop / Cursor (config file)</strong></summary>
 
 ```json
 {
@@ -87,8 +94,10 @@ codex mcp add divergent-thinking-tools --transport http https://mcp.paralogy.ai/
   }
 }
 ```
+</details>
 
-**ChatGPT (Plus, Pro, Team, Enterprise, or Edu):**
+<details>
+<summary><strong>ChatGPT (Plus, Pro, Team, Enterprise, or Edu)</strong></summary>
 
 1. Go to **Settings → Apps → Advanced settings** → toggle **Developer mode** on
 2. Click **Create app** → Name: `Paralogy` → URL: `https://mcp.paralogy.ai/mcp` → Authentication: `No Auth`
@@ -96,22 +105,27 @@ codex mcp add divergent-thinking-tools --transport http https://mcp.paralogy.ai/
 4. Start a new chat and describe your problem. Reference tools explicitly for best results: *"Use the Paralogy app's think-wrong tool to..."*
 
 See [mcp-server/README.md](mcp-server/README.md) for full ChatGPT setup details.
+</details>
 
-**OpenClaw:**
+<details>
+<summary><strong>OpenClaw</strong></summary>
 
 ```bash
 openclaw mcp set divergent-thinking-tools '{"url":"https://mcp.paralogy.ai/mcp"}'
 ```
 
 All 15 tools become available to any OpenClaw agent. See [docs/for-openclaw.md](docs/for-openclaw.md) for dedicated agent and multi-agent pipeline setups.
+</details>
 
-### SKILL.md files (manual)
+<details>
+<summary><strong>SKILL.md files (manual — no MCP)</strong></summary>
 
 1. Download the `skills/` directory
 2. Add the SKILL.md files to your Claude Projects, Cursor, or any LLM custom instructions
 3. Describe your problem. The Router handles the rest.
 
 See [docs/for-humans.md](docs/for-humans.md) for details.
+</details>
 
 ---
 
