@@ -16,9 +16,9 @@ Researchers at [CHI 2025](https://dl.acm.org/doi/10.1145/3706598.3713778) call i
 
 ---
 
-| 10/10 A or A- | 65+ ideas | 15 tools | $0 |
-|:-:|:-:|:-:|:-:|
-| Pipeline test results | vs 22 from vanilla Claude | Full pipeline | Free and open source |
+| 10/10 A or A- | 65+ ideas | 15 tools |
+|:-:|:-:|:-:|
+| Pipeline test results | vs 22 from vanilla Claude | Full pipeline |
 
 ---
 
