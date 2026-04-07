@@ -6,10 +6,31 @@
   "bin": {
     "divergent-thinking-tools-mcp": "dist/index.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js"
   },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "divergent-thinking",
+    "creativity",
+    "brainstorming",
+    "ideation",
+    "claude",
+    "chatgpt",
+    "codex",
+    "cursor"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/d4vidc4rson/paralogy-divergent-thinking-tools"
+  },
+  "homepage": "https://github.com/d4vidc4rson/paralogy-divergent-thinking-tools#readme",
+  "author": "David Carson",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.0",
     "zod": "^3.25.0"

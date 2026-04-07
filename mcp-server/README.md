@@ -17,7 +17,7 @@ The fastest way to use the tools. No cloning, no terminal, no npm.
 5. Click **Add**
 6. Start a new chat and describe your problem. The Router handles the rest.
 
-#### Claude Desktop / Claude Code / Cursor
+#### Claude Desktop / Cursor
 
 Add to your MCP client config:
 
@@ -33,10 +33,21 @@ Add to your MCP client config:
 
 Config file locations:
 - **Claude Desktop:** `~/Library/Application Support/Claude/claude_desktop_config.json`
-- **Claude Code:** Project or global MCP settings
 - **Cursor:** `.cursor/mcp.json` in your project
 
 That's it. All 15 tools are immediately available.
+
+#### Claude Code (terminal)
+
+```bash
+claude mcp add divergent-thinking-tools --transport http https://mcp.paralogy.ai/mcp
+```
+
+#### Codex (terminal)
+
+```bash
+codex mcp add divergent-thinking-tools --transport http https://mcp.paralogy.ai/mcp
+```
 
 #### ChatGPT (Plus, Pro, Team, Enterprise, or Edu)
 
@@ -77,9 +88,48 @@ For dedicated agent setups and full multi-agent pipelines, see [docs/for-opencla
 
 ---
 
+## Run locally via npx (no clone required)
+
+```bash
+npx divergent-thinking-tools-mcp
+```
+
+Works with any MCP client that supports stdio. No cloning, no building.
+
+#### Claude Code (terminal)
+
+```bash
+claude mcp add divergent-thinking-tools -- npx divergent-thinking-tools-mcp
+```
+
+#### Codex (terminal)
+
+```bash
+codex mcp add divergent-thinking-tools -- npx divergent-thinking-tools-mcp
+```
+
+#### Claude Desktop / Cursor (config file)
+
+```json
+{
+  "mcpServers": {
+    "divergent-thinking-tools": {
+      "command": "npx",
+      "args": ["divergent-thinking-tools-mcp"]
+    }
+  }
+}
+```
+
+Config file locations:
+- **Claude Desktop:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Cursor:** `.cursor/mcp.json` in your project
+
+---
+
 ## Self-hosted setup (optional)
 
-If you prefer to run the server locally:
+If you prefer to clone and build from source:
 
 ### 1. Clone and build
 
@@ -92,24 +142,9 @@ npm run build
 
 ### 2. Connect to your MCP client
 
-#### Claude Desktop
+#### Claude Desktop / Cursor
 
-Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json` on Mac):
-
-```json
-{
-  "mcpServers": {
-    "divergent-thinking-tools": {
-      "command": "node",
-      "args": ["/absolute/path/to/paralogy-divergent-thinking-tools/mcp-server/dist/index.js"]
-    }
-  }
-}
-```
-
-#### Claude Code
-
-Add to your project or global settings:
+Add to your config file:
 
 ```json
 {
@@ -122,19 +157,16 @@ Add to your project or global settings:
 }
 ```
 
-#### Cursor
+#### Claude Code (terminal)
 
-Add to `.cursor/mcp.json` in your project:
+```bash
+claude mcp add divergent-thinking-tools -- node /absolute/path/to/mcp-server/dist/index.js
+```
 
-```json
-{
-  "mcpServers": {
-    "divergent-thinking-tools": {
-      "command": "node",
-      "args": ["/absolute/path/to/paralogy-divergent-thinking-tools/mcp-server/dist/index.js"]
-    }
-  }
-}
+#### Codex (terminal)
+
+```bash
+codex mcp add divergent-thinking-tools -- node /absolute/path/to/mcp-server/dist/index.js
 ```
 
 ### 3. Use the tools

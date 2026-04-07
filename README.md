@@ -36,7 +36,7 @@ Researchers at [CHI 2025](https://dl.acm.org/doi/10.1145/3706598.3713778) call i
 2. Click **+** → Name: `Divergent Thinking Tools` → URL: `https://mcp.paralogy.ai`
 3. Start a new chat and describe your problem. The Router handles the rest.
 
-**Claude Desktop / Claude Code / Cursor:**
+**Claude Desktop / Cursor:**
 
 ```json
 {
@@ -48,7 +48,19 @@ Researchers at [CHI 2025](https://dl.acm.org/doi/10.1145/3706598.3713778) call i
 }
 ```
 
-Add to your config: Claude Desktop (`~/Library/Application Support/Claude/claude_desktop_config.json`), Claude Code (project or global MCP settings), or Cursor (`.cursor/mcp.json`).
+Add to your config: Claude Desktop (`~/Library/Application Support/Claude/claude_desktop_config.json`) or Cursor (`.cursor/mcp.json`).
+
+**Claude Code (terminal):**
+
+```bash
+claude mcp add divergent-thinking-tools --transport http https://mcp.paralogy.ai/mcp
+```
+
+**Codex (terminal):**
+
+```bash
+codex mcp add divergent-thinking-tools --transport http https://mcp.paralogy.ai/mcp
+```
 
 **ChatGPT (Plus, Pro, Team, Enterprise, or Edu):**
 
@@ -75,20 +87,31 @@ All 15 tools become available to any OpenClaw agent. See [docs/for-openclaw.md](
 
 See [docs/for-humans.md](docs/for-humans.md) for details.
 
-### Self-hosted MCP server
+### Run locally via npx
 
 ```bash
-git clone https://github.com/d4vidc4rson/paralogy-divergent-thinking-tools.git
-cd paralogy-divergent-thinking-tools/mcp-server
-npm install && npm run build
+npx divergent-thinking-tools-mcp
 ```
 
+No clone, no build. Works with any MCP client that supports stdio:
+
+**Claude Code:**
+```bash
+claude mcp add divergent-thinking-tools -- npx divergent-thinking-tools-mcp
+```
+
+**Codex:**
+```bash
+codex mcp add divergent-thinking-tools -- npx divergent-thinking-tools-mcp
+```
+
+**Claude Desktop / Cursor (config file):**
 ```json
 {
   "mcpServers": {
     "divergent-thinking-tools": {
-      "command": "node",
-      "args": ["/path/to/paralogy-divergent-thinking-tools/mcp-server/dist/index.js"]
+      "command": "npx",
+      "args": ["divergent-thinking-tools-mcp"]
     }
   }
 }
