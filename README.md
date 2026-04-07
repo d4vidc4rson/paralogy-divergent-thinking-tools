@@ -223,9 +223,9 @@ See [docs/for-agents.md](docs/for-agents.md) for the full agentic architecture, 
 ## The Research
 
 - Guilford, J.P. (1967). *The Nature of Human Intelligence.* The five-dimension divergent thinking framework.
-- Ruan et al. (2026). LiveIdeaBench. *Nature Communications.* Validated the framework across 40+ LLMs and 22 scientific domains.
-- Doshi & Hauser (2024). *Science Advances.* AI makes individuals more creative but makes everyone's output more similar.
-- Wenger & Kenett (2025). LLMs show high creative homogeneity (0.92 cosine similarity) even across model families.
+- [Ruan et al. (2026). LiveIdeaBench. *Nature Communications.*](https://www.nature.com/articles/s41467-026-70245-1) Validated the framework across 40+ LLMs and 22 scientific domains.
+- [Doshi & Hauser (2024). *Science Advances.*](https://www.science.org/doi/10.1126/sciadv.adn5290) AI makes individuals more creative but makes everyone's output more similar.
+- [Wenger & Kenett (2025).](https://arxiv.org/abs/2501.19361) LLMs show high creative homogeneity (0.92 cosine similarity) even across model families.
 - [Research on LLM creativity](https://bioengineer.org/assessing-llms-creative-science-idea-generation-skills/) confirms a "sweet spot" where carefully calibrated prompts unlock richer associative thinking.
 
 ---
