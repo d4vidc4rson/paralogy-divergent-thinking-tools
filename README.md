@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="public/images/og-image.png" width="700" />
+</p>
+
 # Divergent Thinking Tools
 
 #### A [Paralogy](https://paralogy.ai) Product
