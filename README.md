@@ -6,13 +6,13 @@
 
 <h4 align="center">A <a href="https://paralogy.ai">Paralogy</a> Product</h4>
 
-<p align="center"><strong>Everyone using AI is getting more or less the same output. This tool fixes that.</strong></p>
+**Everyone using AI is getting more or less the same output. This tool fixes that.**
 
-<p align="center">Divergent Thinking Tools is a pipeline of structured skills, each one designed to break a specific failure mode in AI reasoning, packaged with a router that knows which skill to deploy and when.</p>
+Divergent Thinking Tools is a pipeline of structured skills, each one designed to break a specific failure mode in AI reasoning, packaged with a router that knows which skill to deploy and when.
 
-<p align="center">AI models are pattern-completion machines. Trained on the sum of human thought, they're also trained on the sum of human <em>conventional</em> thought. They converge. They average. They produce what's most probable, not what's most valuable.</p>
+AI models are pattern-completion machines. Trained on the sum of human thought, they're also trained on the sum of human *conventional* thought. They converge. They average. They produce what's most probable, not what's most valuable.
 
-<p align="center">Researchers at <a href="https://dl.acm.org/doi/10.1145/3706598.3713778">CHI 2025</a> call it "mechanised convergence." AI makes any one person's output better, but it makes everyone's output more similar. It nudges groups toward smaller, less diverse sets of ideas. A <a href="https://doi.org/10.1098/rsos.241776">Royal Society study</a> confirmed a persistent generalization bias in LLMs. Knowledge workers describe AI output as "too cookie cutter, full of cliche."</p>
+Researchers at [CHI 2025](https://dl.acm.org/doi/10.1145/3706598.3713778) call it "mechanised convergence." AI makes any one person's output better, but it makes everyone's output more similar. It nudges groups toward smaller, less diverse sets of ideas. A [Royal Society study](https://doi.org/10.1098/rsos.241776) confirmed a persistent generalization bias in LLMs. Knowledge workers describe AI output as "too cookie cutter, full of cliche."
 
 ---
 
