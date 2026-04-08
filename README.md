@@ -6,23 +6,27 @@
 
 <h4 align="center">A <a href="https://paralogy.ai">Paralogy</a> Product</h4>
 
-**Everyone using AI is getting more or less the same output. This tool fixes that.**
+<p align="center"><strong>Everyone using AI is getting more or less the same output. This tool fixes that.</strong></p>
 
-Divergent Thinking Tools is a pipeline of structured skills, each one designed to break a specific failure mode in AI reasoning, packaged with a router that knows which skill to deploy and when.
+<p align="center">Divergent Thinking Tools is a pipeline of structured skills, each one designed to break a specific failure mode in AI reasoning, packaged with a router that knows which skill to deploy and when.</p>
 
-AI models are pattern-completion machines. Trained on the sum of human thought, they're also trained on the sum of human *conventional* thought. They converge. They average. They produce what's most probable, not what's most valuable.
+<p align="center">AI models are pattern-completion machines. Trained on the sum of human thought, they're also trained on the sum of human <em>conventional</em> thought. They converge. They average. They produce what's most probable, not what's most valuable.</p>
 
-Researchers at [CHI 2025](https://dl.acm.org/doi/10.1145/3706598.3713778) call it "mechanised convergence." AI makes any one person's output better, but it makes everyone's output more similar. It nudges groups toward smaller, less diverse sets of ideas. A [Royal Society study](https://doi.org/10.1098/rsos.241776) confirmed a persistent generalization bias in LLMs. Knowledge workers describe AI output as "too cookie cutter, full of cliche."
+<p align="center">Researchers at <a href="https://dl.acm.org/doi/10.1145/3706598.3713778">CHI 2025</a> call it "mechanised convergence." AI makes any one person's output better, but it makes everyone's output more similar. It nudges groups toward smaller, less diverse sets of ideas. A <a href="https://doi.org/10.1098/rsos.241776">Royal Society study</a> confirmed a persistent generalization bias in LLMs. Knowledge workers describe AI output as "too cookie cutter, full of cliche."</p>
 
 ---
+
+<div align="center">
 
 | 10/10 A or A- | 65+ ideas | 15 tools |
 |:-:|:-:|:-:|
 | Pipeline test results | vs 22 from vanilla Claude | Full pipeline |
 
+</div>
+
 ---
 
-[Quick Start](#quick-start) · [The Tools](#the-tools) · [For Agents](#for-agents) · [The Pipeline](#the-pipeline) · [Test Results](#test-results) · [Before & After](#before--after) · [Research](#the-research) · [Limitations](#limitations)
+<p align="center"><a href="#quick-start">Quick Start</a> · <a href="#the-tools">The Tools</a> · <a href="#for-agents">For Agents</a> · <a href="#the-pipeline">The Pipeline</a> · <a href="#test-results">Test Results</a> · <a href="#before--after">Before & After</a> · <a href="#the-research">Research</a> · <a href="#limitations">Limitations</a></p>
 
 ---
 
