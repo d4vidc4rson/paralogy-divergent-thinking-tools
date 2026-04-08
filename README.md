@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/images/paralogy-prism-v3.png" width="700" />
+  <img src="public/images/paralogy-prism-v3.png" width="350" />
 </p>
 
 # Divergent Thinking Tools
