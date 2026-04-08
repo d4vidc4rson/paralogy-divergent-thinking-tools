@@ -181,18 +181,18 @@ See [docs/for-agents.md](docs/for-agents.md) for the full agentic architecture, 
 ## The Pipeline
 
 ```
-  Explore          Pre-generate        Generate           Audit            Gap-fill          Polish
-    │                   │                  │                 │                 │                │
-    ▼                   ▼                  ▼                 ▼                 ▼                ▼
-┌─────────┐     ┌─────────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐     ┌─────────┐
-│  Wrong   │     │  Strip Down │     │ Guilford │     │  Anti-   │     │  Router  │     │ De-Slop │
-│ Problem  │────▶│  + Blind   │────▶│ + Persona│────▶│Homogene- │────▶│ targeted │────▶│  human  │
-│ Detector │     │  Spot Scan │     │ + 6 more │     │ity Check │     │ regen    │     │  voice  │
-└─────────┘     └─────────────┘     └──────────┘     └──────────┘     └──────────┘     └─────────┘
- Check the       Extract raw         8 generators,    Diversity grade   Fill gaps,        Strip
- problem first   desire, map the     each producing   + coverage audit  don't just        the AI
-                 full space          structurally                       point at them      polish
-                                     different output
+   Explore        Pre-generate       Generate          Audit           Gap-fill          Polish
+      │                │                │                │                │                │
+      ▼                ▼                ▼                ▼                ▼                ▼
+┌───────────┐    ┌───────────┐    ┌───────────┐    ┌───────────┐    ┌───────────┐    ┌───────────┐
+│   Wrong   │    │ Strip Down│    │  Guilford │    │   Anti-   │    │  Router   │    │  De-Slop  │
+│  Problem  │───▶│ + Blind   │───▶│ + Persona │───▶│ Homogene- │───▶│ targeted  │───▶│   human   │
+│ Detector  │    │ Spot Scan │    │ + 6 more  │    │ ity Check │    │   regen   │    │   voice   │
+└───────────┘    └───────────┘    └───────────┘    └───────────┘    └───────────┘    └───────────┘
+  Check the       Extract raw      8 generators,    Diversity grade   Fill gaps,        Strip
+  problem first   desire, map      each producing   + coverage audit  don't just        the AI
+                  the full space   structurally                       point at them      polish
+                                   different output
 ```
 
 | Phase | Tools | What happens |
