@@ -70,7 +70,7 @@ If you'd rather not run anything locally, connect to the hosted server.
 **Claude.ai:**
 
 1. Go to [claude.ai/customize/connectors](https://claude.ai/customize/connectors)
-2. Click **+** → Name: `Divergent Thinking Tools` → URL: `https://mcp.paralogy.ai`
+2. Click **+** → Name: `Divergent Thinking Tools` → URL: `https://mcp.paralogy.ai/mcp`
 3. Start a new chat and describe your problem. The Router handles the rest.
 
 <details>
