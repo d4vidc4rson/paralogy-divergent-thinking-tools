@@ -2,9 +2,9 @@
   <img src="public/images/paralogy-prism-v3.png" width="350" />
 </p>
 
-# Divergent Thinking Tools
+<h1 align="center">Divergent Thinking Tools</h1>
 
-#### A [Paralogy](https://paralogy.ai) Product
+<h4 align="center">A <a href="https://paralogy.ai">Paralogy</a> Product</h4>
 
 **Everyone using AI is getting more or less the same output. This tool fixes that.**
 
