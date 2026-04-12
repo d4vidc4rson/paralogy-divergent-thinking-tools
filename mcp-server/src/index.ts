@@ -188,12 +188,16 @@ async function main() {
     const authEnabled = isAuthEnabled();
 
     if (authEnabled) {
+      const { clerkMiddleware } = await import("@clerk/express");
       const {
         mcpAuthClerk,
         protectedResourceHandlerClerk,
         authServerMetadataHandlerClerk,
         streamableHttpHandler,
       } = await import("@clerk/mcp-tools/express");
+
+      // Clerk middleware must be registered before mcpAuthClerk
+      app.use(clerkMiddleware());
 
       console.error(
         `Auth enabled — Clerk publishable key: ${process.env.CLERK_PUBLISHABLE_KEY!.slice(0, 15)}...`
