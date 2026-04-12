@@ -384,6 +384,7 @@ async function main() {
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
   <link rel="apple-touch-icon" sizes="192x192" href="/icon-192.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="C2e3bClDRLoyQIK7d9AVg3_8x5z4aCeLzpGcbpEnTqM" />
 </head>
 <body style="font-family:system-ui,sans-serif;max-width:600px;margin:4rem auto;padding:0 1rem;color:#e0e0e0;background:#111">
   <h1>Paralogy – Divergent Thinking Tools</h1>
