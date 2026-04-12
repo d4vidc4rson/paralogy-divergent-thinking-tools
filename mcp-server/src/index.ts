@@ -159,6 +159,8 @@ async function main() {
     // -----------------------------------------------------------------------
 
     const app = express();
+    // Trust Railway's reverse proxy so req.protocol returns "https"
+    app.set("trust proxy", 1);
     app.use(express.json());
 
     // CORS — same as before, plus Authorization header for OAuth
@@ -198,10 +200,9 @@ async function main() {
       );
 
       // OAuth discovery endpoints (must be publicly accessible)
-      app.get(
-        "/.well-known/oauth-protected-resource/mcp",
-        protectedResourceHandlerClerk({ scopes_supported: ["profile", "email"] })
-      );
+      const prHandler = protectedResourceHandlerClerk({ scopes_supported: ["profile", "email"] });
+      app.get("/.well-known/oauth-protected-resource/mcp", prHandler);
+      app.get("/.well-known/oauth-protected-resource", prHandler);
       app.get(
         "/.well-known/oauth-authorization-server",
         authServerMetadataHandlerClerk
