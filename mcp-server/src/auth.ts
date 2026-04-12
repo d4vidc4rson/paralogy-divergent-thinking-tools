@@ -21,7 +21,7 @@ import type { OAuthRegisteredClientsStore } from "@modelcontextprotocol/sdk/serv
 // ---------------------------------------------------------------------------
 
 export function isAuthEnabled(): boolean {
-  return !!(process.env.CLERK_DOMAIN && process.env.SERVER_BASE_URL);
+  return !!(process.env.CLERK_DOMAIN && process.env.SERVER_BASE_URL && process.env.CLERK_OAUTH_CLIENT_ID);
 }
 
 // ---------------------------------------------------------------------------
@@ -76,6 +76,15 @@ async function verifyClerkJWT(token: string): Promise<AuthInfo> {
 
 class ClerkProxyProvider extends ProxyOAuthServerProvider {
   private _localClients = new Map<string, OAuthClientInformationFull>();
+  private _clerkClientId: string;
+
+  constructor(
+    options: ConstructorParameters<typeof ProxyOAuthServerProvider>[0],
+    clerkClientId: string
+  ) {
+    super(options);
+    this._clerkClientId = clerkClientId;
+  }
 
   /** Inject a shared client map (used to avoid circular reference in constructor) */
   _setClientMap(map: Map<string, OAuthClientInformationFull>): void {
@@ -103,6 +112,40 @@ class ClerkProxyProvider extends ProxyOAuthServerProvider {
       },
     };
   }
+
+  // Override authorize to use Clerk's OAuth app client_id instead of
+  // the dynamically-registered MCP client's id
+  async authorize(
+    client: OAuthClientInformationFull,
+    params: { redirectUri: string; codeChallenge: string; state?: string; scopes?: string[]; resource?: URL },
+    res: import("express").Response
+  ): Promise<void> {
+    const clerkClient = { ...client, client_id: this._clerkClientId };
+    return super.authorize(clerkClient, params, res);
+  }
+
+  // Override token exchange to use Clerk's client_id
+  async exchangeAuthorizationCode(
+    client: OAuthClientInformationFull,
+    authorizationCode: string,
+    codeVerifier?: string,
+    redirectUri?: string,
+    resource?: URL
+  ) {
+    const clerkClient = { ...client, client_id: this._clerkClientId };
+    return super.exchangeAuthorizationCode(clerkClient, authorizationCode, codeVerifier, redirectUri, resource);
+  }
+
+  // Override refresh to use Clerk's client_id
+  async exchangeRefreshToken(
+    client: OAuthClientInformationFull,
+    refreshToken: string,
+    scopes?: string[],
+    resource?: URL
+  ) {
+    const clerkClient = { ...client, client_id: this._clerkClientId };
+    return super.exchangeRefreshToken(clerkClient, refreshToken, scopes, resource);
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -116,6 +159,7 @@ export interface AuthSetupResult {
 
 export function setupAuth(app: Application, serverBaseUrl: string): AuthSetupResult {
   const domain = process.env.CLERK_DOMAIN!;
+  const clerkOAuthClientId = process.env.CLERK_OAUTH_CLIENT_ID!;
 
   // Client store is shared between the provider constructor and the overridden
   // clientsStore getter. We pass a getClient that reads from the same map the
@@ -123,15 +167,18 @@ export function setupAuth(app: Application, serverBaseUrl: string): AuthSetupRes
   // registerClient, which the SDK's mcpAuthRouter needs for dynamic registration.
   const localClients = new Map<string, OAuthClientInformationFull>();
 
-  const provider = new ClerkProxyProvider({
-    endpoints: {
-      authorizationUrl: `https://${domain}/oauth/authorize`,
-      tokenUrl: `https://${domain}/oauth/token`,
+  const provider = new ClerkProxyProvider(
+    {
+      endpoints: {
+        authorizationUrl: `https://${domain}/oauth/authorize`,
+        tokenUrl: `https://${domain}/oauth/token`,
+      },
+      verifyAccessToken: verifyClerkJWT,
+      getClient: async (clientId: string): Promise<OAuthClientInformationFull | undefined> =>
+        localClients.get(clientId),
     },
-    verifyAccessToken: verifyClerkJWT,
-    getClient: async (clientId: string): Promise<OAuthClientInformationFull | undefined> =>
-      localClients.get(clientId),
-  });
+    clerkOAuthClientId
+  );
 
   // Inject the shared client map so the overridden clientsStore reads/writes it
   provider._setClientMap(localClients);
