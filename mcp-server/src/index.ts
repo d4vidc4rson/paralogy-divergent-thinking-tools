@@ -373,6 +373,38 @@ async function main() {
       }
     });
 
+    app.get("/", (_req, res) => {
+      res.setHeader("Content-Type", "text/html");
+      res.end(`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Paralogy – Divergent Thinking Tools</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="/icon-192.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="font-family:system-ui,sans-serif;max-width:600px;margin:4rem auto;padding:0 1rem;color:#e0e0e0;background:#111">
+  <h1>Paralogy – Divergent Thinking Tools</h1>
+  <p>MCP server for divergent ideation. Connect via <a href="https://claude.ai" style="color:#a78bfa">Claude</a>.</p>
+  <p><a href="/health" style="color:#a78bfa">Server status</a></p>
+</body>
+</html>`);
+    });
+
+    app.get("/icon-192.png", (req, res) => {
+      const iconPath = path.join(repoRoot, "public", "images", "paralogy-prism-v3.png");
+      if (fs.existsSync(iconPath)) {
+        const icon = fs.readFileSync(iconPath);
+        res.writeHead(200, { "Content-Type": "image/png", "Cache-Control": "public, max-age=604800" });
+        res.end(icon);
+      } else {
+        res.writeHead(404);
+        res.end();
+      }
+    });
+
     app.get("/health", (_req, res) => {
       const skillCount = loadSkills(skillsDir).length;
       res.json({ status: "ok", tools: skillCount, auth: authEnabled ? "enabled" : "disabled" });
