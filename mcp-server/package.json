@@ -1,16 +1,18 @@
 {
   "name": "divergent-thinking-tools-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP server for the Divergent Thinking Tools — serves 15 structured creativity skills to any MCP-compatible client.",
   "main": "dist/index.js",
   "bin": {
     "divergent-thinking-tools-mcp": "dist/index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "skills"
   ],
   "scripts": {
     "build": "tsc",
+    "prepack": "rm -rf skills && cp -r ../skills skills",
     "start": "node dist/index.js"
   },
   "keywords": [
@@ -33,11 +35,14 @@
   "author": "David Carson",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.0",
+    "express": "^5.2.1",
+    "jose": "^6.2.2",
     "zod": "^3.25.0"
   },
   "devDependencies": {
-    "typescript": "^5.8.0",
-    "@types/node": "^22.0.0"
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.8.0"
   },
   "engines": {
     "node": ">=18.0.0"
