@@ -1,213 +1,19 @@
 /**
  * Clerk OAuth authentication for the MCP server.
  *
- * Uses the MCP SDK's built-in auth helpers to proxy OAuth to Clerk.
- * When CLERK_DOMAIN and SERVER_BASE_URL are set, the server requires
- * authentication. Without them, auth is disabled and the server runs open.
+ * Uses @clerk/mcp-tools — Clerk's official MCP integration library.
+ * When CLERK_PUBLISHABLE_KEY and CLERK_SECRET_KEY are set, the server
+ * requires authentication. Without them, auth is disabled and the server runs open.
  */
 
-import type { Application, RequestHandler } from "express";
-import { randomUUID } from "node:crypto";
-
-import { mcpAuthRouter, getOAuthProtectedResourceMetadataUrl } from "@modelcontextprotocol/sdk/server/auth/router.js";
-import { requireBearerAuth } from "@modelcontextprotocol/sdk/server/auth/middleware/bearerAuth.js";
-import { ProxyOAuthServerProvider } from "@modelcontextprotocol/sdk/server/auth/providers/proxyProvider.js";
 import type { AuthInfo } from "@modelcontextprotocol/sdk/server/auth/types.js";
-import type { OAuthClientInformationFull } from "@modelcontextprotocol/sdk/shared/auth.js";
-import type { OAuthRegisteredClientsStore } from "@modelcontextprotocol/sdk/server/auth/clients.js";
 
 // ---------------------------------------------------------------------------
 // Environment helpers
 // ---------------------------------------------------------------------------
 
 export function isAuthEnabled(): boolean {
-  return !!(process.env.CLERK_DOMAIN && process.env.SERVER_BASE_URL && process.env.CLERK_OAUTH_CLIENT_ID);
-}
-
-// ---------------------------------------------------------------------------
-// Clerk JWT verification via JWKS
-// ---------------------------------------------------------------------------
-
-// jose is ESM-only — dynamically imported and cached at runtime
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let _jose: any = null;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let _jwks: any = null;
-
-async function getJose() {
-  if (!_jose) _jose = await import("jose");
-  return _jose;
-}
-
-async function getJWKS() {
-  if (!_jwks) {
-    const jose = await getJose();
-    const domain = process.env.CLERK_DOMAIN!;
-    _jwks = jose.createRemoteJWKSet(
-      new URL(`https://${domain}/.well-known/jwks.json`)
-    );
-  }
-  return _jwks;
-}
-
-async function verifyClerkJWT(token: string): Promise<AuthInfo> {
-  const jose = await getJose();
-  const domain = process.env.CLERK_DOMAIN!;
-  const jwks = await getJWKS();
-  const { payload } = await jose.jwtVerify(token, jwks, {
-    issuer: `https://${domain}`,
-  });
-
-  return {
-    token,
-    clientId: (payload.azp as string) || (payload.sub as string) || "unknown",
-    scopes: payload.scope ? (payload.scope as string).split(" ") : [],
-    expiresAt: payload.exp,
-    extra: {
-      userId: payload.sub,
-      email: (payload as Record<string, unknown>).email,
-    },
-  };
-}
-
-// ---------------------------------------------------------------------------
-// Proxy provider with local dynamic client registration
-// ---------------------------------------------------------------------------
-
-class ClerkProxyProvider extends ProxyOAuthServerProvider {
-  private _localClients = new Map<string, OAuthClientInformationFull>();
-  private _clerkClientId: string;
-
-  constructor(
-    options: ConstructorParameters<typeof ProxyOAuthServerProvider>[0],
-    clerkClientId: string
-  ) {
-    super(options);
-    this._clerkClientId = clerkClientId;
-  }
-
-  /** Inject a shared client map (used to avoid circular reference in constructor) */
-  _setClientMap(map: Map<string, OAuthClientInformationFull>): void {
-    this._localClients = map;
-  }
-
-  get clientsStore(): OAuthRegisteredClientsStore {
-    const clients = this._localClients;
-    return {
-      getClient: async (clientId: string) => clients.get(clientId),
-      registerClient: async (
-        client: Omit<OAuthClientInformationFull, "client_id" | "client_id_issued_at">
-      ): Promise<OAuthClientInformationFull> => {
-        const clientId = randomUUID();
-        const full: OAuthClientInformationFull = {
-          ...client,
-          client_id: clientId,
-          client_id_issued_at: Math.floor(Date.now() / 1000),
-        } as OAuthClientInformationFull;
-        clients.set(clientId, full);
-        console.error(
-          `[${new Date().toISOString()}] oauth_client_registered: ${clientId}`
-        );
-        return full;
-      },
-    };
-  }
-
-  // Override authorize to use Clerk's OAuth app client_id instead of
-  // the dynamically-registered MCP client's id
-  async authorize(
-    client: OAuthClientInformationFull,
-    params: { redirectUri: string; codeChallenge: string; state?: string; scopes?: string[]; resource?: URL },
-    res: import("express").Response
-  ): Promise<void> {
-    const clerkClient = { ...client, client_id: this._clerkClientId };
-    return super.authorize(clerkClient, params, res);
-  }
-
-  // Override token exchange to use Clerk's client_id
-  async exchangeAuthorizationCode(
-    client: OAuthClientInformationFull,
-    authorizationCode: string,
-    codeVerifier?: string,
-    redirectUri?: string,
-    resource?: URL
-  ) {
-    const clerkClient = { ...client, client_id: this._clerkClientId };
-    return super.exchangeAuthorizationCode(clerkClient, authorizationCode, codeVerifier, redirectUri, resource);
-  }
-
-  // Override refresh to use Clerk's client_id
-  async exchangeRefreshToken(
-    client: OAuthClientInformationFull,
-    refreshToken: string,
-    scopes?: string[],
-    resource?: URL
-  ) {
-    const clerkClient = { ...client, client_id: this._clerkClientId };
-    return super.exchangeRefreshToken(clerkClient, refreshToken, scopes, resource);
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Setup: mount auth router + return bearer-auth middleware
-// ---------------------------------------------------------------------------
-
-export interface AuthSetupResult {
-  /** Middleware to protect MCP endpoints — validates Bearer token */
-  authMiddleware: RequestHandler;
-}
-
-export function setupAuth(app: Application, serverBaseUrl: string): AuthSetupResult {
-  const domain = process.env.CLERK_DOMAIN!;
-  const clerkOAuthClientId = process.env.CLERK_OAUTH_CLIENT_ID!;
-
-  // Client store is shared between the provider constructor and the overridden
-  // clientsStore getter. We pass a getClient that reads from the same map the
-  // overridden getter writes to. The override in ClerkProxyProvider adds
-  // registerClient, which the SDK's mcpAuthRouter needs for dynamic registration.
-  const localClients = new Map<string, OAuthClientInformationFull>();
-
-  const provider = new ClerkProxyProvider(
-    {
-      endpoints: {
-        authorizationUrl: `https://${domain}/oauth/authorize`,
-        tokenUrl: `https://${domain}/oauth/token`,
-      },
-      verifyAccessToken: verifyClerkJWT,
-      getClient: async (clientId: string): Promise<OAuthClientInformationFull | undefined> =>
-        localClients.get(clientId),
-    },
-    clerkOAuthClientId
-  );
-
-  // Inject the shared client map so the overridden clientsStore reads/writes it
-  provider._setClientMap(localClients);
-
-  // Mount the OAuth router at app root (required by the SDK)
-  app.use(
-    mcpAuthRouter({
-      provider,
-      issuerUrl: new URL(serverBaseUrl),
-      baseUrl: new URL(serverBaseUrl),
-      resourceServerUrl: new URL(`${serverBaseUrl}/mcp`),
-      resourceName: "Paralogy MCP Server",
-      scopesSupported: [],
-    })
-  );
-
-  const authMiddleware = requireBearerAuth({
-    verifier: provider,
-    requiredScopes: [],
-    resourceMetadataUrl: getOAuthProtectedResourceMetadataUrl(
-      new URL(`${serverBaseUrl}/mcp`)
-    ),
-  });
-
-  console.error(
-    `Auth enabled — Clerk domain: ${domain}, server: ${serverBaseUrl}`
-  );
-
-  return { authMiddleware };
+  return !!(process.env.CLERK_PUBLISHABLE_KEY && process.env.CLERK_SECRET_KEY);
 }
 
 // ---------------------------------------------------------------------------
@@ -222,13 +28,10 @@ export function getAuthUser(req: { auth?: AuthInfo }): {
   userId: string;
   email?: string;
 } | null {
-  if (!req.auth?.extra) return null;
-  const { userId, email } = req.auth.extra as {
-    userId?: string;
-    email?: string;
-  };
+  if (!req.auth) return null;
+  const userId = req.auth.clientId || (req.auth.extra?.userId as string);
   if (!userId) return null;
-  return { userId, email };
+  return { userId, email: req.auth.extra?.email as string | undefined };
 }
 
 /**

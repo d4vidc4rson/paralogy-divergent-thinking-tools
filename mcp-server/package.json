@@ -34,12 +34,15 @@
   "homepage": "https://github.com/d4vidc4rson/paralogy-divergent-thinking-tools#readme",
   "author": "David Carson",
   "dependencies": {
+    "@clerk/mcp-tools": "^0.3.1",
     "@modelcontextprotocol/sdk": "^1.12.0",
+    "cors": "^2.8.6",
     "express": "^5.2.1",
     "jose": "^6.2.2",
     "zod": "^3.25.0"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^22.0.0",
     "typescript": "^5.8.0"

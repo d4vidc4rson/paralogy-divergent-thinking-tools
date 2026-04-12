@@ -6,7 +6,7 @@ import { z } from "zod";
 import * as fs from "fs";
 import * as path from "path";
 import { fileURLToPath } from "url";
-import { isAuthEnabled, setupAuth, userLogTag } from "./auth.js";
+import { isAuthEnabled, userLogTag } from "./auth.js";
 
 // ---------------------------------------------------------------------------
 // Skill loader — reads skills/*/SKILL.md from the repo root
@@ -180,41 +180,125 @@ async function main() {
 
     // -----------------------------------------------------------------------
     // Auth (conditional — only when Clerk env vars are set)
+    // Uses @clerk/mcp-tools — Clerk's official MCP integration
     // -----------------------------------------------------------------------
 
-    type ExpressHandler = import("express").RequestHandler;
+    const authEnabled = isAuthEnabled();
 
-    let authMiddleware: ExpressHandler | null = null;
+    if (authEnabled) {
+      const {
+        mcpAuthClerk,
+        protectedResourceHandlerClerk,
+        authServerMetadataHandlerClerk,
+        streamableHttpHandler,
+      } = await import("@clerk/mcp-tools/express");
 
-    if (isAuthEnabled()) {
-      const serverBaseUrl = process.env.SERVER_BASE_URL!;
-      const result = setupAuth(app, serverBaseUrl);
-      authMiddleware = result.authMiddleware;
+      console.error(
+        `Auth enabled — Clerk publishable key: ${process.env.CLERK_PUBLISHABLE_KEY!.slice(0, 15)}...`
+      );
+
+      // OAuth discovery endpoints (must be publicly accessible)
+      app.get(
+        "/.well-known/oauth-protected-resource/mcp",
+        protectedResourceHandlerClerk({ scopes_supported: ["profile", "email"] })
+      );
+      app.get(
+        "/.well-known/oauth-authorization-server",
+        authServerMetadataHandlerClerk
+      );
+
+      // MCP endpoint with Clerk auth
+      const server = createDivergentThinkingServer(skillsDir);
+      // Cast needed: our CJS McpServer vs Clerk's ESM McpServer reference
+      const mcpHandler = streamableHttpHandler(server as any);
+
+      app.get("/mcp", mcpAuthClerk, mcpHandler);
+      app.post("/mcp", mcpAuthClerk, mcpHandler);
+      app.delete("/mcp", mcpAuthClerk, mcpHandler);
     } else {
       console.error(
-        "Auth disabled — set CLERK_DOMAIN and SERVER_BASE_URL to enable"
+        "Auth disabled — set CLERK_PUBLISHABLE_KEY and CLERK_SECRET_KEY to enable"
       );
-    }
 
-    // Helper: conditionally apply auth middleware to a route
-    function withAuth(
-      ...handlers: ExpressHandler[]
-    ): ExpressHandler[] {
-      return authMiddleware ? [authMiddleware, ...handlers] : handlers;
+      // No auth — original behavior with manual session management
+      app.get("/mcp", async (req: import("express").Request, res: import("express").Response) => {
+        const sessionId = req.headers["mcp-session-id"] as string | undefined;
+        if (sessionId && sessions[sessionId]) {
+          await sessions[sessionId].transport.handleRequest(req, res);
+        } else {
+          res.status(400).end("Invalid session");
+        }
+      });
+
+      app.delete("/mcp", async (req: import("express").Request, res: import("express").Response) => {
+        const sessionId = req.headers["mcp-session-id"] as string | undefined;
+        if (sessionId && sessions[sessionId]) {
+          await sessions[sessionId].transport.handleRequest(req, res);
+          delete sessions[sessionId];
+        } else {
+          res.status(400).end("Invalid session");
+        }
+      });
+
+      app.post("/mcp", async (req: import("express").Request, res: import("express").Response) => {
+        const body = req.body;
+        const sessionId = req.headers["mcp-session-id"] as string | undefined;
+
+        console.error(
+          `[${new Date().toISOString()}] POST /mcp sessionId=${sessionId || "none"} method=${body?.method} isInit=${!sessionId && isInitializeRequest(body)} activeSessions=${Object.keys(sessions).length}`
+        );
+
+        if (sessionId && sessions[sessionId]) {
+          await sessions[sessionId].transport.handleRequest(req, res, body);
+          return;
+        }
+
+        if (sessionId && !sessions[sessionId]) {
+          res.status(404).json({
+            jsonrpc: "2.0",
+            error: { code: -32001, message: "Session expired. Please reconnect." },
+            id: body?.id || null,
+          });
+          return;
+        }
+
+        if (!sessionId && isInitializeRequest(body)) {
+          const transport = new StreamableHTTPServerTransport({
+            sessionIdGenerator: () => randomUUID(),
+            onsessioninitialized: (id: string) => {
+              sessions[id] = { transport, server };
+              console.error(`[${new Date().toISOString()}] session_start: ${id}`);
+            },
+          });
+          transport.onclose = () => {
+            if (transport.sessionId) {
+              delete sessions[transport.sessionId];
+              console.error(`[${new Date().toISOString()}] session_end: ${transport.sessionId}`);
+            }
+          };
+          const server = createDivergentThinkingServer(skillsDir);
+          await server.connect(transport);
+          await transport.handleRequest(req, res, body);
+          return;
+        }
+
+        res.status(400).json({
+          jsonrpc: "2.0",
+          error: { code: -32000, message: "Invalid request — send an initialize request without a session ID to start" },
+          id: null,
+        });
+      });
     }
 
     // -----------------------------------------------------------------------
-    // Static routes (no auth)
+    // Static routes (no auth required)
     // -----------------------------------------------------------------------
 
     app.get("/favicon.ico", (req, res) => {
       const faviconPath = path.join(repoRoot, "public", "images", "favicon-64x64-div-think-tools.png");
       if (fs.existsSync(faviconPath)) {
         const icon = fs.readFileSync(faviconPath);
-        res.writeHead(200, {
-          "Content-Type": "image/png",
-          "Cache-Control": "public, max-age=86400",
-        });
+        res.writeHead(200, { "Content-Type": "image/png", "Cache-Control": "public, max-age=86400" });
         res.end(icon);
       } else {
         res.writeHead(404);
@@ -224,114 +308,8 @@ async function main() {
 
     app.get("/health", (_req, res) => {
       const skillCount = loadSkills(skillsDir).length;
-      res.json({
-        status: "ok",
-        tools: skillCount,
-        auth: isAuthEnabled() ? "enabled" : "disabled",
-      });
+      res.json({ status: "ok", tools: skillCount, auth: authEnabled ? "enabled" : "disabled" });
     });
-
-    // -----------------------------------------------------------------------
-    // MCP endpoint — GET (SSE streaming for existing sessions)
-    // -----------------------------------------------------------------------
-
-    app.get("/mcp", ...withAuth(async (req: import("express").Request, res: import("express").Response) => {
-      const sessionId = req.headers["mcp-session-id"] as string | undefined;
-      console.error(
-        `[${new Date().toISOString()}] GET /mcp sessionId=${sessionId || "none"} sessionExists=${!!(sessionId && sessions[sessionId])} activeSessions=${Object.keys(sessions).length}${userLogTag(req)}`
-      );
-
-      if (sessionId && sessions[sessionId]) {
-        await sessions[sessionId].transport.handleRequest(req, res);
-      } else {
-        res.status(400).end("Invalid session");
-      }
-    }));
-
-    // -----------------------------------------------------------------------
-    // MCP endpoint — DELETE (close session)
-    // -----------------------------------------------------------------------
-
-    app.delete("/mcp", ...withAuth(async (req: import("express").Request, res: import("express").Response) => {
-      const sessionId = req.headers["mcp-session-id"] as string | undefined;
-      if (sessionId && sessions[sessionId]) {
-        await sessions[sessionId].transport.handleRequest(req, res);
-        delete sessions[sessionId];
-      } else {
-        res.status(400).end("Invalid session");
-      }
-    }));
-
-    // -----------------------------------------------------------------------
-    // MCP endpoint — POST (main handler: initialize + tool calls)
-    // -----------------------------------------------------------------------
-
-    app.post("/mcp", ...withAuth(async (req: import("express").Request, res: import("express").Response) => {
-      const body = req.body;
-      const sessionId = req.headers["mcp-session-id"] as string | undefined;
-
-      console.error(
-        `[${new Date().toISOString()}] POST /mcp sessionId=${sessionId || "none"} method=${body?.method} isInit=${!sessionId && isInitializeRequest(body)} activeSessions=${Object.keys(sessions).length}${userLogTag(req)}`
-      );
-
-      // Existing session
-      if (sessionId && sessions[sessionId]) {
-        await sessions[sessionId].transport.handleRequest(req, res, body);
-        return;
-      }
-
-      // Stale session
-      if (sessionId && !sessions[sessionId]) {
-        console.error(
-          `[${new Date().toISOString()}] stale_session: ${sessionId} — requesting re-initialize`
-        );
-        res.status(404).json({
-          jsonrpc: "2.0",
-          error: {
-            code: -32001,
-            message: "Session expired. Please reconnect.",
-          },
-          id: body?.id || null,
-        });
-        return;
-      }
-
-      // New session
-      if (!sessionId && isInitializeRequest(body)) {
-        const transport = new StreamableHTTPServerTransport({
-          sessionIdGenerator: () => randomUUID(),
-          onsessioninitialized: (id: string) => {
-            sessions[id] = { transport, server };
-            console.error(
-              `[${new Date().toISOString()}] session_start: ${id}${userLogTag(req)}`
-            );
-          },
-        });
-
-        transport.onclose = () => {
-          if (transport.sessionId) {
-            delete sessions[transport.sessionId];
-            console.error(
-              `[${new Date().toISOString()}] session_end: ${transport.sessionId}`
-            );
-          }
-        };
-
-        const server = createDivergentThinkingServer(skillsDir);
-        await server.connect(transport);
-        await transport.handleRequest(req, res, body);
-        return;
-      }
-
-      res.status(400).json({
-        jsonrpc: "2.0",
-        error: {
-          code: -32000,
-          message: "Invalid request — send an initialize request without a session ID to start",
-        },
-        id: null,
-      });
-    }));
 
     // -----------------------------------------------------------------------
     // Start listening
