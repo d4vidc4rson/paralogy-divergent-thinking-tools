@@ -84,6 +84,13 @@ function createDivergentThinkingServer(skillsDir: string): McpServer {
   const server = new McpServer({
     name: "divergent-thinking-tools",
     version: "1.0.0",
+    icons: [
+      {
+        src: "https://mcp.paralogy.ai/images/favicon-paralogy.png",
+        mimeType: "image/png",
+        sizes: ["1024x1024"],
+      },
+    ],
   });
 
   // Register each skill as an MCP tool
