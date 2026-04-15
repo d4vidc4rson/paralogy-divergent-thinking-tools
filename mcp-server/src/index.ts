@@ -361,6 +361,34 @@ async function main() {
     // Static routes (no auth required)
     // -----------------------------------------------------------------------
 
+    app.get("/robots.txt", (_req, res) => {
+      res.setHeader("Content-Type", "text/plain");
+      res.end(
+        [
+          "User-agent: *",
+          "Allow: /",
+          "",
+          "Sitemap: https://mcp.paralogy.ai/sitemap.xml",
+        ].join("\n")
+      );
+    });
+
+    app.get("/sitemap.xml", (_req, res) => {
+      res.setHeader("Content-Type", "application/xml");
+      res.end(
+        [
+          '<?xml version="1.0" encoding="UTF-8"?>',
+          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+          "  <url>",
+          "    <loc>https://mcp.paralogy.ai/</loc>",
+          "    <changefreq>weekly</changefreq>",
+          "    <priority>1.0</priority>",
+          "  </url>",
+          "</urlset>",
+        ].join("\n")
+      );
+    });
+
     app.get("/favicon.ico", (req, res) => {
       const faviconPath = path.join(repoRoot, "public", "images", "favicon-64x64-div-think-tools.png");
       if (fs.existsSync(faviconPath)) {
