@@ -390,10 +390,22 @@ async function main() {
     });
 
     app.get("/favicon.ico", (req, res) => {
-      const faviconPath = path.join(repoRoot, "public", "images", "favicon-64x64-div-think-tools.png");
-      if (fs.existsSync(faviconPath)) {
-        const icon = fs.readFileSync(faviconPath);
+      const iconPath = path.join(repoRoot, "public", "images", "paralogy-prism-v3.png");
+      if (fs.existsSync(iconPath)) {
+        const icon = fs.readFileSync(iconPath);
         res.writeHead(200, { "Content-Type": "image/png", "Cache-Control": "public, max-age=86400" });
+        res.end(icon);
+      } else {
+        res.writeHead(404);
+        res.end();
+      }
+    });
+
+    app.get("/images/favicon-paralogy.png", (req, res) => {
+      const iconPath = path.join(repoRoot, "public", "images", "paralogy-prism-v3.png");
+      if (fs.existsSync(iconPath)) {
+        const icon = fs.readFileSync(iconPath);
+        res.writeHead(200, { "Content-Type": "image/png", "Cache-Control": "public, max-age=604800" });
         res.end(icon);
       } else {
         res.writeHead(404);
@@ -408,9 +420,8 @@ async function main() {
 <head>
   <meta charset="utf-8">
   <title>Paralogy – Divergent Thinking Tools</title>
-  <link rel="icon" type="image/png" sizes="64x64" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
-  <link rel="apple-touch-icon" sizes="192x192" href="/icon-192.png">
+  <link rel="icon" href="/images/favicon-paralogy.png">
+  <link rel="apple-touch-icon" href="/images/favicon-paralogy.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="C2e3bClDRLoyQIK7d9AVg3_8x5z4aCeLzpGcbpEnTqM" />
 </head>
