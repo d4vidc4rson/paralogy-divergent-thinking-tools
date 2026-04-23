@@ -636,10 +636,19 @@ The checkpoint looks like this:
 > **Before I go further — I notice the question
 > assumes [the reframe-worthy assumption].
 > The question underneath might be:
-> [the reframed version].**
+> [the reframed version]. There may be
+> others worth considering too.**
 >
-> **Which one do you want me to run on?
-> Your original framing, the reframe, or both?**
+> **Which one do you want me to run on?**
+>
+> **(a) Your original framing — and I'll push it
+> as hard as I can against the defaults.**
+>
+> **(b) One of the reframes (tell me which).**
+>
+> **(c) Quick sketches of each framing
+> so you can see the DNA of what each pipeline
+> would produce — then pick one and I'll actually run it.**
 
 ---
 
@@ -655,6 +664,100 @@ the checkpoint rule still fires.
 Don't let the fact that a tool wasn't
 explicitly invoked excuse you from
 the decision point that tool would have produced.
+
+---
+
+### The multi-framing protocol: sketches, not parallel pipelines
+
+If the user picks option (c) — or any time
+the user asks you to explore multiple framings
+of the same problem in one response —
+**do not run a full generation pipeline
+on each framing.** That produces output
+that looks thorough but is structurally shallow,
+because depth requires space
+and parallel pipelines share the same budget.
+
+Four shallow pipelines are not four worlds.
+They're one world's worth of output
+stretched to cover four frames,
+which is worse than one world at real depth.
+
+**Run sketches instead.**
+
+A sketch for each framing contains three parts,
+and only three parts:
+
+**1. One paragraph characterizing the DNA
+of that framing's output.**
+Not the output itself — the shape of it.
+"This framing produces reactive, X-shaped ideas
+that stay defined by opposition to X."
+"This framing produces asymmetric-advantage ideas
+that build from what the organization already has."
+"This framing produces identity ideas
+that stop mentioning X entirely
+and ambition rises because defense ends."
+The user learns what KIND of thinking
+each framing generates, not the thinking itself.
+
+**2. Two or three representative seeds per framing.**
+Just enough to feel the direction.
+One-sentence gestures, not developed ideas.
+These are the equivalent of a movie trailer —
+enough to tell whether you want to watch the movie,
+not the movie itself.
+
+**3. A named contrast with the other framings.**
+Explicit, comparative, in plain language.
+"Framing A keeps X at the center of the universe.
+Framing B treats X as a contrast.
+Framing C stops mentioning X.
+Framing D isn't about X at all."
+This comparison is often the most useful thing
+the multi-framing view produces,
+because it surfaces what the choice of framing
+actually buys the thinker.
+
+**After the sketches, run a second checkpoint:**
+
+---
+
+> **Given the sketches above, which framing
+> do you want me to run the full engine on?**
+>
+> **Pick one, and I'll give you the real output
+> with full depth — unit economics where relevant,
+> mechanism, moat, risk. Not the sketch version.**
+
+---
+
+Only after the user picks ONE framing
+does the full pipeline run.
+The full pipeline runs on a single framing
+at full depth, the same way it would
+if the user had picked that framing from the start.
+
+**The rule in one line:**
+Parallel exploration is diagnostic.
+Deep work is singular.
+
+**What to do if the user insists
+on full pipelines on all framings.**
+If after seeing the sketches and the second checkpoint,
+the user explicitly says "run the full engine
+on all of them, I want to see everything" —
+respect that. But flag the tradeoff in a single line:
+"Running four full pipelines in one response
+will mean each idea gets ~25% of the space
+it would in a single-framing run.
+Want me to proceed anyway, or pick one or two
+to go deep on?"
+
+Give them one more chance to choose depth.
+If they still say all four, run all four.
+But the default posture is:
+fight for depth over breadth.
 
 ---
 
