@@ -7,6 +7,7 @@ import * as fs from "fs";
 import * as path from "path";
 import { fileURLToPath } from "url";
 import { isAuthEnabled, userLogTag } from "./auth.js";
+import { registerAnalyzeTrendsTool } from "./tools/analyze-trends.js";
 
 // ---------------------------------------------------------------------------
 // Skill loader — reads skills/*/SKILL.md from the repo root
@@ -129,7 +130,14 @@ function createDivergentThinkingServer(skillsDir: string): McpServer {
     );
   }
 
-  console.error(`Available tools: ${skills.map((s) => s.name).join(", ")}`);
+  // Register the Fodda integration tool alongside the consumer-facing skills.
+  // Uses the same loaded skill bodies — reuses existing protocols verbatim,
+  // no new content. Runs no internal LLM calls — sub-second response.
+  const skillsByName = new Map(skills.map((s) => [s.name, s]));
+  registerAnalyzeTrendsTool(server, skillsByName);
+
+  const allToolNames = [...skills.map((s) => s.name), "analyze_trends"];
+  console.error(`Available tools: ${allToolNames.join(", ")}`);
   return server;
 }
 

@@ -31,3 +31,17 @@ venv/
 
 # Claude Code
 .claude/
+
+# Logs
+*.log
+
+# MCP server build artifacts
+# skills/ inside mcp-server/ is copied from repo root by `npm run prepack`
+mcp-server/skills/
+
+# Local smoke-test harness and its generated outputs
+mcp-server/test-analyze-trends.mjs
+mcp-server/test-outputs/
+
+# Tooling caches
+.playwright-mcp/
