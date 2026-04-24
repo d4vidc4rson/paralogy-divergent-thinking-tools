@@ -898,12 +898,45 @@ They're starting points, not endpoints.
   Produces ideas Guilford would never find
   because they come from outside
   the problem's native domain.
+- **Random Injection** — RUNS EVERY TIME, NOT CONDITIONALLY.
+  Pick a genuinely random concrete noun
+  from a domain entirely unrelated to the problem.
+  Not "a different kind of retail" — an actual stranger.
+  Octopus, air traffic control, funeral home,
+  beekeeping, submarine sonar, escape room,
+  wedding cake, tide pool, drone racing.
+  Pick one. Study its mechanisms seriously
+  (not free-association — actual mechanism study).
+  Extract 2-3 transferable principles.
+  Apply each principle to the problem.
+  Produces 2-4 ideas that come from genuinely outside
+  the problem's native thinking.
 
 Guilford provides structural diversity
 (different sub-problems).
 Persona Divergence provides perspective diversity
 (different worldviews).
-They are complementary, not redundant.
+Random Injection provides **domain diversity** —
+ideas whose mechanisms come from somewhere
+the problem's native thinking would never consult.
+All three are complementary, not redundant.
+
+**Random Injection is not a conditional disruption move.**
+The old structure treated Random Injection as something
+you run only when the audit flags "ideas all same mechanism."
+That's too narrow. Problem-native thinking is the default state
+of every generation pass, so the shock of genuine randomness
+should always run — not as a rescue, but as a standard input.
+
+**When you pick the random noun, show your work.**
+In the presentation, name the noun you picked,
+the mechanism you studied,
+the principles you extracted,
+and which ideas came from the transfer.
+The user should be able to trace every random-injection idea
+back to its origin noun. If the thread isn't visible,
+the random injection wasn't really random —
+it was problem-native thinking in disguise.
 
 **Step 3: Altitude spread**
 - **Wild to Mild** — takes the combined output
@@ -1066,6 +1099,61 @@ Do not write a sentence like
 That's compression, which is failure.
 The user needs to see the ladder
 as a ladder.
+
+**Section 3.5: "Where the pipeline escaped its own defaults" — REQUIRED, NAMED DISRUPTION**
+
+This section is new and non-negotiable.
+Its job is to make the disruption work visible.
+
+Every pipeline run involves at least one disruption move:
+- A Random Injection pass (baseline, always runs)
+- Possibly Think Wrong, MacGyver Mode, targeted Guilford,
+  or Persona Divergence with new personas (triggered by audit)
+
+**Each disruption move must be named in the output
+as its own labeled item, showing:**
+
+1. The disruption skill that ran.
+2. What it ran on (random noun, too-safe cluster, budget-constrained gap, missing stakeholder, etc.).
+3. The specific mechanism or principle the disruption surfaced.
+4. Which ideas in the final set came from that disruption —
+   tagged explicitly. If the Random Injection noun was "octopus"
+   and one of the principles was "distributed intelligence
+   with local autonomy," the downstream idea needs to be
+   labeled with that origin.
+
+Format:
+
+> **Disruption 1: Random Injection.**
+> **Noun:** [the random concrete noun picked].
+> **Mechanism studied:** [what the noun actually does, in one sentence].
+> **Principles extracted:** [2-3 transferable principles].
+> **Ideas this produced:** [list of 2-4 ideas, tagged
+> with the principle each came from].
+>
+> **Disruption 2: Think Wrong (if it ran).**
+> **Ran against:** [which cluster or idea was too safe].
+> **The counter-position:** [the expert-threatening take].
+> **Ideas this produced:** [list, tagged].
+
+And so on for any other disruption skill that fired.
+
+Why this section is mandatory:
+the whole point of the divergent toolkit is that
+certain tools (Random Injection, Bad on Purpose,
+Think Wrong) escape problem-native thinking.
+If the user can't see which ideas came from those escapes,
+they can't tell the difference between an output that ran
+the shock therapy and one that produced polished
+problem-native thinking with a disruption label on top.
+The transparency IS the value. Don't collapse it.
+
+Also — in Section 5 (the full reference set), tag each idea
+with its origin skill in square brackets, especially for
+ideas that came from Random Injection, Bad on Purpose mining,
+or Think Wrong. Example: "Library Extension — Stretch [from
+Random Injection: tide pool]." This lets the user audit the
+provenance of every idea in the set.
 
 **Section 4: "What was missing — and what we did about it" — REQUIRED, MULTI-DIMENSIONAL**
 
