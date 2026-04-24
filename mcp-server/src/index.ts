@@ -8,6 +8,12 @@ import * as path from "path";
 import { fileURLToPath } from "url";
 import { isAuthEnabled, userLogTag } from "./auth.js";
 import { registerAnalyzeTrendsTool } from "./tools/analyze-trends.js";
+import {
+  isFoddaToolCall,
+  checkFoddaAuth,
+  sendAuthError,
+  foddaAuthConfigured,
+} from "./fodda-auth.js";
 
 // ---------------------------------------------------------------------------
 // Skill loader — reads skills/*/SKILL.md from the repo root
@@ -194,6 +200,33 @@ async function main() {
       }
       next();
     });
+
+    // -----------------------------------------------------------------------
+    // Fodda Bearer token gate — applies only to tools/call for analyze_trends.
+    // All other MCP methods (initialize, tools/list, tools/call for the 15
+    // consumer-facing skills) pass through untouched. This fires BEFORE the
+    // Clerk branch, so Fodda's server-to-server calls never hit user-auth.
+    // -----------------------------------------------------------------------
+    app.use("/mcp", (req, res, next) => {
+      if (req.method !== "POST") return next();
+      if (!isFoddaToolCall(req.body)) return next();
+      const result = checkFoddaAuth(req);
+      if (!result.ok) {
+        console.error(
+          `[${new Date().toISOString()}] fodda_auth: DENIED status=${result.status} reason="${result.message}"`
+        );
+        sendAuthError(res, req.body, result);
+        return;
+      }
+      console.error(
+        `[${new Date().toISOString()}] fodda_auth: ok for analyze_trends`
+      );
+      next();
+    });
+
+    console.error(
+      `Fodda Bearer auth: ${foddaAuthConfigured() ? "configured" : "NOT configured (analyze_trends will return 503)"}`
+    );
 
     // -----------------------------------------------------------------------
     // Auth (conditional — only when Clerk env vars are set)
@@ -462,7 +495,12 @@ async function main() {
 
     app.get("/health", (_req, res) => {
       const skillCount = loadSkills(skillsDir).length;
-      res.json({ status: "ok", tools: skillCount, auth: authEnabled ? "enabled" : "disabled" });
+      res.json({
+        status: "ok",
+        tools: skillCount,
+        auth: authEnabled ? "enabled" : "disabled",
+        foddaAuth: foddaAuthConfigured() ? "configured" : "not configured",
+      });
     });
 
     // -----------------------------------------------------------------------

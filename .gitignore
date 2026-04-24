@@ -41,6 +41,7 @@ mcp-server/skills/
 
 # Local smoke-test harness and its generated outputs
 mcp-server/test-analyze-trends.mjs
+mcp-server/test-fodda-auth.mjs
 mcp-server/test-outputs/
 
 # Tooling caches
