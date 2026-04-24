@@ -761,6 +761,74 @@ fight for depth over breadth.
 
 ---
 
+### The desire-statement requirement (mandatory before generation)
+
+The Pipeline Preview (below) talks about
+"once the user confirms the desire statement,"
+which implies a desire statement exists.
+But newer models often skip Strip Down
+and jump straight to generation,
+which means the pipeline runs on the user's
+surface-level phrasing of the problem
+instead of on what they actually want.
+The output sounds fine but answers the wrong question.
+
+**Before any generation pipeline runs,
+a visible desire statement must exist.**
+
+Run Strip Down whenever the user's input:
+- Contains more than roughly 15 words
+- Describes a problem, situation, or context
+  (not just a simple request like "name a cat")
+- Uses professional, strategic, or business framing
+- Includes any jargon, acronyms, or industry-specific terms
+- Is a pasted brief, deck, memo, proposal, or document
+
+The only prompts that skip Strip Down
+are trivially short requests
+where the surface phrasing already IS the desire
+("generate 10 band names," "name a coffee shop,"
+"give me brainstorm words for 'red'").
+Everything else gets a desire statement.
+
+**The desire statement must appear
+in the output, not just in your thinking.**
+
+Format it like this, visibly:
+
+---
+
+> **The desire statement:
+> [Plain-language restatement of what the user
+> actually wants, stripped of jargon,
+> in their own register.]**
+
+---
+
+Then confirm it before running generation.
+"Does this capture what you're actually after?
+If not, tell me what I got wrong
+and I'll restate it before running the engine."
+
+The confirmation can be a soft pause —
+the user answers yes/no or corrects you,
+and then generation proceeds.
+
+Do not run a 3,000-word generation pipeline
+against an unconfirmed or implicit desire.
+The cost of a 30-second desire-statement check
+is trivial. The cost of generating elaborate
+answers to the wrong question is not.
+
+If you skip Strip Down
+and later realize the generated output
+is answering the surface framing
+rather than the underlying desire,
+that's a failure of this rule —
+not a quirk of how the user phrased the question.
+
+---
+
 ### The Pipeline Preview
 
 Once the user confirms the desire statement,
@@ -903,7 +971,8 @@ what it did, and what it produced.
 
 **The structure:**
 
-**Section 1: "Starting raw"**
+**Section 1: "Starting raw" — REQUIRED, TRANSPARENT MINING**
+
 Show the seeds that opened the territory.
 Not all 20 — just the 3-5 most interesting
 from Short Think and Bad on Purpose.
@@ -911,6 +980,51 @@ The ones that cracked open unexpected directions
 or surfaced hidden mechanisms.
 This shows the user where the thinking started
 and that it started messy, not polished.
+
+**For every Bad on Purpose seed you surface,
+the hidden-insight extraction must be visible.**
+
+Do not just show the bad idea. Show the surgery.
+Each bad seed gets three labeled parts:
+
+- **The bad idea itself** — one sentence, stated plainly.
+  No softening, no pre-apologies.
+- **The rule it breaks** — what convention, assumption,
+  or norm does this idea violate? Name it.
+  "Retail must be nice to its customers."
+  "Bookstores must stock lots of books."
+  "A service business can't charge people to leave empty-handed."
+- **The 5% version + the door it opens** — the mined insight.
+  What's the useful 5% of this idea
+  and what territory does it open
+  that polished thinking would never visit?
+
+Example of the required format:
+
+> **Bad idea:** Charge customers $50 just to walk in.
+>
+> **Rule it breaks:** Retail must justify entry
+> with free browsing.
+>
+> **5% version + door opened:** A $5 "quiet fee"
+> for a silent reading room in the back.
+> Door: bookstores aren't selling books anymore —
+> they're selling third places.
+> Charge for the thing you actually sell.
+
+Short Think seeds don't need this surgery
+(they're volume, not insight-extraction) —
+but they should still be presented
+with a sentence of context about WHY
+each surfaced seed was worth keeping.
+
+The point of Section 1 is not just
+"look, the model generated bad ideas."
+The point is showing the user
+the mechanism by which bad ideas
+become real insight. If that mechanism
+isn't visible, the section has failed —
+even if the ideas themselves are interesting.
 
 **Section 2: "Structured generation"**
 The core ideas from Guilford and Persona Divergence,
@@ -953,7 +1067,8 @@ That's compression, which is failure.
 The user needs to see the ladder
 as a ladder.
 
-**Section 4: "What was missing — and what we did about it"**
+**Section 4: "What was missing — and what we did about it" — REQUIRED, MULTI-DIMENSIONAL**
+
 Show what the audit found:
 which gaps, which weaknesses.
 Then show the disruption pass ideas
@@ -961,6 +1076,61 @@ that filled those gaps.
 This is where the user sees
 that the process caught its own blind spots
 and fixed them.
+
+**A real audit surfaces at least 3 gaps,
+across different dimensions of the problem.**
+
+A single-gap audit ("nobody touched the digital dimension")
+is not a real audit. It's a gesture toward one.
+A real Blind Spot Scan looks at the full
+7-dimension map the skill defines (stakeholders,
+time horizons, resources, strategic posture,
+value types, mechanisms, failure modes)
+and surfaces everywhere the ideas clustered
+vs. everywhere they left empty.
+
+The dimensions to check across:
+
+- **Stakeholder gaps** — whose perspective is missing?
+  (e.g. "every idea serves customers, zero serve staff")
+- **Temporal gaps** — which time horizon has no ideas?
+  (e.g. "no bridge strategy between today and the new model")
+- **Operational gaps** — which parts of execution are ignored?
+  (e.g. "every idea assumes hiring new people — no idea uses existing staff")
+- **Defensive gaps** — what happens if the strategy fails
+  or a competitor responds?
+- **Economic-model gaps** — is one revenue assumption doing all the work?
+- **Channel gaps** — physical vs digital vs in-person vs async?
+- **Ownership/structure gaps** — succession, governance, legal form?
+
+Name each gap specifically. Then for each gap,
+show what you did about it — either a new idea
+from the disruption pass targeted at that gap,
+or an honest note that the gap is intentional
+and the strategy explicitly doesn't address it.
+
+Format:
+
+> **Gap 1: [Stakeholder] — [specific description].**
+> Fill: [concrete move or honest non-fill].
+>
+> **Gap 2: [Temporal] — [specific description].**
+> Fill: [concrete move or honest non-fill].
+>
+> **Gap 3: [Defensive] — [specific description].**
+> Fill: [concrete move or honest non-fill].
+
+Three is a floor, not a ceiling.
+If a full audit finds five or seven
+legitimate gaps, show them all.
+But never fewer than three.
+
+A single-gap audit means either
+the audit didn't actually run
+or the ideas really are unusually complete —
+and the second case is rare enough
+that the first is almost always the explanation.
+Run the audit again.
 
 **Section 5: "The full set" — REQUIRED, BULLETED REFERENCE**
 The final integrated collection of all ideas,
