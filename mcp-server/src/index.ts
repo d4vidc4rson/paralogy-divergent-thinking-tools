@@ -78,16 +78,7 @@ function loadSkills(skillsDir: string): Skill[] {
 // Create and configure the MCP server with all skills
 // ---------------------------------------------------------------------------
 
-function createDivergentThinkingServer(skillsDir: string): McpServer {
-  const skills = loadSkills(skillsDir);
-
-  if (skills.length === 0) {
-    console.error("No skills found. Ensure the skills/ directory exists at the repo root.");
-    process.exit(1);
-  }
-
-  console.error(`Loaded ${skills.length} skills from ${skillsDir}`);
-
+function createDivergentThinkingServer(skills: Skill[]): McpServer {
   const server = new McpServer({
     name: "divergent-thinking-tools",
     version: "1.0.0",
@@ -141,9 +132,6 @@ function createDivergentThinkingServer(skillsDir: string): McpServer {
   // no new content. Runs no internal LLM calls — sub-second response.
   const skillsByName = new Map(skills.map((s) => [s.name, s]));
   registerAnalyzeTrendsTool(server, skillsByName);
-
-  const allToolNames = [...skills.map((s) => s.name), "analyze_trends"];
-  console.error(`Available tools: ${allToolNames.join(", ")}`);
   return server;
 }
 
@@ -159,6 +147,16 @@ async function main() {
   const skillsDir = fs.existsSync(path.join(packageRoot, "skills"))
     ? path.join(packageRoot, "skills")
     : path.join(repoRoot, "skills");
+
+  // Loaded once and shared by every session's server, so each session stays small in memory.
+  const skills = loadSkills(skillsDir);
+  if (skills.length === 0) {
+    console.error("No skills found. Ensure the skills/ directory exists at the repo root.");
+    process.exit(1);
+  }
+  console.error(`Loaded ${skills.length} skills from ${skillsDir}`);
+  console.error(`Available tools: ${[...skills.map((s) => s.name), "analyze_trends"].join(", ")}`);
+
   const mode = process.env.TRANSPORT || "stdio";
   const port = parseInt(process.env.PORT || "3000", 10);
 
@@ -173,7 +171,18 @@ async function main() {
     );
     const { randomUUID } = await import("node:crypto");
 
-    const sessions: Record<string, { transport: InstanceType<typeof StreamableHTTPServerTransport>; server: McpServer }> = {};
+    const sessions: Record<string, { transport: InstanceType<typeof StreamableHTTPServerTransport>; server: McpServer; lastActivity: number }> = Object.create(null);
+
+    // Clients rarely send DELETE, so close idle sessions; a returning client gets a 404 and re-initializes.
+    const SESSION_IDLE_TTL_MS = 60 * 60 * 1000;
+    setInterval(() => {
+      const cutoff = Date.now() - SESSION_IDLE_TTL_MS;
+      for (const [id, session] of Object.entries(sessions)) {
+        if (session.lastActivity >= cutoff) continue;
+        console.error(`[${new Date().toISOString()}] session_expired: ${id}`);
+        session.transport.close().catch((err) => console.error(`Failed to close session ${id}: ${err}`));
+      }
+    }, 5 * 60 * 1000);
 
     // -----------------------------------------------------------------------
     // Express app
@@ -198,6 +207,12 @@ async function main() {
         res.end();
         return;
       }
+      next();
+    });
+
+    app.use("/mcp", (req, _res, next) => {
+      const sessionId = req.headers["mcp-session-id"] as string | undefined;
+      if (sessionId && sessions[sessionId]) sessions[sessionId].lastActivity = Date.now();
       next();
     });
 
@@ -308,7 +323,7 @@ async function main() {
           const transport = new StreamableHTTPServerTransport({
             sessionIdGenerator: () => randomUUID(),
             onsessioninitialized: (id: string) => {
-              sessions[id] = { transport, server };
+              sessions[id] = { transport, server, lastActivity: Date.now() };
               console.error(`[${new Date().toISOString()}] session_start: ${id}${userLogTag(req as any)}`);
             },
           });
@@ -318,7 +333,7 @@ async function main() {
               console.error(`[${new Date().toISOString()}] session_end: ${transport.sessionId}`);
             }
           };
-          const server = createDivergentThinkingServer(skillsDir);
+          const server = createDivergentThinkingServer(skills);
           await server.connect(transport);
           await transport.handleRequest(req, res, body);
           return;
@@ -381,7 +396,7 @@ async function main() {
           const transport = new StreamableHTTPServerTransport({
             sessionIdGenerator: () => randomUUID(),
             onsessioninitialized: (id: string) => {
-              sessions[id] = { transport, server };
+              sessions[id] = { transport, server, lastActivity: Date.now() };
               console.error(`[${new Date().toISOString()}] session_start: ${id}`);
             },
           });
@@ -391,7 +406,7 @@ async function main() {
               console.error(`[${new Date().toISOString()}] session_end: ${transport.sessionId}`);
             }
           };
-          const server = createDivergentThinkingServer(skillsDir);
+          const server = createDivergentThinkingServer(skills);
           await server.connect(transport);
           await transport.handleRequest(req, res, body);
           return;
@@ -512,7 +527,7 @@ async function main() {
     });
   } else {
     // Local mode: stdio transport
-    const server = createDivergentThinkingServer(skillsDir);
+    const server = createDivergentThinkingServer(skills);
     const transport = new StdioServerTransport();
     await server.connect(transport);
     console.error("Divergent Thinking Tools MCP server running on stdio");
